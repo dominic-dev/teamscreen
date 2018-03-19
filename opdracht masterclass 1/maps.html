@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+	<link href="other.css" rel="stylesheet">
+</head>
+<body>
+	<div id="traffic-list">
+		<h2>Vertragingen</h2>
+		<div class="traffic-item">
+			<img class="avatar" src="https://jira.local.mybit.nl/secure/useravatar?size=small&ownerId=thomas&avatarId=12067">
+			<span class="name">Thomas Offereins</span>
+			<span class="delay">5-15 min.</span>
+			<span class="status ok">☺</span>
+		</div>
+		<div class="traffic-item">
+			<img class="avatar" src="https://jira.local.mybit.nl/secure/useravatar?ownerId=tim&avatarId=10160">
+			<span class="name">Tim Dinh</span>
+			<span class="delay">> 15 min.</span>
+			<span class="status bad">☹</span>
+		</div>
+	</div>
+	<script>
+		var list = document.getElementById('traffic-list');
+
+		// var xhr = new XMLHttpRequest();
+
+		// xhr.open('get', 'users.json');
+
+		// xhr.addEventListener('load', function(response)
+		// {
+		// 	console.log(response);
+		// });
+
+		// xhr.send();
+
+		function initGoogleMaps() {
+			var service = new google.maps.DistanceMatrixService();
+
+			service.getDistanceMatrix(
+			{
+				origins: ['Hilversum'],
+				destinations: ['Capelle aan den IJssel'],
+				travelMode: 'DRIVING',
+				drivingOptions: {
+					departureTime: new Date()
+				}
+			}, callback);
+
+			function callback(response) {
+				var row = document.createElement('div');
+
+				row.className = 'traffic-item';
+
+				// list.appendChild(row);
+			}
+		}
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4Nr1bQijl7QINVIwC7JCq7Ljh2FYk_8I&callback=initGoogleMaps" async defer></script>
+</body>
+</html>
