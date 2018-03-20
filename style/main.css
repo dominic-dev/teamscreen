@@ -4,6 +4,17 @@ html, body {
 	font-family: 'Open Sans';
 	font-weight: 400;
 }
+
+#preload {
+	display: none;
+}
+
+/**********
+  Widgets
+**********/
+
+/* Traffic */
+
 #traffic-list {
 	width: 360px;
 	margin: 100px auto;
@@ -38,15 +49,27 @@ html, body {
 	margin-left: 10px;
 }
 .traffic-item .status {
+	/* display: inline-block; */
+	/* width: 20px; */
 	float: right;
 }
-.traffic-item .status.ok {
+.traffic-item .status-icon{
+    width:20px;
+    padding: 0 4px;
+}
+.traffic-item .status.ok .status-icon {
 	color: #7ED321;
 }
 .traffic-item .status.bad {
+  font-weight: bold;
 	color: #D0021B;
 }
-.traffic-item .delay {
-	float: right;
+
+.status.bad .status-delay{
+  text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.4);
+}
+
+.traffic-item .status-delay {
+  font-weight:bold;
 	font-size: 12px;
 }
