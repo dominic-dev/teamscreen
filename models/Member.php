@@ -7,22 +7,10 @@ class Member {
     private $team;
 
     function __construct($id=null, $username=null, $name=null, $team=null){
-      if (isset($id)){
         $this->id = $id;
-      }
-
-      if (isset($username)){
         $this->username = $username;
-      }
-
-      if (isset($name)){
         $this->name = $name;
-      }
-
-      if (isset($team)){
         $this->team = $team;
-      }
-
     }
 
     function getId() : int {

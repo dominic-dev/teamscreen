@@ -1,0 +1,34 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/7918d19/
+Member	models/Member.php	/^class Member {$/;"	c
+Team	models/Team.php	/^class Team {$/;"	c
+__construct	models/Member.php	/^    function __construct($id=null, $username=null, $name=null, $team=null){$/;"	f	class:Member
+__construct	models/Team.php	/^    function __construct(int $id=null, string $label=null){$/;"	f	class:Team
+getId	models/Member.php	/^    function getId() : int {$/;"	f	class:Member
+getId	models/Team.php	/^    function getId() : int {$/;"	f	class:Team
+getLabel	models/Team.php	/^    function getLabel() : string {$/;"	f	class:Team
+getMembers	models/Team.php	/^    function getMembers() : array {$/;"	f	class:Team
+getName	models/Member.php	/^    function getName() : string {$/;"	f	class:Member
+getTeam	models/Member.php	/^    function getTeam() : Team {$/;"	f	class:Member
+getUsername	models/Member.php	/^    function getUsername() : string {$/;"	f	class:Member
+id	models/Member.php	/^    private $id;$/;"	v	class:Member
+id	models/Team.php	/^    private $id;$/;"	v	class:Team
+label	models/Team.php	/^    private $label;$/;"	v	class:Team
+member	index.php	/^$member = new Member(1, 'user01', 'klaas', $team); $/;"	v
+members	models/Team.php	/^    private $members;$/;"	v	class:Team
+name	models/Member.php	/^    private $name;$/;"	v	class:Member
+setId	models/Member.php	/^    function setId(int $id){$/;"	f	class:Member
+setId	models/Team.php	/^    function setId(int $id){$/;"	f	class:Team
+setLabel	models/Team.php	/^    function setLabel(string $label){$/;"	f	class:Team
+setMembers	models/Team.php	/^    function setMembers(array $members){$/;"	f	class:Team
+setName	models/Member.php	/^    function setName(string $name){$/;"	f	class:Member
+setTeam	models/Member.php	/^    function setTeam(Team $team){$/;"	f	class:Member
+setUsername	models/Member.php	/^    function setUsername(string $username){$/;"	f	class:Member
+team	index.php	/^$team = new Team(5, "Pwap");$/;"	v
+team	models/Member.php	/^    private $team;$/;"	v	class:Member
+username	models/Member.php	/^    private $username;$/;"	v	class:Member

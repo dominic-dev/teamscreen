@@ -6,12 +6,8 @@ class Team {
     private $members;
 
     function __construct(int $id=null, string $label=null){
-        if (isset($id)){
-            $this->id = $id;
-        }
-        if (isset($label)){
-            $this->label = $label;
-        }
+        $this->id = $id;
+        $this->label = $label;
     }
 
     function setId(int $id){
