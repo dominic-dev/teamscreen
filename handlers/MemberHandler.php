@@ -20,7 +20,7 @@ class MemberHandler extends Handler {
      *
      * @param Member $member
      */
-    public function add(Member $member): Member {
+    public function add(Member $member): int {
         $username = "'$this->getUsername()'";
         $name = "'$this->getName()'";
         $destination = "'$this->getDestination()'";
