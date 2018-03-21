@@ -1,8 +1,9 @@
 html, body {
 	margin: 0;
 	background-color: #191C1E;
-	font-family: 'Open Sans';
+	font-family: 'Open solid';
 	font-weight: 400;
+	padding-left: 40px;
 }
 
 #general h1 {
@@ -12,7 +13,7 @@ html, body {
 	color: white;
 }
 
-#general table{
+#general table {
 	color: white;
 	background-color: #212C36;
 	line-height: 24px;
@@ -20,11 +21,17 @@ html, body {
 	border-width: 10px;
 	height: 10px;
 	border-spacing: 10px;
-
 }
 
 #general button{
 	background-color: white;
     color: black;
     margin-left: 25px;
+}
+
+
+#general label {
+	border-spacing 5px;
+	padding 10px;
+
 }
