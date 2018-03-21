@@ -5,9 +5,9 @@ require_once('handlers/Database.php');
 require_once('handlers/TeamHandler.php');
 require_once('handlers/MemberHandler.php');
 
-$team = new Team(5, "Pwap");
+$team1 = new Team(5, "Pwap");
 $member = new Member(1, 'user01', 'klaas', $team);
-// var_dump($team);
+// var_dump($team1);
 // var_dump($member);
 
 $db = new Database();
@@ -24,5 +24,5 @@ var_dump($list);
 $member1 = $mh->get(1);
 var_dump($member1);
 
-$memberArray = $mh->getAll();
-var_dump($memberArray);
+$memberList = $mh->getAll();
+var_dump($memberList);
