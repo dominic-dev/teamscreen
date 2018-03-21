@@ -4,9 +4,8 @@ require_once('../models/Member.php');
 
 class MemberHandler extends Handler {
 
-    /** Get by ID */
-    public function get(int $id)
-    {
+    /** Get Member by ID */
+    public function get(int $id) : array {
         //Extend PDO connection with prepared statement
         $querySql = "SELECT * from member where idTeamMember = :id";
         $statementHandler = $this->dbHandler->prepare($querySql);
@@ -16,6 +15,17 @@ class MemberHandler extends Handler {
         //Catch result by fetch
         $result = $statementHandler->fetch();
         return $result;
+    }
+
+    /** Get All Members */
+    public function getAll() : array {
+        //Extend PDO connection with prepared statement
+        $querySql = "SELECT * from member";
+        $statementHandler = $this->dbHandler->prepare($querySql);
+        $statementHandler->execute();
+        //Catch result by fetch
+        $result = $statementHandler->fetchAll();
+                return $result;
     }
 
     /** Parse a row into an object a factory */
