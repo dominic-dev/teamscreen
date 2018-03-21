@@ -24,6 +24,18 @@ abstract class Handler {
         return $this->factory($result);
     }
 
+    public function getAll() : array {
+        $query = "select * from $this->tableName";
+        $sth = $this->dbh->prepare($query);
+        $sth->execute();
+        $rows = $sth->fetchAll();
+        $result = [];
+        foreach ($rows as $row){
+            array_push($result, $this->factory($row));
+        }
+        return $result;
+    }
+
     abstract protected function factory(array $row);
 
 }

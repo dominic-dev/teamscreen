@@ -16,5 +16,7 @@ $dbh = $db->getConnection();
 $th = new TeamHandler($dbh);
 
 $team = $th->get(1);
+$list = $th->getAll();
 var_dump($team);
+var_dump($list);
 
