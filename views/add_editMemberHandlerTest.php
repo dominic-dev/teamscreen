@@ -31,8 +31,8 @@ $member->setUsername($username);
 $member->setName($name);
 $member->setDestination($destination);
 $member->setDrinkpreference('koffie');
-if(isset($workingday)){
-    $member->setWorkdays(implode(',',$workingday));
+if(isset($workingdays)){
+    $member->setWorkdays(implode(',',$workingdays));
 }
 
 
