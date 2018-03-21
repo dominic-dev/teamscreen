@@ -13,5 +13,17 @@ class TeamHandler extends Handler {
       $team = new Team($row['id'], $row['label']);
       return $team;
     }
-    
+
+    /**
+     * Add a team object to the database
+     *
+     * @param Team $team
+     */
+    public function add(Team $team) {
+        $label = "'$this->getLabel()'";
+        $query = "INSERT INTO team(label) VALUES ($label)";
+        $statement = $this->dbh->prepare($query);
+        $statement->execute();
+    }
+
 }
