@@ -55,6 +55,18 @@ abstract class Handler {
     }
 
     /**
+     * Delete an object from the database by id.
+     *
+     * @param int $id
+     */
+    public function delete(int $id) {
+        $sql = "DELETE FROM $this->tableName WHERE id =  :id";
+        $sth = $this->dbh->prepare($sql);
+        $sth->bindParam(':id', $id, PDO::PARAM_INT);
+        $sth->execute();
+    }
+
+    /**
      * Take a data row from the database, return it as object.
      *
      * @param array $row
