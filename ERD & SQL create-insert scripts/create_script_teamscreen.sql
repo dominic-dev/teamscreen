@@ -25,9 +25,9 @@ USE `TeamScreen` ;
 DROP TABLE IF EXISTS `TeamScreen`.`Team` ;
 
 CREATE TABLE IF NOT EXISTS `TeamScreen`.`Team` (
-  `idTeam` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `label` VARCHAR(45) NULL,
-  PRIMARY KEY (`idTeam`))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -37,18 +37,18 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `TeamScreen`.`Member` ;
 
 CREATE TABLE IF NOT EXISTS `TeamScreen`.`Member` (
-  `idTeamMember` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `username` VARCHAR(45) NULL,
   `destination` VARCHAR(45) NULL,
   `drink_preference` ENUM('koffie', 'thee', 'water') NULL,
   `workdays` SET('maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag') NULL,
-  `Team_idTeam` INT NULL,
-  PRIMARY KEY (`idTeamMember`),
-  INDEX `fk_TeamMember_Team_idx` (`Team_idTeam` ASC),
+  `Team_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_TeamMember_Team_idx` (`Team_id` ASC),
   CONSTRAINT `fk_TeamMember_Team`
-    FOREIGN KEY (`Team_idTeam`)
-    REFERENCES `TeamScreen`.`Team` (`idTeam`)
+    FOREIGN KEY (`Team_id`)
+    REFERENCES `TeamScreen`.`Team` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -60,15 +60,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `TeamScreen`.`TimeOff` ;
 
 CREATE TABLE IF NOT EXISTS `TeamScreen`.`TimeOff` (
-  `idFreeTime` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `start_time` DATETIME NULL,
   `end_time` DATETIME NULL,
-  `Member_idMember` INT NOT NULL,
-  PRIMARY KEY (`idFreeTime`),
-  INDEX `fk_TimeOff_TeamMember_idx` (`Member_idMember` ASC),
+  `Member_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_TimeOff_TeamMember_idx` (`Member_id` ASC),
   CONSTRAINT `fk_TimeOff_TeamMember`
-    FOREIGN KEY (`Member_idMember`)
-    REFERENCES `TeamScreen`.`Member` (`idTeamMember`)
+    FOREIGN KEY (`Member_id`)
+    REFERENCES `TeamScreen`.`Member` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;

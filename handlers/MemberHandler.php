@@ -1,6 +1,6 @@
 <?php
 require_once('Handler.php');
-require_once('../models/Member.php');
+require_once('./models/Member.php');
 
 class MemberHandler extends Handler {
 
