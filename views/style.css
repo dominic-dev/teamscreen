@@ -1,0 +1,30 @@
+html, body {
+	margin: 0;
+	background-color: #191C1E;
+	font-family: 'Open Sans';
+	font-weight: 400;
+}
+
+#general h1 {
+	font-weight: 300;
+	font-size: 40px;
+	font-family: 'Open solid';
+	color: white;
+}
+
+#general table{
+	color: white;
+	background-color: #212C36;
+	line-height: 24px;
+	margin-left: 10px;
+	border-width: 10px;
+	height: 10px;
+	border-spacing: 10px;
+
+}
+
+#general button{
+	background-color: white;
+    color: black;
+    margin-left: 25px;
+}

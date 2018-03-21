@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<!- authors : Petri & Agung
+21 March 2018
+-->
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="style.css" rel="stylesheet">
+
+    <title>Wijzig teamlid</title>
+
+</head>
+<body>
+
+<div id="general">
+
+
+    <h1>Wijzig teamlid</h1>
+
+    <!-- to do : replace add_editMemberHandlerTest.php with the actual handler name -->
+    <form action="add_editMemberHandlerTest.php" method="post">
+
+        <table>
+            <tr>
+                <td>Naam</td>
+                <td><input type="text" name="membername" value="Petri van Niekerk"/></td>
+            </tr>
+            <tr>
+                <td>Gebruikersnaam</td>
+                <td><select name = "username">
+
+                    <!-- TEMPORARILY COMMENTED because we will be using dummy data here until the handler passes in real data
+                     <?php
+                     // Iterating through the array that contains JIRA usernames which are passed on by the handler
+                     foreach($usernames as $item){
+                     ?>
+                     <option value="<?php echo strtolower($item); ?>"><?php echo $items; ?></option>
+                     <?php
+                     }
+                     ?>
+                    -->
+
+                    <!-- TEMPORARY MOCK DATA -->
+                    <option value ="piet">piet.pietersen</option>
+                    <option selected value="petri">petri.vanniekerk</option>
+
+                </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Team</td>
+                <td><select name ="team">
+
+                    <!-- TEMPORARILY COMMENTED because we will be using dummy data here until the handler passes in real data
+                    <?php
+                    // Iterating through the array that contains the teams which are passed on by the handler
+                    foreach($teams as $item){
+                    ?>
+                    <option value="<?php echo strtolower($item); ?>"><?php echo $items; ?></option>
+                    <?php
+                    }
+                    ?>
+                    -->
+
+                    <!-- TEMPORARY MOCK DATA -->
+                    <option selected value="teamchappie">Team Chappie</option>
+                    <option value="teamscreen">Team Screen</option>
+
+
+                </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Drankvoorkeur</td>
+                <td><select name="drinkpreference">
+
+                    <!-- TEMPORARILY COMMENTED because we will be using dummy data here until the handler passes in real data
+                    <?php
+                    // Iterating through the array that contains the drink preferences which are passed on by the handler
+                    foreach($drinkpreferences as $item){
+                    ?>
+                    <option value="<?php echo strtolower($item); ?>"><?php echo $items; ?></option>
+                    <?php
+                    }
+                    ?>
+                    -->
+
+                    <!-- TEMPORARY MOCK DATA -->
+                    <option selected value="coffee">Koffie</option>
+                    <option value="tea">Thee</option>
+                    <option value="water">Water</option>
+
+                </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Werkdagen</td>
+                <td>
+                    <input type="checkbox" name="workingday[]" value="Monday">Maandag<br>
+                    <input type="checkbox" name="workingday[]" value="Tuesday" checked>Dinsdag<br>
+                    <input type="checkbox" name="workingday[]" value="Wednesday" checked>Woensdag<br>
+                    <input type="checkbox" name="workingday[]" value="Thursday" checked>Donderdag<br>
+                    <input type="checkbox" name="workingday[]" value="Friday">Vrijdag<br>
+                </td>
+            </tr>
+        </table>
+
+        <br>
+        <br>
+
+        <button type="submit" name="editMemberButton">Sla wijzigingen op</button>
+
+    </form>
+
+
+</div>
+
+</body>
+
+
+</html>
