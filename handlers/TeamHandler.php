@@ -20,12 +20,25 @@ class TeamHandler extends Handler {
      * @param Team $team
      */
     public function add(Team $team) : int {
-        $label = "'$this->getLabel()'";
-        $query = "INSERT INTO team(label) VALUES ($label)";
+        $query = "INSERT INTO team(label) VALUES (:label)";
         $statement = $this->dbh->prepare($query);
+        $statement->bindParam(':label', $this->getLabel(), PDO::PARAM_STR);
         $statement->execute();
         $id = $this->dbh->lastInsertId();
         return $id;
+    }
+
+    /**
+     * Update a team in the database
+     *
+     * @param Member $member
+     */
+    public function update(Team $team) {
+        $query = "UPDATE team SET label=:label WHERE id= :id";
+        $statement = $this->dbh->prepare($query);
+        $statement->bindParam(':id', $this->getId(), PDO::PARAM_INT);
+        $statement->bindParam(':label', $this->getLabel(), PDO::PARAM_STR);
+        $statement->execute();
     }
 
 

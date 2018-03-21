@@ -21,20 +21,35 @@ class MemberHandler extends Handler {
      * @param Member $member
      */
     public function add(Member $member): int {
-        $username = "'$this->getUsername()'";
-        $name = "'$this->getName()'";
-        $destination = "'$this->getDestination()'";
-        $drink_preference = "'$this->getDrinkpreference()'";
-        $workdays = "'$this->getWorkdays()'";
         $query = "INSERT INTO member(name, username, destination, drink_preference, workdays) 
-              VALUES ($name, $username, $destination, $drink_preference, $workdays)";
+              VALUES (:name, :username, :destination, :drink_preference, :workdays)";
         $statement = $this->dbh->prepare($query);
+        $statement->bindParam(':name', $this->getName(), PDO::PARAM_STR);
+        $statement->bindParam(':username', $this->getUsername(), PDO::PARAM_STR);
+        $statement->bindParam(':destination', $this->getDestination(), PDO::PARAM_STR);
+        $statement->bindParam(':drink_preference', $this->getDrinkpreference(), PDO::PARAM_STR);
+        $statement->bindParam(':workdays', $this->getWorkdays(), PDO::PARAM_STR);
         $statement->execute();
         $id = $this->dbh->lastInsertId();
         return $id;
     }
 
-
-
+    /**
+     * Update a member in the database
+     *
+     * @param Member $member
+     */
+    public function update(Member $member) {
+        $query = "UPDATE member SET name=:name, username=:username, destination=:destination, 
+              drink_preference=:destination, workdays=:workdays WHERE id= :id";
+        $statement = $this->dbh->prepare($query);
+        $statement->bindParam(':id', $this->getId(), PDO::PARAM_INT);
+        $statement->bindParam(':name', $this->getName(), PDO::PARAM_STR);
+        $statement->bindParam(':username', $this->getUsername(), PDO::PARAM_STR);
+        $statement->bindParam(':destination', $this->getDestination(), PDO::PARAM_STR);
+        $statement->bindParam(':drink_preference', $this->getDrinkpreference(), PDO::PARAM_STR);
+        $statement->bindParam(':workdays', $this->getWorkdays(), PDO::PARAM_STR);
+        $statement->execute();
+    }
 
 }
