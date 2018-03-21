@@ -11,12 +11,12 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema TeamScreen
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `TeamScreen` ;
+DROP DATABASE IF EXISTS `TeamScreen` ;
 
 -- -----------------------------------------------------
 -- Schema TeamScreen
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `TeamScreen` DEFAULT CHARACTER SET utf8 ;
+CREATE DATABASE IF NOT EXISTS `TeamScreen` DEFAULT CHARACTER SET utf8 ;
 USE `TeamScreen` ;
 
 -- -----------------------------------------------------
