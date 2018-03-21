@@ -25,6 +25,7 @@ class TeamHandler extends Handler {
         $statement->bindParam(':label', $this->getLabel(), PDO::PARAM_STR);
         $statement->execute();
         $id = $this->dbh->lastInsertId();
+        $team->setId($id);
         return $id;
     }
 

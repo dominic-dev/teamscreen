@@ -11,7 +11,7 @@ class MemberHandler extends Handler {
      * @return mixed
      */
     protected function factory(array $row) {
-        $member = new Member($row['id'], $row['name'], $row['username'], $row['destination'], $row['drink_preference'], $row['workdays'], $row['Team_id']);
+        $member = new Member($row['id'], $row['name'], $row['username'], $row['destination'], $row['drinkpreference'], $row['workdays'], $row['teamId']);
         return $member;
     }
 
@@ -22,15 +22,17 @@ class MemberHandler extends Handler {
      */
     public function add(Member $member): int {
         $query = "INSERT INTO member(name, username, destination, drink_preference, workdays) 
-              VALUES (:name, :username, :destination, :drink_preference, :workdays)";
+              VALUES (:name, :username, :destination, :drink_preference, :workdays, :team_id)";
         $statement = $this->dbh->prepare($query);
         $statement->bindParam(':name', $this->getName(), PDO::PARAM_STR);
         $statement->bindParam(':username', $this->getUsername(), PDO::PARAM_STR);
         $statement->bindParam(':destination', $this->getDestination(), PDO::PARAM_STR);
         $statement->bindParam(':drink_preference', $this->getDrinkpreference(), PDO::PARAM_STR);
         $statement->bindParam(':workdays', $this->getWorkdays(), PDO::PARAM_STR);
+        $statement->bindParam(':team_id', $this->getTeamId(), PDO::PARAM_STR);
         $statement->execute();
         $id = $this->dbh->lastInsertId();
+        $member->setId($id);
         return $id;
     }
 
@@ -41,7 +43,7 @@ class MemberHandler extends Handler {
      */
     public function update(Member $member) {
         $query = "UPDATE member SET name=:name, username=:username, destination=:destination, 
-              drink_preference=:destination, workdays=:workdays WHERE id= :id";
+              drink_preference=:destination, workdays=:workdays, team_id=:team_id WHERE id= :id";
         $statement = $this->dbh->prepare($query);
         $statement->bindParam(':id', $this->getId(), PDO::PARAM_INT);
         $statement->bindParam(':name', $this->getName(), PDO::PARAM_STR);
@@ -49,6 +51,7 @@ class MemberHandler extends Handler {
         $statement->bindParam(':destination', $this->getDestination(), PDO::PARAM_STR);
         $statement->bindParam(':drink_preference', $this->getDrinkpreference(), PDO::PARAM_STR);
         $statement->bindParam(':workdays', $this->getWorkdays(), PDO::PARAM_STR);
+        $statement->bindParam(':team_id', $this->getTeamId(), PDO::PARAM_STR);
         $statement->execute();
     }
 
