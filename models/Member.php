@@ -11,12 +11,23 @@ class Member {
     // SET ('maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag') NULL,
     private $workdays;
 
-    function __construct($id=null, $username=null, $name=null, $destination=null, $drinkpreference=null, $workdays=null){
+    private $timeoff;
+
+    function __construct($id=null, $username=null, $name=null, $destination=null, $drinkpreference=null, $workdays=null, $timeoff=null){
         $this->username = $username;
         $this->name = $name;
         $this->destination = $destination;
         $this->drinkpreference = $drinkpreference;
         $this->workdays = $workdays;
+        $this->timeoff = $timeoff;
+    }
+
+    function setTimeoff(array $timeoff){
+        $this->timeoff = $timeoff;
+    }
+
+    function getTimeoff(){
+        return $this->timeoff;
     }
 
     function getDrinkpreference() {
