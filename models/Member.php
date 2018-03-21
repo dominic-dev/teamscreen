@@ -4,13 +4,35 @@ class Member {
     private $id;
     private $username;
     private $name;
-    private $team;
+    private $destination;
+    // ENUM('koffie', 'thee', 'water')
+    private $drinkpreference;
+    // workday set, permitted values:
+    // SET ('maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag') NULL,
+    private $workdays;
 
-    function __construct($id=null, $username=null, $name=null, $team=null){
-        $this->id = $id;
+    function __construct($id=null, $username=null, $name=null, $destination=null, $drinkpreference=null, $workdays=null){
         $this->username = $username;
         $this->name = $name;
-        $this->team = $team;
+        $this->destination = $destination;
+        $this->drinkpreference = $drinkpreference;
+        $this->workdays = $workdays;
+    }
+
+    function getDrinkpreference() {
+        return $this->drinkpreference;
+    }
+
+    function setDrinkpreference(string $drinkpreference){
+        $this->drinkpreference = $drinkpreference;
+    }
+
+    function getWorkdays() : string {
+        return $this->workdays;
+    }
+
+    function setWorkdays(string $workdays) {
+        $this->workdays = $workdays;
     }
 
     function getId() : int {
@@ -25,9 +47,6 @@ class Member {
         return $this->name;
     }
 
-    function getTeam() : Team {
-        return $this->team;
-    }
 
     function setId(int $id){
         $this->id = $id;
@@ -41,8 +60,5 @@ class Member {
         $this->name = $name;
     }
 
-    function setTeam(Team $team){
-        $this->team = $team;
-    }
 
 }

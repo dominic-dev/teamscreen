@@ -6,8 +6,8 @@ require_once('handlers/TeamHandler.php');
 
 $team = new Team(5, "Pwap");
 $member = new Member(1, 'user01', 'klaas', $team); 
-var_dump($team);
-var_dump($member);
+// var_dump($team);
+// var_dump($member);
 
 
 $db = new Database();
