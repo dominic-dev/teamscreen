@@ -8,6 +8,8 @@
 
 require_once('../models/Team.php');
 require_once('../models/Member.php');
+require_once('../handlers/Database.php');
+require_once('../handlers/MemberHandler.php');
 
 echo '<h3>DUMMY ADD/EDIT MEMBER HANDLER</h3>';
 
@@ -59,10 +61,16 @@ if(isset($workingday)){
     }
 }
 
+//test connection
+$db = new Database();
+$dbh = $db->getConnection();
+$memberHandler = new MemberHandler($dbh);
+$memberHandler->add($member);
 
-echo 'MemberDump: <br/>';
-addMember($member);
 
+//echo 'MemberDump: <br/>';
+//addMember($member);
+//
 
 
 
