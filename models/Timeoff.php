@@ -5,14 +5,31 @@ class Timeoff{
     private $id;
     private $starttime;
     private $endtime;
+    private $memberId;
 
-    function __construct($id=null, $starttime=null, $endtime)
+    function __construct($id=null, $starttime=null, $endtime=null, $memberId=null)
     {
         $this->id = $id;
         $this->starttime = $starttime;
         $this->endtime = $endtime;
+        $this->memberId = $memberId;
     }
 
+    /**
+     * @return null
+     */
+    public function getMemberId()
+    {
+        return $this->memberId;
+    }
+
+    /**
+     * @param null $memberId
+     */
+    public function setMemberId($memberId)
+    {
+        $this->memberId = $memberId;
+    }
 
     /**
      * @return mixed

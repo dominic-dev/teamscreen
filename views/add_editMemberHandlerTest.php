@@ -36,6 +36,22 @@ function addMember($amember){
 
 }
 
+function merge_array_to_string($workingdays): string
+{
+    define("SEPARATOR", ',');
+
+    $value = null;
+
+    for ($i=0; $i < sizeof($workingdays); $i++) {
+        $value = $value.$workingdays[$i];
+
+        if($i < sizeof($workingdays)-1){
+            $value = $value.SEPARATOR;
+        }
+    }
+    return $value;
+}
+
 
 echo "Teamlid naam: ". $name . '<br>';
 echo "JIRA gebruikersnaam: ". $username . '<br>';
@@ -49,7 +65,7 @@ echo "<strong>Werkdagen : </strong>" . '<br>';
 foreach($workingday as $item) {
     echo $item. '<br>';
 }
-
+$member->setWorkdays();
 addMember($member);
 
 
