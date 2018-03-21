@@ -25,7 +25,7 @@ USE `TeamScreen` ;
 DROP TABLE IF EXISTS `TeamScreen`.`Team` ;
 
 CREATE TABLE IF NOT EXISTS `TeamScreen`.`Team` (
-  `idTeam` INT NOT NULL,
+  `idTeam` INT NOT NULL AUTO_INCREMENT,
   `label` VARCHAR(45) NULL,
   PRIMARY KEY (`idTeam`))
 ENGINE = InnoDB;
@@ -37,7 +37,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `TeamScreen`.`Member` ;
 
 CREATE TABLE IF NOT EXISTS `TeamScreen`.`Member` (
-  `idTeamMember` INT NOT NULL,
+  `idTeamMember` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `username` VARCHAR(45) NULL,
   `destination` VARCHAR(45) NULL,
@@ -60,7 +60,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `TeamScreen`.`TimeOff` ;
 
 CREATE TABLE IF NOT EXISTS `TeamScreen`.`TimeOff` (
-  `idFreeTime` INT NOT NULL,
+  `idFreeTime` INT NOT NULL AUTO_INCREMENT,
   `start_time` DATETIME NULL,
   `end_time` DATETIME NULL,
   `Member_idMember` INT NOT NULL,
