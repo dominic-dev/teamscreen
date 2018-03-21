@@ -2,6 +2,11 @@
 require_once('Handler.php');
 require_once('./models/Timeoff.php');
 
+/**
+ * Class TimeOffHandler
+ *
+ * Authors: Dominic Dingena & Carina Boom
+ */
 class TimeOffHandler extends Handler {
 
     /**

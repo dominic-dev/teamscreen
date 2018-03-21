@@ -2,6 +2,11 @@
 require_once('Handler.php');
 require_once('./models/Member.php');
 
+/**
+ * Class MemberHandler
+ *
+ * Authors: Dominic Dingena & Carina Boom
+ */
 class MemberHandler extends Handler {
 
     /**

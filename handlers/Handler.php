@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class Handler
+ *
+ * Authors: Dominic Dingena & Carina Boom
+ */
 abstract class Handler {
     protected $dbh;
 

@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Class Database
+ *
+ * Authors: Dominic Dingena & Carina Boom
+ */
 class Database{
     private $dbh;
 
