@@ -42,12 +42,12 @@ CREATE TABLE IF NOT EXISTS `TeamScreen`.`Member` (
   `username` VARCHAR(45) NULL,
   `destination` VARCHAR(45) NULL,
   `drink_preference` ENUM('koffie', 'thee', 'water') NULL,
-  `workdays` SET('maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag') NULL,
-  `Team_id` INT NULL,
+  `working_days` SET('maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag') NULL,
+  `team_id` INT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_TeamMember_Team_idx` (`Team_id` ASC),
-  CONSTRAINT `fk_TeamMember_Team`
-    FOREIGN KEY (`Team_id`)
+  INDEX `fk_member_team_idx` (`team_id` ASC),
+  CONSTRAINT `fk_member_team`
+    FOREIGN KEY (`team_id`)
     REFERENCES `TeamScreen`.`Team` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -57,17 +57,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `TeamScreen`.`TimeOff`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `TeamScreen`.`TimeOff` ;
+DROP TABLE IF EXISTS `TeamScreen`.`Time_Off` ;
 
-CREATE TABLE IF NOT EXISTS `TeamScreen`.`TimeOff` (
+CREATE TABLE IF NOT EXISTS `TeamScreen`.`Time_Off` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `start_time` DATETIME NULL,
   `end_time` DATETIME NULL,
-  `Member_id` INT NOT NULL,
+  `member_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_TimeOff_TeamMember_idx` (`Member_id` ASC),
-  CONSTRAINT `fk_TimeOff_TeamMember`
-    FOREIGN KEY (`Member_id`)
+  INDEX `fk_time_off_member_idx` (`member_id` ASC),
+  CONSTRAINT `fk_time_off_member`
+    FOREIGN KEY (`member_id`)
     REFERENCES `TeamScreen`.`Member` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)

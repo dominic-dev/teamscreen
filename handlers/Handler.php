@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class Handler
+ *
+ * Authors: Dominic Dingena & Carina Boom
+ */
 abstract class Handler {
     protected $dbh;
 
@@ -47,6 +52,18 @@ abstract class Handler {
             array_push($result, $this->factory($row));
         }
         return $result;
+    }
+
+    /**
+     * Delete an object from the database by id.
+     *
+     * @param int $id
+     */
+    public function delete(int $id) {
+        $sql = "DELETE FROM $this->tableName WHERE id =  :id";
+        $sth = $this->dbh->prepare($sql);
+        $sth->bindParam(':id', $id, PDO::PARAM_INT);
+        $sth->execute();
     }
 
     /**

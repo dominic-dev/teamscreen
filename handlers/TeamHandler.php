@@ -1,6 +1,12 @@
 <?php
 require_once('./models/Team.php');
 require_once('Handler.php');
+
+/**
+ * Class TeamHandler
+ *
+ * Authors: Dominic Dingena & Carina Boom
+ */
 class TeamHandler extends Handler {
 
     /**

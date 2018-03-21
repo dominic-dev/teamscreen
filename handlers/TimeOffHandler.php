@@ -2,6 +2,11 @@
 require_once('Handler.php');
 require_once('./models/Timeoff.php');
 
+/**
+ * Class TimeOffHandler
+ *
+ * Authors: Dominic Dingena & Carina Boom
+ */
 class TimeOffHandler extends Handler {
 
     /**
@@ -11,7 +16,7 @@ class TimeOffHandler extends Handler {
      * @return mixed
      */
     protected function factory(array $row) {
-        $timeOff = new Timeoff($row['id'], $row['starttime'], $row['endtime'], $row['member_id']);
+        $timeOff = new Timeoff($row['id'], $row['starttime'], $row['endtime'], $row['memberId']);
         return $timeOff;
     }
 
@@ -21,7 +26,7 @@ class TimeOffHandler extends Handler {
      * @param Timeoff $timeOff
      */
     public function add(Timeoff $timeOff): int {
-        $query = "INSERT INTO timeoff(start_time, end_time, member_id) VALUES (:start_time, :end_time, :member_id)";
+        $query = "INSERT INTO time_off(start_time, end_time, member_id) VALUES (:start_time, :end_time, :member_id)";
         $statement = $this->dbh->prepare($query);
         $statement->bindParam(':start_time', $this->getStarttime(), PDO::PARAM_STR);
         $statement->bindParam(':end_time', $this->getEndtime(), PDO::PARAM_STR);
@@ -38,7 +43,7 @@ class TimeOffHandler extends Handler {
      * @param Member $member
      */
     public function update(Timeoff $timeOff) {
-        $query = "UPDATE timeoff SET start_time=:start_time, end_time=:end_time, member_id=:member_id WHERE id= :id";
+        $query = "UPDATE time_off SET start_time=:start_time, end_time=:end_time, member_id=:member_id WHERE id= :id";
         $statement = $this->dbh->prepare($query);
         $statement->bindParam(':id', $this->getId(), PDO::PARAM_INT);
         $statement->bindParam(':start_time', $this->getStarttime(), PDO::PARAM_STR);
