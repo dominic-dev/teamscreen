@@ -10,16 +10,50 @@ class Member {
     // workday set, permitted values:
     // SET ('maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag') NULL,
     private $workdays;
+    private $teamId;
 
     private $timeoff;
 
-    function __construct($id=null, $username=null, $name=null, $destination=null, $drinkpreference=null, $workdays=null, $timeoff=null){
+    function __construct($id=null, $username=null, $name=null, $destination=null, $drinkpreference=null, $workdays=null, $timeoff=null, $teamId=null){
         $this->username = $username;
         $this->name = $name;
         $this->destination = $destination;
         $this->drinkpreference = $drinkpreference;
         $this->workdays = $workdays;
         $this->timeoff = $timeoff;
+        $this->teamId = $teamId;
+    }
+
+    /**
+     * @return null
+     */
+    public function getTeamId()
+    {
+        return $this->teamId;
+    }
+
+    /**
+     * @param null $teamId
+     */
+    public function setTeamId($teamId)
+    {
+        $this->teamId = $teamId;
+    }
+
+    /**
+     * @return null
+     */
+    public function getDestination()
+    {
+        return $this->destination;
+    }
+
+    /**
+     * @param null $destination
+     */
+    public function setDestination($destination)
+    {
+        $this->destination = $destination;
     }
 
     function setTimeoff(array $timeoff){
