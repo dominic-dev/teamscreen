@@ -8,6 +8,11 @@
 abstract class Handler {
     protected $dbh;
 
+    /**
+     * Handler constructor.
+     * @param PDO $dbh
+     * @param string|null $table_name
+     */
     public function __construct(PDO $dbh, string $table_name=null){
         $this->dbh = $dbh;
 
