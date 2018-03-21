@@ -6,7 +6,7 @@ require_once('handlers/TeamHandler.php');
 require_once('handlers/MemberHandler.php');
 
 $team1 = new Team(5, "Pwap");
-$member = new Member(1, 'user01', 'klaas', $team);
+$member = new Member(1, 'user01', 'klaas', $team1);
 // var_dump($team1);
 // var_dump($member);
 
