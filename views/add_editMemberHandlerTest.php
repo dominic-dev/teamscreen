@@ -20,7 +20,7 @@ $username = $_POST['username'];
 $teamId = $_POST['team'];
 // klopt nog niet
 $drinkpreference = $_POST['drinkpreference'];
-$workingday = $_POST['workingday'];
+$workingdays = $_POST['workingdays'];
 
 
 
@@ -53,10 +53,11 @@ echo "Teamlid naam: ". $name . '<br>';
 echo "JIRA gebruikersnaam: ". $username . '<br>';
 echo "Assigned aan team: ". $teamId . '<br>';
 echo "Drankvoorkeur: ". $drinkpreference . '<br>';
+echo "Bestemming: ". $destination . '<br>';
 echo '<br>';
 echo "<strong>Werkdagen : </strong>" . '<br>';
-if(isset($workingday)){
-    foreach($workingday as $item) {
+if(isset($workingdays)){
+    foreach($workingdays as $item) {
         echo $item. '<br>';
     }
 }
