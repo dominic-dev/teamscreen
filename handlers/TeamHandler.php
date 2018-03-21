@@ -19,11 +19,14 @@ class TeamHandler extends Handler {
      *
      * @param Team $team
      */
-    public function add(Team $team) {
+    public function add(Team $team) : int {
         $label = "'$this->getLabel()'";
         $query = "INSERT INTO team(label) VALUES ($label)";
         $statement = $this->dbh->prepare($query);
         $statement->execute();
+        $id = $this->dbh->lastInsertId();
+        return $id;
     }
+
 
 }

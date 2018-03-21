@@ -10,8 +10,8 @@ class MemberHandler extends Handler {
      * @param array $row
      * @return mixed
      */
-    protected function factory(array $row) : Member {
-        $member = new Member($row['id'], $row['name'], $row['username'], $row['destination'], $row['drink_preference'], $row['workdays']);
+    protected function factory(array $row) {
+        $member = new Member($row['id'], $row['name'], $row['username'], $row['destination'], $row['drink_preference'], $row['workdays'], $row['Team_id']);
         return $member;
     }
 
@@ -20,7 +20,7 @@ class MemberHandler extends Handler {
      *
      * @param Member $member
      */
-    public function add(Member $member) {
+    public function add(Member $member): Member {
         $username = "'$this->getUsername()'";
         $name = "'$this->getName()'";
         $destination = "'$this->getDestination()'";
@@ -30,7 +30,11 @@ class MemberHandler extends Handler {
               VALUES ($name, $username, $destination, $drink_preference, $workdays)";
         $statement = $this->dbh->prepare($query);
         $statement->execute();
+        $id = $this->dbh->lastInsertId();
+        return $id;
     }
+
+
 
 
 }
