@@ -19,6 +19,9 @@ $teamId = $_POST['team'];
 // klopt nog niet
 $drinkpreference = $_POST['drinkpreference'];
 $workingday = $_POST['workingday'];
+
+
+
 $destination = 'Dam 1, Amsterdam';
 
 $member = new Member();
@@ -26,6 +29,13 @@ $member->setUsername($username);
 $member->setName($name);
 $member->setDestination($destination);
 $member->setDrinkpreference('koffie');
+if(isset($workingday)){
+    $member->setWorkdays(implode(',',$workingday));
+}
+
+
+$array = ['tim', 'test'];
+$string = implode(',', $array);
 
 function addMember($amember){
 
@@ -36,36 +46,21 @@ function addMember($amember){
 
 }
 
-function merge_array_to_string($workingdays): string
-{
-    define("SEPARATOR", ',');
-
-    $value = null;
-
-    for ($i=0; $i < sizeof($workingdays); $i++) {
-        $value = $value.$workingdays[$i];
-
-        if($i < sizeof($workingdays)-1){
-            $value = $value.SEPARATOR;
-        }
-    }
-    return $value;
-}
-
-
+//show de stuff
 echo "Teamlid naam: ". $name . '<br>';
 echo "JIRA gebruikersnaam: ". $username . '<br>';
 echo "Assigned aan team: ". $teamId . '<br>';
 echo "Drankvoorkeur: ". $drinkpreference . '<br>';
-
 echo '<br>';
-
-
 echo "<strong>Werkdagen : </strong>" . '<br>';
-foreach($workingday as $item) {
-    echo $item. '<br>';
+if(isset($workingday)){
+    foreach($workingday as $item) {
+        echo $item. '<br>';
+    }
 }
-$member->setWorkdays();
+
+
+echo 'MemberDump: <br/>';
 addMember($member);
 
 
@@ -82,22 +77,5 @@ addMember($member);
 
 
 
-
-
-/*
-
-for add team purposes :
-
-
- echo "yeah!";
-
-echo "<br>";
-echo "<br>";
-
-$newteam = $_POST['teamlabel'];
-
- echo $newteam;
-
-*/
 
 ?>
