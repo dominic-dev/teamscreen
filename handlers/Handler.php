@@ -63,12 +63,13 @@ abstract class Handler {
      * Delete an object from the database by id.
      *
      * @param int $id
+     * @return bool
      */
-    public function delete(int $id) {
+    public function delete(int $id) : bool {
         $sql = "DELETE FROM $this->tableName WHERE id =  :id";
         $sth = $this->dbh->prepare($sql);
         $sth->bindParam(':id', $id, PDO::PARAM_INT);
-        $sth->execute();
+        return $sth->execute();
     }
 
     /**
