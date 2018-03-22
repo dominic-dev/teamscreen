@@ -51,7 +51,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     if($memberHandler->add($member)){
         // TODO redirect
-        header('Location: '. '/admin/member/add.php');
+        header('Location: '. 'add.php');
         die();
     }
     die("fatal error");

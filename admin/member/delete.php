@@ -3,6 +3,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
     // Only allow post requests.
     die();
 }
+if(!isset($_GET['id'])){
+    die();
+}
 
 require_once('././handlers/Database.php');
 require_once('././handlers/MemberHadler.php');

@@ -79,5 +79,4 @@ abstract class Handler {
      * @return mixed
      */
     abstract protected function factory(array $row);
-
 }

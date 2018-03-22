@@ -26,7 +26,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     if($teamHandler->add($team)){
         // TODO redirect
-        header('Location: '. '/admin/team/add.php');
+        header('Location: '. 'add.php');
         die();
     }
     die("fatal error");

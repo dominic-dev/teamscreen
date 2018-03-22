@@ -23,7 +23,7 @@ class MemberHandler extends Handler {
         $member->setDestination($row['destination']);
         $member->setDrinkPreference($row['drink_preference']);
         $member->setWorkingDays($row['working_days']);
-        $member->setTeamId($row['team_i']);
+        $member->setTeamId($row['team_id']);
         return $member;
     }
 
