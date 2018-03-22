@@ -27,11 +27,11 @@ $drinkPreferences = array ('tea', 'coffee', 'water');
         <table>
             <tr>
                 <td><label for="name">Naam</label> </td>
-                <td> <input type="text" name="name" value="test"/ ></td>
+                <td> <input type="text" name="name"/></td>
             </tr>
             <tr>
                 <td><label for ="username">Jira gebruikersnaam</td>
-                <td><select name = "username" value="test">
+                <td><select name = "username">
                     <option selected="selected">Kies een jira gebruikersnaam</option>
                      <?php
                      // Iterating through the array that contains JIRA usernames which are passed on by the handler
@@ -47,7 +47,7 @@ $drinkPreferences = array ('tea', 'coffee', 'water');
             </tr>
             <tr>
                 <td><label for ="team">Team</td>
-                <td><select name ="team" value="1">
+                <td><select name ="team">
                     <option selected="selected">Voeg toe aan team</option>
                     <?php
                     // Iterating through the array that contains the teams which are passed on by the handler
@@ -62,12 +62,12 @@ $drinkPreferences = array ('tea', 'coffee', 'water');
             </tr>
 
             <tr>
-                <td><label for ="destination" >Bestemming</td>
-                <td><input type="text" name="destination" value="mars" /></td>
+                <td><label for ="destination">Bestemming</td>
+                <td><input type="text" name="destination"/></td>
             </tr>
             <tr>
                 <td><label for ="drinkPreference">Drankvoorkeur</td>
-                <td><select name="drinkPreference" value="tea">
+                <td><select name="drinkPreference">
                     <option selected="selected">Kies een drankvoorkeur</option>
 
 
