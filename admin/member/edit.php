@@ -56,7 +56,7 @@ else{
     $memberHandler->update($member);
 
     session_start();
-    $_SESSION['editSuccess'] = "Member succesfully edited";
+    $_SESSION['editSuccess'] = "Lid succesvol gewijzigd";
 
     //TO DO : redirect
     header('Location: '. 'edit.php?id=' . $member->getId());

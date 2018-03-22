@@ -1,8 +1,21 @@
-<?php require_once('../header.php'); ?>
+<?php require_once('../header.php');
 
-<!--
+
+/*
  Authors: Petri van Niekerk & Agung Udijana
--->
+*/
+
+session_start();
+if(isset($_SESSION['addSuccess'])) {
+    $success = $_SESSION['addSuccess'];
+}
+else {
+    $success ='';
+}
+unset($_SESSION['addSuccess']);
+
+?>
+
 
 
     <title>Nieuw teamlid</title>
@@ -12,6 +25,9 @@
 <div id="general">
 
     <h1>Nieuw teamlid</h1>
+
+    <h2><?= $success ?> </h2>
+
     <form action="./add.php" method="post">
         <table>
             <tr>

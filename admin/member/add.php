@@ -28,6 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 
     // TODO get enum from database
     $drinkPreferences = array ('tea', 'coffee', 'water');
+
+    $addSuccess ='';
+
     require_once('../../views/addmember.php');
     die();
 }
@@ -56,6 +59,9 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $memberHandler = new MemberHandler($dbh);
 
     if($memberHandler->add($member)){
+        session_start();
+        $_SESSION['addSuccess'] = "Lid succesvol toegevoegd";
+
         // TODO redirect
         header('Location: '. 'add.php');
         die();

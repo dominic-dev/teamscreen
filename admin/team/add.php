@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     $db = new Database();
     $conn = $db->getConnection();
     $teamHandler = new TeamHandler($conn);
+    $addSuccess ='';
 
     require_once('../../views/addteam.php');
     die();
@@ -24,9 +25,13 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $dbh = $db->getConnection();
     $teamHandler = new TeamHandler($dbh);
 
+
     if($teamHandler->add($team)){
+        session_start();
+        $_SESSION['addSuccess'] = "Team succesvol toegevoegd";
+
         // TODO redirect
-        header('Location: '. 'add.php');
+        header('Location: '. './add.php');
         die();
     }
     die("fatal error");
