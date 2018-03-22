@@ -5,6 +5,12 @@ require_once('../../models/Member.php');
 require_once('../../handlers/MemberHandler.php');
 require_once('../../handlers/TeamHandler.php');
 
+/**
+ *
+ * Authors: Dominic Dingena & Agung Udijana
+ */
+
+
 // Get
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){

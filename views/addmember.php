@@ -1,4 +1,10 @@
 <?php require_once('../header.php'); ?>
+
+<!--
+ Authors: Petri van Niekerk & Agung Udijana
+-->
+
+
     <title>Nieuw teamlid</title>
 </head>
 <body>
@@ -6,7 +12,7 @@
 <div id="general">
 
     <h1>Nieuw teamlid</h1>
-    <form action="/admin/member/add.php" method="post">
+    <form action="./add.php" method="post">
         <table>
             <tr>
                 <td><label for="name">Naam</label> </td>

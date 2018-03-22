@@ -6,6 +6,8 @@ require_once(dirname(__FILE__) . '/../models/Member.php');
  * Class MemberHandler
  *
  * Authors: Dominic Dingena & Carina Boom
+ * Editor: Agung Udijana
+ *
  */
 class MemberHandler extends Handler {
 
@@ -67,8 +69,9 @@ class MemberHandler extends Handler {
      * @param Member $member
      */
     public function update(Member $member) {
+
         $query = "UPDATE member SET name=:name, username=:username, destination=:destination, 
-              drink_preference=:destination, working_days=:working_days, team_id=:team_id WHERE id= :id";
+              drink_preference=:drink_preference, working_days=:working_days, team_id=:team_id WHERE id= :id";
         $statement = $this->dbh->prepare($query);
         $statement->bindValue(':id', $member->getId(), PDO::PARAM_INT);
         $statement->bindValue(':name', $member->getName(), PDO::PARAM_STR);
@@ -78,6 +81,16 @@ class MemberHandler extends Handler {
         $statement->bindValue(':working_days', $member->getWorkingDays(), PDO::PARAM_STR);
         $statement->bindValue(':team_id', $member->getTeamId(), PDO::PARAM_STR);
         $statement->execute();
+
+        $this->dbh->beginTransaction();
+        try{
+            $statement->execute();
+            $this->dbh->commit();
+        } catch (Exception $e){
+            var_dump($e);
+            $this->dbh->rollback();
+            return 0;
+        }
     }
 
 }

@@ -1,16 +1,29 @@
 <?php
 require_once('../header.php');
 
-// MOCK DATA - TO REMOVE WHEN HANDLER IS ABLE TO PASS IN ARRAYS
-$usernames = array('petri.van.niekerk', 'agung.udijana');
-$teams = array('1' => 'Team Chappie', '2' => 'Team Screen');
+/*
+ Authors: Petri van Niekerk & Agung Udijana
+*/
+
+$memberId = $member->getId();
 $drinkPreferences = array ('coffee', 'tea', 'water');
-$nameMemberToEdit ='Agung Udijana';
-$keyOfTeamOfMemberToEdit ='2';
-$usernameMemberToEdit = 'agung.udijana';
-$drinkPreferenceMemberToEdit = 'water';
-$destinationMemberToEdit ='Amsterdam Dapperbuurt';
-$workingdaysMemberToEdit = array('Tuesday', 'Wednesday', 'Friday');
+$teamMemberToEdit = $member->getTeamId();
+$nameMemberToEdit = $member->getName();
+$usernameMemberToEdit = $member->getUsername();
+$drinkPreferenceMemberToEdit = $member->getDrinkPreference();
+$destinationMemberToEdit = $member->getDestination();
+$workingdaysMemberToEditString = $member->getWorkingDays();
+$workingdaysMemberToEdit = explode(',', $workingdaysMemberToEditString);
+
+session_start();
+if(isset($_SESSION['editSuccess'])) {
+    $success = $_SESSION['editSuccess'];
+}
+else {
+    $success ='';
+}
+unset($_SESSION['editSuccess']);
+
 ?>
 
     <title>Wijzig teamlid</title>
@@ -21,39 +34,34 @@ $workingdaysMemberToEdit = array('Tuesday', 'Wednesday', 'Friday');
 
     <h1>Wijzig teamlid</h1>
 
-    <!-- to do : replace add_editMemberHandlerTest.php with the actual handler name -->
-    <form action="add_editMemberHandlerTest.php" method="post">
+    <h2><?= $success ?></h2>
+
+    <form action="./edit.php" method="post">
+
+
         <table>
+            <input type="hidden" value="<?= $memberId; ?>" name="id" />
             <tr>
                 <td><label for="name">Naam</label> </td>
                 <td> <input type="text" name="name" value="<?php echo $nameMemberToEdit; ?>"></td>
             </tr>
             <tr>
                 <td><label for ="username">Jira gebruikersnaam</td>
-                <td><select name = "username">
-                        <?php
-                        // Iterating through the array that contains JIRA usernames which are passed on by the handler
-                        foreach($usernames as $item){
-                            ?>
-                            <option value="<?php echo strtolower($item); ?>" <?php if($item == $usernameMemberToEdit){echo "selected";}?> > <?php echo $item; ?></option>
-                            <?php
-                        }
-                        ?>
-
-                    </select>
-                </td>
+                <td><input type="text" name="username" value ="<?php echo $usernameMemberToEdit; ?>"></td>
+            </tr>
             </tr>
             <tr>
                 <td><label for ="team">Team</td>
                 <td><select name ="team">
                         <?php
                         // Iterating through the array that contains the teams which are passed on by the handler
-                        foreach($teams as $key => $value){
+                        foreach($teams as $team){
+                            $teamId = $team->getId();
                             ?>
-                            <option value="<?php echo $key; ?>" <?php if($key == $keyOfTeamOfMemberToEdit){echo "selected";}?> > <?php echo $value; ?></option>
+                            <option value="<?= $teamId ?>" <?php if($teamId == $teamMemberToEdit){echo "selected";}?> > <?= $team->getLabel() ?></option>
                             <?php
-                        }
-                        ?>
+                            }
+                            ?>
                     </select>
                 </td>
             </tr>
@@ -63,8 +71,8 @@ $workingdaysMemberToEdit = array('Tuesday', 'Wednesday', 'Friday');
                 <td><input type="text" name="destination" value="<?php echo $destinationMemberToEdit; ?>"></td>
             </tr>
             <tr>
-                <td><label for ="drinkpreference">Drankvoorkeur</td>
-                <td><select name="drinkpreference">
+                <td><label for ="drinkPreference">Drankvoorkeur</td>
+                <td><select name="drinkPreference">
                         <?php
                         // Iterating through the array that contains the drink preferences which are passed on by the handler
                         foreach($drinkPreferences as $item){
@@ -78,13 +86,13 @@ $workingdaysMemberToEdit = array('Tuesday', 'Wednesday', 'Friday');
             </tr>
 
             <tr>
-                <td><label for ="workingdays[]">Werkdagen</td>
+                <td><label for ="workingDays[]">Werkdagen</td>
                 <td>
-                    <input type="checkbox" name="workingdays[]" value="Monday" <?php if(in_array("Monday", $workingdaysMemberToEdit)){echo "checked";}?> >Maandag<br>
-                    <input type="checkbox" name="workingdays[]" value="Tuesday" <?php if(in_array("Tuesday", $workingdaysMemberToEdit)){echo "checked";}?> >Dinsdag<br>
-                    <input type="checkbox" name="workingdays[]" value="Wednesday" <?php if(in_array("Wednesday", $workingdaysMemberToEdit)){echo "checked";}?> >Woensdag<br>
-                    <input type="checkbox" name="workingdays[]" value="Thursday" <?php if(in_array("Thursday", $workingdaysMemberToEdit)){echo "checked";}?> >Donderdag<br>
-                    <input type="checkbox" name="workingdays[]" value="Friday" <?php if(in_array("Friday", $workingdaysMemberToEdit)){echo "checked";}?> >Vrijdag<br>
+                    <input type="checkbox" name="workingDays[]" value="Monday" <?php if(in_array("monday", $workingdaysMemberToEdit)){echo "checked";}?> >Maandag<br>
+                    <input type="checkbox" name="workingDays[]" value="Tuesday" <?php if(in_array("tuesday", $workingdaysMemberToEdit)){echo "checked";}?> >Dinsdag<br>
+                    <input type="checkbox" name="workingDays[]" value="Wednesday" <?php if(in_array("wednesday", $workingdaysMemberToEdit)){echo "checked";}?> >Woensdag<br>
+                    <input type="checkbox" name="workingDays[]" value="Thursday" <?php if(in_array("thursday", $workingdaysMemberToEdit)){echo "checked";}?> >Donderdag<br>
+                    <input type="checkbox" name="workingDays[]" value="Friday" <?php if(in_array("friday", $workingdaysMemberToEdit)){echo "checked";}?> >Vrijdag<br>
                 </td>
             </tr>
         </table>

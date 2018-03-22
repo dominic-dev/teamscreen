@@ -1,8 +1,15 @@
 <?php
 
-require_once('../../models/Member.php');
 require_once('../../handlers/Database.php');
+require_once('../../models/Member.php');
 require_once('../../handlers/MemberHandler.php');
+require_once('../../handlers/TeamHandler.php');
+
+/**
+ *
+ * Authors: Dominic Dingena & Agung Udijana
+ */
+
 
 // GET 
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
@@ -14,7 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     $db = new Database();
     $conn = $db->getConnection();
     $memberHandler = new MemberHandler($conn);
+    $teamHandler = new TeamHandler($conn);
     $member = $memberHandler->get($id);
+    $teams = $teamHandler->getAll();
+    $editSuccess ='';
     require_once('../../views/editmember.php');
 }
 
@@ -43,9 +53,14 @@ else{
     $dbh = $db->getConnection();
     $memberHandler = new MemberHandler($dbh);
 
-    if($memberHandler->update($member)){
-        header('Location: '. 'edit.php?id=' . $member->getId());
-        die();
-    }
-    die("fatal error");
+    $memberHandler->update($member);
+
+    session_start();
+    $_SESSION['editSuccess'] = "Member succesfully edited";
+
+    //TO DO : redirect
+    header('Location: '. 'edit.php?id=' . $member->getId());
+
+    die();
+
 }
