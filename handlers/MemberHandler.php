@@ -29,12 +29,12 @@ class MemberHandler extends Handler {
         $query = "INSERT INTO member(name, username, destination, drink_preference, working_days, team_id) 
               VALUES (:name, :username, :destination, :drink_preference, :working_days, :team_id)";
         $statement = $this->dbh->prepare($query);
-        $statement->bindParam(':name', $member->getName(), PDO::PARAM_STR);
-        $statement->bindParam(':username', $member->getUsername(), PDO::PARAM_STR);
-        $statement->bindParam(':destination', $member->getDestination(), PDO::PARAM_STR);
-        $statement->bindParam(':drink_preference', $member->getDrinkpreference(), PDO::PARAM_STR);
-        $statement->bindParam(':working_days', $member->getWorkdays(), PDO::PARAM_STR);
-        $statement->bindParam(':team_id', $member->getTeamId(), PDO::PARAM_STR);
+        $statement->bindValue(':name', $member->getName(), PDO::PARAM_STR);
+        $statement->bindValue(':username', $member->getUsername(), PDO::PARAM_STR);
+        $statement->bindValue(':destination', $member->getDestination(), PDO::PARAM_STR);
+        $statement->bindValue(':drink_preference', $member->getDrinkpreference(), PDO::PARAM_STR);
+        $statement->bindValue(':working_days', $member->getWorkdays(), PDO::PARAM_STR);
+        $statement->bindValue(':team_id', $member->getTeamId(), PDO::PARAM_STR);
         $success = $statement->execute();
         var_dump($statement);
         $id = $this->dbh->lastInsertId();
@@ -51,13 +51,13 @@ class MemberHandler extends Handler {
         $query = "UPDATE member SET name=:name, username=:username, destination=:destination, 
               drink_preference=:destination, working_days=:working_days, team_id=:team_id WHERE id= :id";
         $statement = $this->dbh->prepare($query);
-        $statement->bindParam(':id', $member->getId(), PDO::PARAM_INT);
-        $statement->bindParam(':name', $member->getName(), PDO::PARAM_STR);
-        $statement->bindParam(':username', $member->getUsername(), PDO::PARAM_STR);
-        $statement->bindParam(':destination', $member->getDestination(), PDO::PARAM_STR);
-        $statement->bindParam(':drink_preference', $member->getDrinkpreference(), PDO::PARAM_STR);
-        $statement->bindParam(':working_days', $member->getWorkdays(), PDO::PARAM_STR);
-        $statement->bindParam(':team_id', $member->getTeamId(), PDO::PARAM_STR);
+        $statement->bindValue(':id', $member->getId(), PDO::PARAM_INT);
+        $statement->bindValue(':name', $member->getName(), PDO::PARAM_STR);
+        $statement->bindValue(':username', $member->getUsername(), PDO::PARAM_STR);
+        $statement->bindValue(':destination', $member->getDestination(), PDO::PARAM_STR);
+        $statement->bindValue(':drink_preference', $member->getDrinkpreference(), PDO::PARAM_STR);
+        $statement->bindValue(':working_days', $member->getWorkdays(), PDO::PARAM_STR);
+        $statement->bindValue(':team_id', $member->getTeamId(), PDO::PARAM_STR);
         $statement->execute();
     }
 
