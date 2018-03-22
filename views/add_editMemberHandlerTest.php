@@ -30,9 +30,10 @@ $member = new Member();
 $member->setUsername($username);
 $member->setName($name);
 $member->setDestination($destination);
-$member->setDrinkpreference('koffie');
+$member->setDrinkPreference('tea');
+$member->setTeamId($teamId);
 if(isset($workingdays)){
-    $member->setWorkdays(implode(',',$workingdays));
+    $member->setWorkingDays(implode(',',$workingdays));
 }
 
 

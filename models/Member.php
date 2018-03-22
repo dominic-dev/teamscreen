@@ -6,23 +6,23 @@ class Member {
     private $name;
     private $destination;
     // ENUM('koffie', 'thee', 'water')
-    private $drinkpreference;
+    private $drinkPreference;
     // workday set, permitted values:
     // SET ('maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag') NULL,
-    private $workdays;
+    private $workingDays;
     private $teamId;
 
-    private $timeoff;
+    private $timeOff;
 
     function __construct($id=null, $username=null, $name=null, $destination=null,
-                         $drinkpreference=null, $workdays=null, $timeoff=null, $teamId=null){
+                         $drinkPreference=null, $workingDays=null, $timeOff=null, $teamId=null){
         $this->id = $id;
         $this->username = $username;
         $this->name = $name;
         $this->destination = $destination;
-        $this->drinkpreference = $drinkpreference;
-        $this->workdays = $workdays;
-        $this->timeoff = $timeoff;
+        $this->drinkPreference = $drinkPreference;
+        $this->workingDays = $workingDays;
+        $this->timeOff = $timeOff;
         $this->teamId = $teamId;
     }
 
@@ -58,28 +58,28 @@ class Member {
         $this->destination = $destination;
     }
 
-    function setTimeoff(array $timeoff){
-        $this->timeoff = $timeoff;
+    function setTimeOff(array $timeOff){
+        $this->timeOff = $timeOff;
     }
 
-    function getTimeoff(){
-        return $this->timeoff;
+    function getTimeOff(){
+        return $this->timeOff;
     }
 
-    function getDrinkpreference() {
-        return $this->drinkpreference;
+    function getDrinkPreference() {
+        return $this->drinkPreference;
     }
 
-    function setDrinkpreference(string $drinkpreference){
-        $this->drinkpreference = $drinkpreference;
+    function setDrinkPreference(string $drinkPreference){
+        $this->drinkPreference = $drinkPreference;
     }
 
-    function getWorkdays() : string {
-        return $this->workdays;
+    function getWorkingDays() : string {
+        return $this->workingDays;
     }
 
-    function setWorkdays(string $workdays) {
-        $this->workdays = $workdays;
+    function setWorkingDays(string $workingDays) {
+        $this->workingDays = $workingDays;
     }
 
     function getId() : int {

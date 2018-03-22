@@ -2,6 +2,9 @@ id
 username
 destination
 drinkPreference> coffee, tea, water
-workingDays > monday...etc, alleen display in NL
+workingDays > Monday...etc, alleen display in NL
 teamId
 timeOff > TimeOff
+
+[in phpadmin aanmaken met toegang tot localhost]
+username: teamscreen, pw: tsadmin

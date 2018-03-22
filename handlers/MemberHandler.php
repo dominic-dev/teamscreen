@@ -39,8 +39,8 @@ class MemberHandler extends Handler {
         $statement->bindValue(':name', $member->getName(), PDO::PARAM_STR);
         $statement->bindValue(':username', $member->getUsername(), PDO::PARAM_STR);
         $statement->bindValue(':destination', $member->getDestination(), PDO::PARAM_STR);
-        $statement->bindValue(':drink_preference', $member->getDrinkpreference(), PDO::PARAM_STR);
-        $statement->bindValue(':working_days', $member->getWorkdays(), PDO::PARAM_STR);
+        $statement->bindValue(':drink_preference', $member->getDrinkPreference(), PDO::PARAM_STR);
+        $statement->bindValue(':working_days', $member->getWorkingDays(), PDO::PARAM_STR);
         $statement->bindValue(':team_id', $member->getTeamId(), PDO::PARAM_STR);
 
         $this->dbh->beginTransaction();
@@ -69,8 +69,8 @@ class MemberHandler extends Handler {
         $statement->bindValue(':name', $member->getName(), PDO::PARAM_STR);
         $statement->bindValue(':username', $member->getUsername(), PDO::PARAM_STR);
         $statement->bindValue(':destination', $member->getDestination(), PDO::PARAM_STR);
-        $statement->bindValue(':drink_preference', $member->getDrinkpreference(), PDO::PARAM_STR);
-        $statement->bindValue(':working_days', $member->getWorkdays(), PDO::PARAM_STR);
+        $statement->bindValue(':drink_preference', $member->getDrinkPreference(), PDO::PARAM_STR);
+        $statement->bindValue(':working_days', $member->getWorkingDays(), PDO::PARAM_STR);
         $statement->bindValue(':team_id', $member->getTeamId(), PDO::PARAM_STR);
         $statement->execute();
     }

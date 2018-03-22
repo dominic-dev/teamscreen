@@ -1,6 +1,6 @@
 <?php
 require_once('Handler.php');
-require_once('./models/Timeoff.php');
+require_once('./models/TimeOff.php');
 
 /**
  * Class TimeOffHandler
@@ -16,20 +16,20 @@ class TimeOffHandler extends Handler {
      * @return mixed
      */
     protected function factory(array $row) {
-        $timeOff = new Timeoff($row['id'], $row['starttime'], $row['endtime'], $row['memberId']);
+        $timeOff = new TimeOff($row['id'], $row['starttime'], $row['endtime'], $row['memberId']);
         return $timeOff;
     }
 
     /**
      * Add a timeoff object to the database
      *
-     * @param Timeoff $timeOff
+     * @param TimeOff $timeOff
      */
-    public function add(Timeoff $timeOff): int {
+    public function add(TimeOff $timeOff): int {
         $query = "INSERT INTO time_off(start_time, end_time, member_id) VALUES (:start_time, :end_time, :member_id)";
         $statement = $this->dbh->prepare($query);
-        $statement->bindParam(':start_time', $timeOff->getStarttime(), PDO::PARAM_STR);
-        $statement->bindParam(':end_time', $timeOff->getEndtime(), PDO::PARAM_STR);
+        $statement->bindParam(':start_time', $timeOff->getStartTime(), PDO::PARAM_STR);
+        $statement->bindParam(':end_time', $timeOff->getEndTime(), PDO::PARAM_STR);
         $statement->bindParam(':member_id', $timeOff->getMemberId(), PDO::PARAM_STR);
         $statement->execute();
         $id = $this->dbh->lastInsertId();
@@ -42,12 +42,12 @@ class TimeOffHandler extends Handler {
      *
      * @param Member $member
      */
-    public function update(Timeoff $timeOff) {
+    public function update(TimeOff $timeOff) {
         $query = "UPDATE time_off SET start_time=:start_time, end_time=:end_time, member_id=:member_id WHERE id= :id";
         $statement = $this->dbh->prepare($query);
         $statement->bindParam(':id', $timeOff->getId(), PDO::PARAM_INT);
-        $statement->bindParam(':start_time', $timeOff->getStarttime(), PDO::PARAM_STR);
-        $statement->bindParam(':end_time', $timeOff->getEndtime(), PDO::PARAM_STR);
+        $statement->bindParam(':start_time', $timeOff->getStartTime(), PDO::PARAM_STR);
+        $statement->bindParam(':end_time', $timeOff->getEndTime(), PDO::PARAM_STR);
         $statement->bindParam(':member_id', $timeOff->getMemberId(), PDO::PARAM_STR);
         $statement->execute();
     }

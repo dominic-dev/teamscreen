@@ -1,17 +1,17 @@
 <?php
 
-class Timeoff{
+class TimeOff{
 
     private $id;
-    private $starttime;
-    private $endtime;
+    private $startTime;
+    private $endTime;
     private $memberId;
 
-    function __construct($id=null, $starttime=null, $endtime=null, $memberId=null)
+    function __construct($id=null, $startTime=null, $endTime=null, $memberId=null)
     {
         $this->id = $id;
-        $this->starttime = $starttime;
-        $this->endtime = $endtime;
+        $this->startTime = $startTime;
+        $this->endTime = $endTime;
         $this->memberId = $memberId;
     }
 
@@ -34,8 +34,8 @@ class Timeoff{
     /**
      * @return mixed
      */
-    public function getEndtime() {
-        return $this->endtime;
+    public function getEndTime() {
+        return $this->endTime;
     }
 
     /**
@@ -48,22 +48,22 @@ class Timeoff{
     /**
      * @return mixed
      */
-    public function getStarttime() {
-        return $this->starttime;
+    public function getStartTime() {
+        return $this->startTime;
     }
 
     /**
-     * @param mixed $endtime
+     * @param mixed $endTime
      */
-    public function setEndtime($endtime) {
-        $this->endtime = $endtime;
+    public function setEndTime($endTime) {
+        $this->endTime = $endTime;
     }
 
     /**
-     * @param null $starttime
+     * @param null $startTime
      */
-    public function setStarttime($starttime) {
-        $this->starttime = $starttime;
+    public function setStartTime($startTime) {
+        $this->startTime = $startTime;
     }
 
     /**

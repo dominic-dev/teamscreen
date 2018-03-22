@@ -2,7 +2,7 @@
 // MOCK DATA - TO REMOVE WHEN HANDLER IS ABLE TO PASS IN ARRAYS
 $usernames = array('petri.van.niekerk', 'agung.udijana');
 $teams = array('1' => 'Team Chappie', '2' => 'Team Screen');
-$drinkpreferences = array ('koffie', 'thee', 'water');
+$drinkpreferences = array ('tea', 'coffee', 'water');
 ?>
 
 <!DOCTYPE html>
