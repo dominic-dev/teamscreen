@@ -33,7 +33,7 @@
     <div id="offdays" class="widgetBoxSmall">
         <h2>Vrije dagen</h2>
     </div>
-    <?php include('widgets/delays.php'); ?>
+    <?php include('widgets/vertragingen.php'); ?>
     <div id="scrumboard" class="widgetBoxLarge">
         <h2>Scrumboard</h2>
     </div>
