@@ -14,7 +14,8 @@ class Member {
 
     private $timeoff;
 
-    function __construct($id=null, $username=null, $name=null, $destination=null, $drinkpreference=null, $workdays=null, $timeoff=null, $teamId=null){
+    function __construct($id=null, $username=null, $name=null, $destination=null,
+                         $drinkpreference=null, $workdays=null, $timeoff=null, $teamId=null){
         $this->id = $id;
         $this->username = $username;
         $this->name = $name;
