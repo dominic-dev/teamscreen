@@ -34,7 +34,7 @@ $workingdaysMemberToEdit = array('Tuesday', 'Wednesday', 'Friday');
         <table>
             <tr>
                 <td><label for="name">Naam</label> </td>
-                <td> <input type="text" name="memberName" value="<?php echo $nameMemberToEdit; ?>"></td>
+                <td> <input type="text" name="name" value="<?php echo $nameMemberToEdit; ?>"></td>
             </tr>
             <tr>
                 <td><label for ="username">Jira gebruikersnaam</td>

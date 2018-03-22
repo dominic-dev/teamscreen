@@ -1,17 +1,29 @@
 <?php
 
+require_once('../../handlers/Database.php');
+require_once('../../models/Member.php');
+require_once('../../handlers/MemberHandler.php');
+
 // Get
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
-    require_once($_SERVER["DOCUMENT_ROOT"] . '../../views/addmember.php');
+    $db = new Database();
+    $conn = $db->getConnection();
+    $memberHandler = new MemberHandler($conn);
+
+    $usernames = [];
+    $members = $memberHandler->getAll();
+    foreach($members as $member){
+        array_push($usernames, $member->getUsername());
+    }
+    $teams = array('1' => 'Team Chappie', '2' => 'Team Screen');
+    $drinkPreferences = array ('tea', 'coffee', 'water');
+    require_once('../../views/addmember.php');
     die();
 }
 
 // Post
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
-    require_once($_SERVER["DOCUMENT_ROOT"] . '../../handlers/Database.php');
-    require_once($_SERVER["DOCUMENT_ROOT"] . '../../models/Member.php');
-    require_once($_SERVER["DOCUMENT_ROOT"] . '../../handlers/MemberHandler.php');
-
     $name = $_POST['name'];
     $username = $_POST['username'];
     $destination = $_POST['destination'];

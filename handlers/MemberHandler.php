@@ -21,8 +21,8 @@ class MemberHandler extends Handler {
         $member->setName($row['name']);
         $member->setUsername($row['username']);
         $member->setDestination($row['destination']);
-        $member->setDrinkPreference($row['drinkPreference']);
-        $member->setWorkingDays($row['workingDays']);
+        $member->setDrinkPreference($row['drink_preference']);
+        $member->setWorkingDays($row['working_days']);
         $member->setTeamId($row['teamId']);
         return $member;
     }
