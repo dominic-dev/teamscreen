@@ -1,6 +1,6 @@
 <?php
 require_once('Handler.php');
-require_once('../models/Member.php');
+require_once('./models/Member.php');
 
 /**
  * Class MemberHandler
@@ -16,7 +16,14 @@ class MemberHandler extends Handler {
      * @return mixed
      */
     protected function factory(array $row) {
-        $member = new Member($row['id'], $row['name'], $row['username'], $row['destination'], $row['drinkpreference'], $row['workdays'], $row['teamId']);
+        $member = new Member();
+        $member->setId($row['id']);
+        $member->setName($row['id']);
+        $member->setUsername($row['id']);
+        $member->setDestination($row['id']);
+        $member->setDrinkPreference($row['id']);
+        $member->setWorkingDays($row['id']);
+        $member->setTeamId($row['id']);
         return $member;
     }
 
@@ -35,9 +42,16 @@ class MemberHandler extends Handler {
         $statement->bindValue(':drink_preference', $member->getDrinkpreference(), PDO::PARAM_STR);
         $statement->bindValue(':working_days', $member->getWorkdays(), PDO::PARAM_STR);
         $statement->bindValue(':team_id', $member->getTeamId(), PDO::PARAM_STR);
-        $success = $statement->execute();
-        var_dump($statement);
-        $id = $this->dbh->lastInsertId();
+
+        $this->dbh->beginTransaction();
+        try{
+            $statement->execute();
+            $id = $this->dbh->lastInsertId();
+            $this->dbh->commit();
+        } catch (Exception $e){
+            $this->dbh->rollback();
+            return 0;
+        }
         $member->setId($id);
         return $id;
     }

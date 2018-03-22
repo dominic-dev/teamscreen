@@ -16,7 +16,9 @@ class TeamHandler extends Handler {
      * @return mixed
      */
     protected function factory(array $row) {
-      $team = new Team($row['id'], $row['label']);
+      $team = new Team();
+      $team->setId($row['id']);
+      $team->setLabel($row['label']);
       return $team;
     }
 
@@ -28,9 +30,17 @@ class TeamHandler extends Handler {
     public function add(Team $team) : int {
         $query = "INSERT INTO team(label) VALUES (:label)";
         $statement = $this->dbh->prepare($query);
-        $statement->bindParam(':label', $team->getLabel(), PDO::PARAM_STR);
-        $statement->execute();
-        $id = $this->dbh->lastInsertId();
+        $statement->bindValue(':label', $team->getLabel(), PDO::PARAM_STR);
+
+        $this->dbh->beginTransaction();
+        try{
+            $statement->execute();
+            $id = $this->dbh->lastInsertId();
+            $this->dbh->commit();
+        } catch (Exception $e){
+            $this->dbh->rollback();
+            return 0;
+        }
         $team->setId($id);
         return $id;
     }
@@ -40,12 +50,12 @@ class TeamHandler extends Handler {
      *
      * @param Member $member
      */
-    public function update(Team $team) {
+    public function update(Team $team) : bool {
         $query = "UPDATE team SET label=:label WHERE id= :id";
         $statement = $this->dbh->prepare($query);
-        $statement->bindParam(':id', $team->getId(), PDO::PARAM_INT);
-        $statement->bindParam(':label', $team->getLabel(), PDO::PARAM_STR);
-        $statement->execute();
+        $statement->bindValue(':id', $team->getId(), PDO::PARAM_INT);
+        $statement->bindValue(':label', $team->getLabel(), PDO::PARAM_STR);
+        return $statement->execute();
     }
 
 
