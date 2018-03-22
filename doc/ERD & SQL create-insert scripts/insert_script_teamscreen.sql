@@ -1,13 +1,13 @@
 -- ---------------------------------------
--- INSERT SCRIPT FOR TEAMSCREEN APPLICATION DATABASE
+-- insert script for teamscreen application database
 -- ------------------------------------------
 
-INSERT INTO `teamscreen`.`team` (`label`) VALUES ('Team 1');
-INSERT INTO `teamscreen`.`team` (`label`) VALUES ('Team 2');
-INSERT INTO `teamscreen`.`team` (`label`) VALUES ('Team 3');
+insert into `teamscreen`.`team` (`label`) values ('team 1');
+insert into `teamscreen`.`team` (`label`) values ('team 2');
+insert into `teamscreen`.`team` (`label`) values ('team 3');
 
-INSERT INTO `teamscreen`.`member` (`name`, `username`, `destination`, `drink_preference`, `working_days`, `Team_id`) VALUES ('Jantje Smit', 'jantje', 'Amsterdam', 'coffee', 'Monday,Tuesday,Wednesday,Thursday', 1);
-INSERT INTO `teamscreen`.`member` (`name`, `username`, `destination`, `drink_preference`, `working_days`, `Team_id`) VALUES ('Trijntje Oosterhuis', 'trijntje', 'Den Haag', 'tea', 'Tuesday,Wednesday', 2);
+insert into `teamscreen`.`member` (`name`, `username`, `destination`, `drink_preference`, `working_days`, `team_id`) values ('jantje smit', 'jantje', 'amsterdam', 'coffee', 'monday,tuesday,wednesday,thursday', 1);
+insert into `teamscreen`.`member` (`name`, `username`, `destination`, `drink_preference`, `working_days`, `team_id`) values ('trijntje oosterhuis', 'trijntje', 'den haag', 'tea', 'tuesday,wednesday', 2);
 
-INSERT INTO `teamscreen`.`time_off` (`start_time`, `end_time`, `Member_id`) VALUES ('2018-03-19 12:00:00', '2018-03-21 12:00:00', 1);
-INSERT INTO `teamscreen`.`time_off` (`start_time`, `end_time`, `Member_id`) VALUES ('2018-03-19 12:00:00', '2018-03-21 12:00:00', 2);
+insert into `teamscreen`.`time_off` (`start_time`, `end_time`, `member_id`) values ('2018-03-19 12:00:00', '2018-03-21 12:00:00', 1);
+insert into `teamscreen`.`time_off` (`start_time`, `end_time`, `member_id`) values ('2018-03-19 12:00:00', '2018-03-21 12:00:00', 2);

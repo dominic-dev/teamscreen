@@ -1,79 +1,79 @@
 -- ---------------------------------------
--- CREATE SCRIPT FOR TEAMSCREEN APPLICATION DATABASE
+-- create script for teamscreen application database
 -- ------------------------------------------
 
--- MySQL Workbench Forward Engineering
+-- mysql workbench forward engineering
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-
--- -----------------------------------------------------
--- Schema TeamScreen
--- -----------------------------------------------------
-DROP DATABASE IF EXISTS `TeamScreen` ;
+set @old_unique_checks=@@unique_checks, unique_checks=0;
+set @old_foreign_key_checks=@@foreign_key_checks, foreign_key_checks=0;
+set @old_sql_mode=@@sql_mode, sql_mode='traditional,allow_invalid_dates';
 
 -- -----------------------------------------------------
--- Schema TeamScreen
+-- schema teamscreen
 -- -----------------------------------------------------
-CREATE DATABASE IF NOT EXISTS `TeamScreen` DEFAULT CHARACTER SET utf8 ;
-USE `TeamScreen` ;
+drop database if exists `teamscreen` ;
 
 -- -----------------------------------------------------
--- Table `TeamScreen`.`Team`
+-- schema teamscreen
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `TeamScreen`.`Team` ;
-
-CREATE TABLE IF NOT EXISTS `TeamScreen`.`Team` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `label` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
+create database if not exists `teamscreen` default character set utf8 ;
+use `teamscreen` ;
 
 -- -----------------------------------------------------
--- Table `TeamScreen`.`Member`
+-- table `teamscreen`.`team`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `TeamScreen`.`Member` ;
+drop table if exists `teamscreen`.`team` ;
 
-CREATE TABLE IF NOT EXISTS `TeamScreen`.`Member` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `username` VARCHAR(45) NULL,
-  `destination` VARCHAR(45) NULL,
-  `drink_preference` ENUM('coffee', 'tea', 'water') NULL,
-  `working_days` SET('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday') NULL,
-  `team_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_member_team_idx` (`team_id` ASC),
-  CONSTRAINT `fk_member_team`
-    FOREIGN KEY (`team_id`)
-    REFERENCES `TeamScreen`.`Team` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
+create table if not exists `teamscreen`.`team` (
+  `id` int not null auto_increment,
+  `label` varchar(45) null,
+  primary key (`id`))
+engine = innodb;
 
 
 -- -----------------------------------------------------
--- Table `TeamScreen`.`TimeOff`
+-- table `teamscreen`.`member`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `TeamScreen`.`Time_Off` ;
+drop table if exists `teamscreen`.`member` ;
 
-CREATE TABLE IF NOT EXISTS `TeamScreen`.`Time_Off` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `start_time` DATETIME NULL,
-  `end_time` DATETIME NULL,
-  `member_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_time_off_member_idx` (`member_id` ASC),
-  CONSTRAINT `fk_time_off_member`
-    FOREIGN KEY (`member_id`)
-    REFERENCES `TeamScreen`.`Member` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
+create table if not exists `teamscreen`.`member` (
+  `id` int not null auto_increment,
+  `name` varchar(45) null,
+  `username` varchar(45) null,
+  `destination` varchar(45) null,
+  `drink_preference` enum('coffee', 'tea', 'water') null,
+  `working_days` set('monday', 'tuesday', 'wednesday', 'thursday', 'friday') null,
+  `team_id` int null,
+  primary key (`id`),
+  index `fk_member_team_idx` (`team_id` asc),
+  constraint `fk_member_team`
+    foreign key (`team_id`)
+    references `teamscreen`.`team` (`id`)
+    on delete cascade
+    on update cascade)
+engine = innodb;
 
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+-- -----------------------------------------------------
+-- table `teamscreen`.`timeoff`
+-- -----------------------------------------------------
+drop table if exists `teamscreen`.`time_off` ;
+
+create table if not exists `teamscreen`.`time_off` (
+  `id` int not null auto_increment,
+  `start_time` datetime null,
+  `end_time` datetime null,
+  `member_id` int not null,
+  primary key (`id`),
+  index `fk_time_off_member_idx` (`member_id` asc),
+  constraint `fk_time_off_member`
+    foreign key (`member_id`)
+    references `teamscreen`.`member` (`id`)
+    on delete cascade
+    on update cascade)
+engine = innodb;
+
+
+set sql_mode=@old_sql_mode;
+set foreign_key_checks=@old_foreign_key_checks;
+set unique_checks=@old_unique_checks;

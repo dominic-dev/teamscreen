@@ -6,10 +6,10 @@
  * Time: 21:42
  */
 
-require_once('../models/Team.php');
-require_once('../models/Member.php');
-require_once('../handlers/Database.php');
-require_once('../handlers/MemberHandler.php');
+require_once(dirname(__FILE__) . '/../models/Team.php');
+require_once(dirname(__FILE__) . '/../models/Member.php');
+require_once(dirname(__FILE__) . '/../handlers/Database.php');
+require_once(dirname(__FILE__) . '/../handlers/MemberHandler.php');
 
 echo '<h3>DUMMY ADD/EDIT MEMBER HANDLER</h3>';
 

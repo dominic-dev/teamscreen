@@ -2,11 +2,11 @@
 // MOCK DATA - TO REMOVE WHEN HANDLER IS ABLE TO PASS IN ARRAYS
 $usernames = array('petri.van.niekerk', 'agung.udijana');
 $teams = array('1' => 'Team Chappie', '2' => 'Team Screen');
-$drinkpreferences = array ('koffie', 'thee', 'water');
+$drinkPreferences = array ('coffee', 'tea', 'water');
 $nameMemberToEdit ='Agung Udijana';
 $keyOfTeamOfMemberToEdit ='2';
 $usernameMemberToEdit = 'agung.udijana';
-$drinkpreferenceMemberToEdit = 'water';
+$drinkPreferenceMemberToEdit = 'water';
 $destinationMemberToEdit ='Amsterdam Dapperbuurt';
 $workingdaysMemberToEdit = array('Tuesday', 'Wednesday', 'Friday');
 ?>
@@ -34,7 +34,7 @@ $workingdaysMemberToEdit = array('Tuesday', 'Wednesday', 'Friday');
         <table>
             <tr>
                 <td><label for="name">Naam</label> </td>
-                <td> <input type="text" name="membername" value="<?php echo $nameMemberToEdit; ?>"></td>
+                <td> <input type="text" name="memberName" value="<?php echo $nameMemberToEdit; ?>"></td>
             </tr>
             <tr>
                 <td><label for ="username">Jira gebruikersnaam</td>
@@ -75,9 +75,9 @@ $workingdaysMemberToEdit = array('Tuesday', 'Wednesday', 'Friday');
                 <td><select name="drinkpreference">
                         <?php
                         // Iterating through the array that contains the drink preferences which are passed on by the handler
-                        foreach($drinkpreferences as $item){
+                        foreach($drinkPreferences as $item){
                             ?>
-                            <option value="<?php echo strtolower($item); ?>" <?php if($item == $drinkpreferenceMemberToEdit){echo "selected";}?> ><?php echo $item; ?></option>
+                            <option value="<?php echo strtolower($item); ?>" <?php if($item == $drinkPreferenceMemberToEdit){echo "selected";}?> ><?php echo $item; ?></option>
                             <?php
                         }
                         ?>

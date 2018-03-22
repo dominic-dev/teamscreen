@@ -1,6 +1,6 @@
 <?php
 require_once('Handler.php');
-require_once('./models/Member.php');
+require_once(dirname(__FILE__) . '/../models/Member.php');
 
 /**
  * Class MemberHandler
@@ -18,12 +18,12 @@ class MemberHandler extends Handler {
     protected function factory(array $row) {
         $member = new Member();
         $member->setId($row['id']);
-        $member->setName($row['id']);
-        $member->setUsername($row['id']);
-        $member->setDestination($row['id']);
-        $member->setDrinkPreference($row['id']);
-        $member->setWorkingDays($row['id']);
-        $member->setTeamId($row['id']);
+        $member->setName($row['name']);
+        $member->setUsername($row['username']);
+        $member->setDestination($row['destination']);
+        $member->setDrinkPreference($row['drinkPreference']);
+        $member->setWorkingDays($row['workingDays']);
+        $member->setTeamId($row['teamId']);
         return $member;
     }
 
@@ -33,6 +33,7 @@ class MemberHandler extends Handler {
      * @param Member $member
      */
     public function add(Member $member): int {
+        var_dump($member);
         $query = "INSERT INTO member(name, username, destination, drink_preference, working_days, team_id) 
               VALUES (:name, :username, :destination, :drink_preference, :working_days, :team_id)";
         $statement = $this->dbh->prepare($query);
@@ -43,12 +44,16 @@ class MemberHandler extends Handler {
         $statement->bindValue(':working_days', $member->getWorkingDays(), PDO::PARAM_STR);
         $statement->bindValue(':team_id', $member->getTeamId(), PDO::PARAM_STR);
 
+        $statement->execute();
+        var_dump($statement);
+
         $this->dbh->beginTransaction();
         try{
             $statement->execute();
             $id = $this->dbh->lastInsertId();
             $this->dbh->commit();
         } catch (Exception $e){
+            var_dump($e);
             $this->dbh->rollback();
             return 0;
         }
