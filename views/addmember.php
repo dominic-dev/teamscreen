@@ -17,7 +17,7 @@
 <div id="general">
 
     <h1>Nieuw teamlid</h1>
-    <form action="/member/add.php" method="post">
+    <form action="/admin/member/add.php" method="post">
         <table>
             <tr>
                 <td><label for="name">Naam</label> </td>
@@ -45,9 +45,9 @@
                     <option selected="selected">Voeg toe aan team</option>
                     <?php
                     // Iterating through the array that contains the teams which are passed on by the handler
-                    foreach($teams as $key => $value){
+                    foreach($teams as $team){
                     ?>
-                    <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+                    <option value="<?= $team->getId() ?>"><?= $team->getLabel() ?></option>
                     <?php
                     }
                     ?>

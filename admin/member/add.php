@@ -3,6 +3,7 @@
 require_once('../../handlers/Database.php');
 require_once('../../models/Member.php');
 require_once('../../handlers/MemberHandler.php');
+require_once('../../handlers/TeamHandler.php');
 
 // Get
 
@@ -10,13 +11,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     $db = new Database();
     $conn = $db->getConnection();
     $memberHandler = new MemberHandler($conn);
+    $teamHandler = new TeamHandler($conn);
 
     $usernames = [];
     $members = $memberHandler->getAll();
     foreach($members as $member){
         array_push($usernames, $member->getUsername());
     }
-    $teams = array('1' => 'Team Chappie', '2' => 'Team Screen');
+    $teams = $teamHandler->getAll();
+
+    // TODO get enum from database
     $drinkPreferences = array ('tea', 'coffee', 'water');
     require_once('../../views/addmember.php');
     die();
@@ -47,7 +51,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     if($memberHandler->add($member)){
         // TODO redirect
-        header('Location: '. '/member/add.php');
+        header('Location: '. '/admin/member/add.php');
         die();
     }
     die("fatal error");

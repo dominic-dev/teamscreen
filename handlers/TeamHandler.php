@@ -1,6 +1,6 @@
 <?php
-require_once(dirname(__FILE__) .'./models/Team.php');
-require_once('Handler.php');
+require_once(dirname(__FILE__) .'/../models/Team.php');
+require_once(dirname(__FILE__) . '/Handler.php');
 
 /**
  * Class TeamHandler
