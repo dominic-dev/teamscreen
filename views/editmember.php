@@ -1,4 +1,6 @@
 <?php
+require_once('../header.php');
+
 // MOCK DATA - TO REMOVE WHEN HANDLER IS ABLE TO PASS IN ARRAYS
 $usernames = array('petri.van.niekerk', 'agung.udijana');
 $teams = array('1' => 'Team Chappie', '2' => 'Team Screen');
@@ -10,16 +12,6 @@ $drinkPreferenceMemberToEdit = 'water';
 $destinationMemberToEdit ='Amsterdam Dapperbuurt';
 $workingdaysMemberToEdit = array('Tuesday', 'Wednesday', 'Friday');
 ?>
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-
-    <link href="style.css" rel="stylesheet">
-
-    <!- authors : Petri & Agung
-    21 March 2018
-    -->
 
     <title>Wijzig teamlid</title>
 </head>

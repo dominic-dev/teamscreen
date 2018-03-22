@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-
-    <link href="style.css" rel="stylesheet">
-
+<?php require_once('../header.php'); ?>
     <!- authors : Petri & Agung & Dominic
     21 March 2018
     -->

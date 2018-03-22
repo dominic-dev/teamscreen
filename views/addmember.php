@@ -1,15 +1,4 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-
-    <link href="style.css" rel="stylesheet">
-
-    <!- authors : Petri & Agung
-    21 March 2018
-    -->
-
+<?php require_once('../header.php'); ?>
     <title>Nieuw teamlid</title>
 </head>
 <body>
@@ -25,19 +14,7 @@
             </tr>
             <tr>
                 <td><label for ="username">Jira gebruikersnaam</td>
-                <td><select name = "username">
-                    <option selected="selected">Kies een jira gebruikersnaam</option>
-                     <?php
-                     // Iterating through the array that contains JIRA usernames which are passed on by the handler
-                     foreach($usernames as $item){
-                     ?>
-                     <option value="<?php echo strtolower($item); ?>"><?php echo $item; ?></option>
-                     <?php
-                     }
-                     ?>
-
-                </select>
-                </td>
+                <td><input type="text" name="username" /></td>
             </tr>
             <tr>
                 <td><label for ="team">Team</td>

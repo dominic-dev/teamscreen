@@ -1,7 +1,7 @@
 html, body {
 	margin: 0;
 	background-color: #191C1E;
-	font-family: 'Open solid';
+	font-family: 'Open Sans';
 	font-weight: 400;
 	padding-left: 40px;
 }
@@ -9,7 +9,7 @@ html, body {
 #general h1 {
 	font-weight: 300;
 	font-size: 40px;
-	font-family: 'Open solid';
+	font-family: 'Open Sans';
 	color: white;
 }
 
