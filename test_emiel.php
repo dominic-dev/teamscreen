@@ -6,7 +6,7 @@
 <body>
 
 <p/>
-<a href="views/addmember.html">Lid toevoegen</a>
+<a href="views/addmember.php">Lid toevoegen</a>
 <p/>
 
 <?php
