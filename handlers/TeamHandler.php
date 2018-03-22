@@ -1,6 +1,12 @@
 <?php
 require_once('./models/Team.php');
 require_once('Handler.php');
+
+/**
+ * Class TeamHandler
+ *
+ * Authors: Dominic Dingena & Carina Boom
+ */
 class TeamHandler extends Handler {
 
     /**
@@ -13,5 +19,34 @@ class TeamHandler extends Handler {
       $team = new Team($row['id'], $row['label']);
       return $team;
     }
-    
+
+    /**
+     * Add a team object to the database
+     *
+     * @param Team $team
+     */
+    public function add(Team $team) : int {
+        $query = "INSERT INTO team(label) VALUES (:label)";
+        $statement = $this->dbh->prepare($query);
+        $statement->bindParam(':label', $team->getLabel(), PDO::PARAM_STR);
+        $statement->execute();
+        $id = $this->dbh->lastInsertId();
+        $team->setId($id);
+        return $id;
+    }
+
+    /**
+     * Update a team in the database
+     *
+     * @param Member $member
+     */
+    public function update(Team $team) {
+        $query = "UPDATE team SET label=:label WHERE id= :id";
+        $statement = $this->dbh->prepare($query);
+        $statement->bindParam(':id', $team->getId(), PDO::PARAM_INT);
+        $statement->bindParam(':label', $team->getLabel(), PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+
 }
