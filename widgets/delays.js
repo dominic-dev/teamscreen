@@ -1,5 +1,8 @@
+console.log(2);
+console.log(teamMembers);
 TRAFFIC_MAX_OK_DELAY_MINS = 9;
-TRAFFIC_USERS_URL = 'http://tim.mybit.nl/users.php';
+// TRAFFIC_USERS_URL = 'http://tim.mybit.nl/users.php';
+// TRAFFIC_USERS_URL = 'api/members/get_all.php';
 
 class TrafficWidget{
     constructor(){
@@ -26,6 +29,13 @@ class TrafficWidget{
 
     update(){
         var widget = this;
+        this.elements = {};
+        widget.list = teamMembers;
+        widget.listCounter = 0;
+        widget.list.forEach(function(item) {
+            widget.getTrafficInformation(item, widget.updateDOM, widget);
+        });
+        /*
         var xhr = new XMLHttpRequest();
         xhr.open('get', TRAFFIC_USERS_URL);
         xhr.addEventListener('load', function() {
@@ -37,6 +47,7 @@ class TrafficWidget{
             });
         });
         xhr.send();
+         */
     }
 
     updateDOM(item, response, widget){
@@ -48,12 +59,12 @@ class TrafficWidget{
         listItem.className = "traffic-item";
 
         var img = document.createElement('img');
-        img.src = item.user.avatar;
+        img.src = item.avatar;
         img.className = "avatar";
         listItem.appendChild(img);
 
         var nameSpan = document.createElement('span');
-        nameSpan.innerText = item.user.name;
+        nameSpan.innerText = item.name;
         nameSpan.className = "name";
         listItem.appendChild(nameSpan);
 

@@ -21,4 +21,5 @@ foreach($members as $member){
 
 $json = json_encode($jsonMembers, JSON_UNESCAPED_SLASHES);
 $json = json_encode($jsonMembers, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-echo "<pre>$json</pre>";
+echo $json;
+// echo "<pre>$json</pre>";

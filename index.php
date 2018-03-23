@@ -1,3 +1,18 @@
+<?php
+require_once('handlers/Database.php');
+require_once('handlers/MemberHandler.php');
+require_once('handlers/TeamHandler.php');
+
+$db = new Database();
+$conn = $db->getConnection();
+$memberHandler = new MemberHandler($conn);
+$teamHandler = new TeamHandler($conn);
+$teams = $teamHandler->getAll();
+var_dump($teams);
+$allMembers = $memberHandler->getAll();
+$teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,6 +22,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript">
+         var allMembers = JSON.parse('<?= json_encode($allMembers)?>');
+         var teamMembers = JSON.parse('<?= json_encode($teamMembers)?>');
+       </script>
     <title>Board</title>
 </head>
 <body>
@@ -17,9 +36,11 @@
 
         <label for="boardSelector">Laat bord zien van:</label>
         <select name="" id="boardSelector">
-            <option value="">Bord 1</option>
-            <option value="">Bord 2</option>
-            <option value="">Bord 4</option>
+        <?php
+                         foreach($teams as $team){
+                             echo '<option value="' . $team->getId() . '>' . $team->getLabel() . '</option>';
+                         }
+        ?>
         </select>
     </div>
 </div>
