@@ -49,10 +49,7 @@ class MemberHandler extends Handler {
         $statement->bindValue(':drink_preference', $member->getDrinkPreference(), PDO::PARAM_STR);
         $statement->bindValue(':working_days', $member->getWorkingDays(), PDO::PARAM_STR);
         $statement->bindValue(':team_id', $member->getTeamId(), PDO::PARAM_STR);
-
-        $statement->execute();
-        var_dump($statement);
-
+        
         $this->dbh->beginTransaction();
         try{
             $statement->execute();

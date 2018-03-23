@@ -6,7 +6,7 @@
 */
 
 session_start();
-$succes = isset($_SESSION['addSuccess']) ? $_SESSION['addSuccess'] : '';
+$success = isset($_SESSION['addSuccess']) ? $_SESSION['addSuccess'] : '';
 unset($_SESSION['addSuccess']);
 ?>
 

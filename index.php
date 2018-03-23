@@ -29,19 +29,23 @@ $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
     <title>Board</title>
 </head>
 <body>
-<div id="header">
-    <div id="datumtijd"><span class="date">5 maart 2018</span><span class="time">12:05</span></div>
-    <div id="bordHeader">
-        <span>BordNaam</span>
-
-        <label for="boardSelector">Laat bord zien van:</label>
-        <select name="" id="boardSelector">
+<div id="header" >
+    <div id="dateTime" class="headerline" >
+        <span id="date" class="headerBox">&#128197 5 maart 2018</span>
+        <span id="time" class="headerBox">&#128336 12:05</span></div>
+    <div id="bordHeader" class="headerline">
+        <span id="name"  class="headerBox"><strong>John Doe</strong></span>
+        <span class="headerBox"><strong>|</strong></span>
+        <span id="boardSelector"  class="headerBox">
+              <label for="boardSelector">Laat bord zien van:</label>
+             <select name="" id="boardSelector">
         <?php
                          foreach($teams as $team){
                              echo '<option value="' . $team->getId() . '>' . $team->getLabel() . '</option>';
                          }
         ?>
-        </select>
+            </select>
+        </span>
     </div>
 </div>
 <div id="board">
