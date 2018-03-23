@@ -5,6 +5,7 @@ require_once('../header.php');
  Authors: Petri van Niekerk & Agung Udijana
 */
 
+// TODO ??
 $memberId = $member->getId();
 $drinkPreferences = array ('coffee', 'tea', 'water');
 $teamMemberToEdit = $member->getTeamId();
@@ -88,11 +89,14 @@ unset($_SESSION['editSuccess']);
             <tr>
                 <td><label for ="workingDays[]">Werkdagen</td>
                 <td>
-                    <input type="checkbox" name="workingDays[]" value="Monday" <?php if(in_array("monday", $workingdaysMemberToEdit)){echo "checked";}?> >Maandag<br>
-                    <input type="checkbox" name="workingDays[]" value="Tuesday" <?php if(in_array("tuesday", $workingdaysMemberToEdit)){echo "checked";}?> >Dinsdag<br>
-                    <input type="checkbox" name="workingDays[]" value="Wednesday" <?php if(in_array("wednesday", $workingdaysMemberToEdit)){echo "checked";}?> >Woensdag<br>
-                    <input type="checkbox" name="workingDays[]" value="Thursday" <?php if(in_array("thursday", $workingdaysMemberToEdit)){echo "checked";}?> >Donderdag<br>
-                    <input type="checkbox" name="workingDays[]" value="Friday" <?php if(in_array("friday", $workingdaysMemberToEdit)){echo "checked";}?> >Vrijdag<br>
+                    <?php
+                    $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+                    foreach($days as $day){
+                        echo "<input type='checkbox' name='workingDays[]' value='$day'";
+                        if (in_array(strtolower($day), $workingdaysMemberToEdit)) echo " checked";
+                        echo ">$day<br>";
+                    }
+                    ?>
                 </td>
             </tr>
         </table>
@@ -101,10 +105,8 @@ unset($_SESSION['editSuccess']);
         <br>
 
         <button type="submit" name="editMemberButton">Sla wijzigingen op</button>
-        <button type="submit" name="deleteMemberButton" onclick="clicked(event)">Verwijder lid</button>
-
-
     </form>
+                        <button name="deleteMemberButton" onclick="clicked(event)">Verwijder lid</button>
 
 
 </div>
@@ -119,5 +121,17 @@ unset($_SESSION['editSuccess']);
     function clicked(e)
     {
         if(!confirm('Weet je zeker dat je dit lid wilt verwijderen?'))e.preventDefault();
+        var form = document.createElement('form');
+        document.body.appendChild(form);
+        form.method = 'post';
+        form.action = 'delete.php';
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'id';
+        input.value = <?= $member->getId() ?>;
+        form.appendChild(input);
+        form.submit();
     }
 </script>
+
+

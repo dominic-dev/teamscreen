@@ -22,7 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     $conn = $db->getConnection();
     $memberHandler = new MemberHandler($conn);
     $teamHandler = new TeamHandler($conn);
+
+    // TODO
     $member = $memberHandler->get($id);
+    if(!$member) die("Member not found.");
+
     $teams = $teamHandler->getAll();
     $editSuccess ='';
     require_once('../../views/editmember.php');

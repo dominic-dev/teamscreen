@@ -38,6 +38,7 @@ abstract class Handler {
         $sth->bindParam('id', $id, PDO::PARAM_INT);
         $sth->execute();
         $result = $sth->fetch();
+        if(!$result) return;
         return $this->factory($result);
     }
 

@@ -2,7 +2,7 @@
 
 class Member {
     private $id;
-    private $username;
+    public $username;
     private $name;
     private $destination;
     // ENUM('koffie', 'thee', 'water')

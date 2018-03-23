@@ -5,6 +5,7 @@
     22 March 2018 */
 
 session_start();
+// TODO shorthand?
 if(isset($_SESSION['addSuccess'])) {
     $success = $_SESSION['addSuccess'];
 }
