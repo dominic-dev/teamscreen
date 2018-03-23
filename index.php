@@ -8,6 +8,7 @@ $conn = $db->getConnection();
 $memberHandler = new MemberHandler($conn);
 $teamHandler = new TeamHandler($conn);
 $teams = $teamHandler->getAll();
+
 $allMembers = $memberHandler->getAll();
 $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
 ?>
@@ -28,6 +29,7 @@ $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
     <title>Board</title>
 </head>
 <body>
+
 <div id="header" >
     <div id="dateTime" class="headerline" >
         <span id="date" class="headerBox">&#128197 5 maart 2018</span>
@@ -47,6 +49,13 @@ $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
         </span>
     </div>
 </div>
+
+<?php if(empty($_GET['teamid'])){ ?>
+    <h1>Please select a team</h1>
+
+    
+<?php die();} ?>
+
 <div id="board">
     <?php include('widgets/teamDrinks.php'); ?>
     <?php include('widgets/cleanCoffeeMachine.php'); ?>
