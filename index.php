@@ -50,11 +50,17 @@ $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
     </div>
 </div>
 
-<?php if(empty($_GET['teamid'])){ ?>
-    <h1>Please select a team</h1>
-
-    
-<?php die();} ?>
+<?php
+if(empty($_GET['teamid'])){
+    echo '<div id="select-a-team"><h1>Please select a team</h1>';
+    echo '<ul id="teams">';
+    foreach($teams as $team){
+        echo '<li><a href="?teamid=' . $team->getId() . '">'. $team->getLabel() . '</a></li>';
+    }
+    echo '</ul></div>';
+    die();
+}
+?>
 
 <div id="board">
     <?php include('widgets/teamDrinks.php'); ?>
