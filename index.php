@@ -22,10 +22,12 @@ $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
          var allMembers = JSON.parse('<?= json_encode($allMembers)?>');
          var teamMembers = JSON.parse('<?= json_encode($teamMembers)?>');
        </script>
+    <script src="main.js"></script>
     <title>Board</title>
 </head>
 <body>
@@ -37,12 +39,13 @@ $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
     <div id="bordHeader" class="headerline">
         <span id="name"  class="headerBox"><strong>John Doe</strong></span>
         <span class="headerBox"><strong>|</strong></span>
-        <span id="boardSelector"  class="headerBox">
+        <span class="headerBox">
               <label for="boardSelector">Laat bord zien van:</label>
-             <select name="" id="boardSelector">
+             <select name="boardSelector" id="boardSelector">
+                         <option value="">Kies een team</option>
         <?php
                          foreach($teams as $team){
-                             echo '<option value="' . $team->getId() . '>' . $team->getLabel() . '</option>';
+                             echo '<option value="' . $team->getId() . '">' . $team->getLabel() . '</option>';
                          }
         ?>
             </select>
@@ -52,7 +55,7 @@ $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
 
 <?php
 if(empty($_GET['teamid'])){
-    echo '<div id="select-a-team"><h1>Please select a team</h1>';
+    echo '<div id="select-a-team"><h1>Kies een team:</h1>';
     echo '<ul id="teams">';
     foreach($teams as $team){
         echo '<li><a href="?teamid=' . $team->getId() . '">'. $team->getLabel() . '</a></li>';
