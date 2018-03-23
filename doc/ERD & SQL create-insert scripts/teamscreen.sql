@@ -7,6 +7,18 @@
 -- Server version: 5.7.21-0ubuntu0.16.04.1
 -- PHP Version: 7.0.25-0ubuntu0.16.04.1
 
+-- -----------------------------------------------------
+-- schema teamscreen
+-- -----------------------------------------------------
+drop database if exists `teamscreen` ;
+
+-- -----------------------------------------------------
+-- schema teamscreen
+-- -----------------------------------------------------
+create database if not exists `teamscreen` default character set utf8 ;
+use `teamscreen` ;
+
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 

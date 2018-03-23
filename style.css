@@ -6,6 +6,25 @@ html, body {
     color:#fff;
     overflow: hidden;
 }
+
+#select-a-team{
+    width:400px;
+    margin:0 auto;
+    
+}
+
+#teams{
+    list-style:none;
+}
+#teams a, #teams a:visited, #teams a:active{
+    color:#fff;
+    font-weight:bold;
+    text-decoration:none;
+}
+#teams li{
+    font-size: 1.4em;
+}
+
 #board {
     margin: 0 auto;
     padding:20px;
