@@ -24,19 +24,12 @@
     </div>
 </div>
 <div id="board">
-    <div id="koffie" class="widgetBoxSmall">
-        <h2>Koffie Halen</h2>
-    </div>
-    <div id="schoonmaken" class="widgetBoxSmall">
-        <h2>Schoonmaken koffie</h2>
-    </div>
-    <div id="offdays" class="widgetBoxSmall">
-        <h2>Vrije dagen</h2>
-    </div>
+    <?php include('widgets/teamDrinks.php'); ?>
+    <?php include('widgets/cleanCoffeeMachine.php'); ?>
+    <?php include('widgets/daysOff.php'); ?>
     <?php include('widgets/delays.php'); ?>
-    <div id="scrumboard" class="widgetBoxLarge">
-        <h2>Scrumboard</h2>
-    </div>
+    <?php include('widgets/scrumboard.php'); ?>
+    <?php include('widgets/scrumboard.php'); ?>
 </div>
 </body>
 </html>
