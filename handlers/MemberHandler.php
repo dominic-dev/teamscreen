@@ -102,7 +102,6 @@ class MemberHandler extends Handler {
     }
 
     public function getByTeam(int $teamId){
-        var_dump($teamId);
         $query = "select * from member where team_id = :id";
         $sth = $this->dbh->prepare($query);
         $sth->bindParam(':id', $teamId, PDO::PARAM_INT);
