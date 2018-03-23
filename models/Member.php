@@ -16,7 +16,7 @@ class Member {
 
     private $timeOff;
 
-    function __construct($id=null, $username=null, $name=null, $destination=null,
+    public function __construct($id=null, $username=null, $name=null, $destination=null,
                          $drinkPreference=null, $workingDays=null, $timeOff=null, $teamId=null){
         $this->id = $id;
         $this->username = $username;
@@ -62,55 +62,53 @@ class Member {
         $this->destination = $destination;
     }
 
-    function setTimeOff(array $timeOff){
+    public function setTimeOff(array $timeOff){
         $this->timeOff = $timeOff;
     }
 
-    function getTimeOff(){
+    public function getTimeOff(){
         return $this->timeOff;
     }
 
-    function getDrinkPreference() {
+    public function getDrinkPreference() {
         return $this->drinkPreference;
     }
 
-    function setDrinkPreference(string $drinkPreference){
+    public function setDrinkPreference(string $drinkPreference){
         $this->drinkPreference = $drinkPreference;
     }
 
-    function getWorkingDays() : string {
+    public function getWorkingDays() : string {
         return $this->workingDays;
     }
 
-    function setWorkingDays(string $workingDays) {
+    public function setWorkingDays(string $workingDays) {
         $this->workingDays = $workingDays;
     }
 
-    function getId() : int {
+    public function getId() : int {
         return $this->id;
     }
 
-    function getUsername() : string {
+    public function getUsername() : string {
         return $this->username;
     }
 
-    function getName() : string {
+    public function getName() : string {
         return $this->name;
     }
 
 
-    function setId(int $id){
+    public function setId(int $id){
         $this->id = $id;
     }
 
-    function setUsername(string $username){
+    public function setUsername(string $username){
         $this->username = $username;
         $this->avatar = "http://tim.mybit.nl/jiraproxy.php/secure/useravatar?ownerId=" . $username;
     }
 
-    function setName(string $name){
+    public function setName(string $name){
         $this->name = $name;
     }
-
-
 }
