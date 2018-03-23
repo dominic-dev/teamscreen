@@ -14,11 +14,12 @@ class MemberHandler extends Handler {
     /**
      * Take a data row from the database, return it as object.
      *
-     * @param array $row
-     * @return mixed
+     * @param array $row the row from the database.
+     * @return Member the member dom.
      */
-    protected function factory(array $row) {
+    protected function factory(array $row) : Member {
         $member = new Member();
+
         $member->setId($row['id']);
         $member->setName($row['name']);
         $member->setUsername($row['username']);
@@ -26,13 +27,16 @@ class MemberHandler extends Handler {
         $member->setDrinkPreference($row['drink_preference']);
         $member->setWorkingDays($row['working_days']);
         $member->setTeamId($row['team_id']);
+
         return $member;
     }
+
 
     /**
      * Add a member object to the database
      *
-     * @param Member $member
+     * @param Member $member the member to add.
+     * @param int the id of the member on succes, 0 on failure.
      */
     public function add(Member $member): int {
         var_dump($member);
@@ -63,16 +67,21 @@ class MemberHandler extends Handler {
         return $id;
     }
 
+
     /**
      * Update a member in the database
      *
      * @param Member $member
+     * @return bool true if successful, else otherwise
      */
-    public function update(Member $member) {
-
-        $query = "UPDATE member SET name=:name, username=:username, destination=:destination, 
-              drink_preference=:drink_preference, working_days=:working_days, team_id=:team_id WHERE id= :id";
+    public function update(Member $member) : bool {
+        // Prepare query
+        $query = "UPDATE member SET name=:name, username=:username,
+                  destination=:destination, drink_preference=:drink_preference,
+                  working_days=:working_days, team_id=:team_id WHERE id= :id";
         $statement = $this->dbh->prepare($query);
+
+        // Bind parameters
         $statement->bindValue(':id', $member->getId(), PDO::PARAM_INT);
         $statement->bindValue(':name', $member->getName(), PDO::PARAM_STR);
         $statement->bindValue(':username', $member->getUsername(), PDO::PARAM_STR);
@@ -82,14 +91,16 @@ class MemberHandler extends Handler {
         $statement->bindValue(':team_id', $member->getTeamId(), PDO::PARAM_STR);
         $statement->execute();
 
+        // Transact
         $this->dbh->beginTransaction();
         try{
-            $statement->execute();
+            $result = $statement->execute();
             $this->dbh->commit();
+            return $result;
         } catch (Exception $e){
-            var_dump($e);
+            // var_dump($e);
             $this->dbh->rollback();
-            return 0;
+            return false;
         }
     }
 
