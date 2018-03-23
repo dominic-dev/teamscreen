@@ -74,7 +74,7 @@ class Member {
         return $this->drinkPreference;
     }
 
-    function setDrinkPreference(string $drinkPreference){
+    public function setDrinkPreference(string $drinkPreference){
         $this->drinkPreference = $drinkPreference;
     }
 
