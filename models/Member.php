@@ -1,10 +1,12 @@
 <?php
 
 class Member {
-    private $id;
     public $username;
-    private $name;
-    private $destination;
+    public $name;
+    public $destination;
+    public $avatar;
+
+    private $id;
     // ENUM('koffie', 'thee', 'water')
     private $drinkPreference;
     // workday set, permitted values:
@@ -24,6 +26,8 @@ class Member {
         $this->workingDays = $workingDays;
         $this->timeOff = $timeOff;
         $this->teamId = $teamId;
+
+        $this->avatar = "http://tim.mybit.nl/jiraproxy.php/secure/useravatar?ownerId=" . $username;
     }
 
     /**
@@ -101,6 +105,7 @@ class Member {
 
     function setUsername(string $username){
         $this->username = $username;
+        $this->avatar = "http://tim.mybit.nl/jiraproxy.php/secure/useravatar?ownerId=" . $username;
     }
 
     function setName(string $name){
