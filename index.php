@@ -8,7 +8,6 @@ $conn = $db->getConnection();
 $memberHandler = new MemberHandler($conn);
 $teamHandler = new TeamHandler($conn);
 $teams = $teamHandler->getAll();
-var_dump($teams);
 $allMembers = $memberHandler->getAll();
 $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
 ?>
