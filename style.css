@@ -13,8 +13,20 @@ html, body {
 #header {
     height:60px;
 }
+#dateTime {
+    float: left;
+}
+
 #bordHeader {
- float:right;
+    float:right;
+}
+
+.headerline{
+    margin:15px;
+}
+
+.headerBox{
+    margin:5px;
 }
 .widgetBoxSmall, .widgetBoxLarge, #header {
     background-color: #212C36;
