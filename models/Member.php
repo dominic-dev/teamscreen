@@ -1,10 +1,10 @@
 <?php
 
 class Member {
-    private $username;
-    private $name;
-    private $destination;
-    private $avatar;
+    public $username;
+    public $name;
+    public $destination;
+    public $avatar;
 
     private $id;
     // ENUM('koffie', 'thee', 'water')
