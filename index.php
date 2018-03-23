@@ -68,7 +68,6 @@ if(empty($_GET['teamid'])){
     <?php include('widgets/daysOff.php'); ?>
     <?php include('widgets/delays.php'); ?>
     <?php include('widgets/scrumboard.php'); ?>
-    <?php include('widgets/scrumboard.php'); ?>
 </div>
 </body>
 </html>
