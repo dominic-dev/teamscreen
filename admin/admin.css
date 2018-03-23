@@ -3,7 +3,28 @@ html, body {
 	background-color: #191C1E;
 	font-family: 'Open Sans';
 	font-weight: 400;
-	padding-left: 40px;
+	color:#fff;
+}
+
+#header {
+	height:45px;
+	border-bottom: solid 1px #45505A;
+}
+
+#menu{
+	height:45px;
+	margin:0;
+	list-style:none;
+}
+#menu li{
+	height:35px;
+	float:left;
+	padding:5px 10px;
+	border-right:solid 1px #212C36;
+}
+#menu a, a:visited, a:active{
+	color:#fff;
+	text-decoration:none;
 }
 
 #general h1 {
@@ -42,4 +63,9 @@ html, body {
 	border-spacing 5px;
 	padding 10px;
 
+}
+#general{
+	width:800;
+	margin:0 auto;
+	padding:50px;
 }

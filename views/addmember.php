@@ -15,10 +15,6 @@ $success = isset($_SESSION['addSuccess']) ? $_SESSION['addSuccess'] : '';
 unset($_SESSION['addSuccess']);
 ?>
 
-    <title>Nieuw teamlid</title>
-</head>
-<body>
-
 <div id="general">
 
     <h1>Nieuw teamlid</h1>

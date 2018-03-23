@@ -18,10 +18,6 @@ unset($_SESSION['addSuccess']);
 
 ?>
 
-    <title>Nieuw team</title>
-</head>
-<body>
-
 <div id="general">
 
     <h1>Nieuw team</h1>

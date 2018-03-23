@@ -16,10 +16,6 @@ $success = isset($_SESSION['editSuccess']) ? $_SESSION['editSuccess'] : '';
 unset($_SESSION['editSuccess']);
 ?>
 
-    <title>Wijzig teamlid</title>
-</head>
-<body>
-
 <div id="general">
 
     <h1>Wijzig teamlid</h1>

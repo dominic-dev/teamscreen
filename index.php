@@ -40,14 +40,11 @@ $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
         <span id="name"  class="headerBox"><strong>John Doe</strong></span>
         <span class="headerBox"><strong>|</strong></span>
         <span class="headerBox">
-              <label for="boardSelector">Laat bord zien van:</label>
              <select name="boardSelector" id="boardSelector">
-                         <option value="">Kies een team</option>
-        <?php
-                         foreach($teams as $team){
-                             echo '<option value="' . $team->getId() . '">' . $team->getLabel() . '</option>';
-                         }
-        ?>
+                  <option value="">Kies een team</option>
+<?php foreach($teams as $team){ ?>
+  <option value="<?= $team->getId()?>" <?php if($team->getId() == $_GET['teamid']){echo "selected";}?> > <?= $team->getLabel() ?></option>
+<?php } ?>
             </select>
         </span>
     </div>
