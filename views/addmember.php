@@ -1,16 +1,19 @@
 <?php require_once('../header.php');
 
-
 /*
  Authors: Petri van Niekerk & Agung Udijana
 */
+
+// array with current possible drink preferences
+$drinkPreferences = array ('coffee', 'tea', 'water');
+
+// array with current possible workingdays
+$workingDays = ['Monday' => 'Maandag', 'Tuesday' => 'Dinsdag', 'Wednesday' => 'Woensdag', 'Thursday' => 'Donderdag', 'Friday' => 'Vrijdag'];
 
 session_start();
 $success = isset($_SESSION['addSuccess']) ? $_SESSION['addSuccess'] : '';
 unset($_SESSION['addSuccess']);
 ?>
-
-
 
     <title>Nieuw teamlid</title>
 </head>
@@ -73,11 +76,11 @@ unset($_SESSION['addSuccess']);
             <tr>
                 <td><label for ="workingDays[]">Werkdagen</td>
                 <td>
-                    <input type="checkbox" name="workingDays[]" value="Monday" checked>Maandag<br>
-                    <input type="checkbox" name="workingDays[]" value="Tuesday" checked>Dinsdag<br>
-                    <input type="checkbox" name="workingDays[]" value="Wednesday" checked>Woensdag<br>
-                    <input type="checkbox" name="workingDays[]" value="Thursday" checked>Donderdag<br>
-                    <input type="checkbox" name="workingDays[]" value="Friday" checked>Vrijdag<br>
+                    <?php
+                    foreach($workingDays as $day => $dayNL){
+                        echo "<input type='checkbox' name='workingDays[]' value='$day' checked>$dayNL<br>";
+                    }
+                    ?>
                 </td>
             </tr>
         </table>
