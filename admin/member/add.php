@@ -26,8 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     }
     $teams = $teamHandler->getAll();
 
-    // TODO get enum from database
-    $drinkPreferences = array ('tea', 'coffee', 'water');
 
     $addSuccess ='';
 

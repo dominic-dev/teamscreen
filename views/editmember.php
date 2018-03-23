@@ -5,26 +5,15 @@ require_once('../header.php');
  Authors: Petri van Niekerk & Agung Udijana
 */
 
-// TODO ??
-$memberId = $member->getId();
+// array with current possible drink preferences
 $drinkPreferences = array ('coffee', 'tea', 'water');
-$teamMemberToEdit = $member->getTeamId();
-$nameMemberToEdit = $member->getName();
-$usernameMemberToEdit = $member->getUsername();
-$drinkPreferenceMemberToEdit = $member->getDrinkPreference();
-$destinationMemberToEdit = $member->getDestination();
-$workingdaysMemberToEditString = $member->getWorkingDays();
-$workingdaysMemberToEdit = explode(',', $workingdaysMemberToEditString);
+
+// array with current possible workingdays
+$workingDays = ['Monday' => 'Maandag', 'Tuesday' => 'Dinsdag', 'Wednesday' => 'Woensdag', 'Thursday' => 'Donderdag', 'Friday' => 'Vrijdag'];
 
 session_start();
-if(isset($_SESSION['editSuccess'])) {
-    $success = $_SESSION['editSuccess'];
-}
-else {
-    $success ='';
-}
+$success = isset($_SESSION['editSuccess']) ? $_SESSION['editSuccess'] : '';
 unset($_SESSION['editSuccess']);
-
 ?>
 
     <title>Wijzig teamlid</title>
@@ -41,14 +30,14 @@ unset($_SESSION['editSuccess']);
 
 
         <table>
-            <input type="hidden" value="<?= $memberId; ?>" name="id" />
+            <input type="hidden" value="<?= $member->getId(); ?>" name="id" />
             <tr>
                 <td><label for="name">Naam</label> </td>
-                <td> <input type="text" name="name" value="<?php echo $nameMemberToEdit; ?>"></td>
+                <td> <input type="text" name="name" value="<?php echo $member->getName(); ?>"></td>
             </tr>
             <tr>
                 <td><label for ="username">Jira gebruikersnaam</td>
-                <td><input type="text" name="username" value ="<?php echo $usernameMemberToEdit; ?>"></td>
+                <td><input type="text" name="username" value ="<?php echo $member->getUsername(); ?>"></td>
             </tr>
             </tr>
             <tr>
@@ -59,7 +48,7 @@ unset($_SESSION['editSuccess']);
                         foreach($teams as $team){
                             $teamId = $team->getId();
                             ?>
-                            <option value="<?= $teamId ?>" <?php if($teamId == $teamMemberToEdit){echo "selected";}?> > <?= $team->getLabel() ?></option>
+                            <option value="<?= $teamId ?>" <?php if($teamId == $member->getTeamId()){echo "selected";}?> > <?= $team->getLabel() ?></option>
                             <?php
                             }
                             ?>
@@ -69,7 +58,7 @@ unset($_SESSION['editSuccess']);
 
             <tr>
                 <td><label for ="destination">Bestemming</td>
-                <td><input type="text" name="destination" value="<?php echo $destinationMemberToEdit; ?>"></td>
+                <td><input type="text" name="destination" value="<?php echo $member->getDestination(); ?>"></td>
             </tr>
             <tr>
                 <td><label for ="drinkPreference">Drankvoorkeur</td>
@@ -78,7 +67,7 @@ unset($_SESSION['editSuccess']);
                         // Iterating through the array that contains the drink preferences which are passed on by the handler
                         foreach($drinkPreferences as $item){
                             ?>
-                            <option value="<?php echo strtolower($item); ?>" <?php if($item == $drinkPreferenceMemberToEdit){echo "selected";}?> ><?php echo $item; ?></option>
+                            <option value="<?php echo strtolower($item); ?>" <?php if($item == $member->getDrinkPreference()){echo "selected";}?> ><?php echo $item; ?></option>
                             <?php
                         }
                         ?>
@@ -90,11 +79,10 @@ unset($_SESSION['editSuccess']);
                 <td><label for ="workingDays[]">Werkdagen</td>
                 <td>
                     <?php
-                    $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-                    foreach($days as $day){
+                    foreach($workingDays as $day => $dayNL){
                         echo "<input type='checkbox' name='workingDays[]' value='$day'";
-                        if (in_array(strtolower($day), $workingdaysMemberToEdit)) echo " checked";
-                        echo ">$day<br>";
+                        if (in_array(strtolower($day), explode(',', $member->getWorkingDays()))) echo " checked";
+                        echo ">$dayNL<br>";
                     }
                     ?>
                 </td>
@@ -106,7 +94,10 @@ unset($_SESSION['editSuccess']);
 
         <button type="submit" name="editMemberButton">Sla wijzigingen op</button>
     </form>
-                        <button name="deleteMemberButton" onclick="clicked(event)">Verwijder lid</button>
+
+    <br>
+
+    <button name="deleteMemberButton" onclick="clicked(event)">Verwijder lid</button>
 
 
 </div>
