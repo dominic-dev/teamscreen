@@ -11,6 +11,10 @@ $teams = $teamHandler->getAll();
 
 $allMembers = $memberHandler->getAll();
 $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
+
+setlocale(LC_TIME, 'nld_nld' );
+$date = strftime('%e %B %Y', time());
+
 ?>
 
 <!doctype html>
@@ -28,14 +32,16 @@ $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
          var teamMembers = JSON.parse('<?= json_encode($teamMembers)?>');
        </script>
     <script src="main.js"></script>
+    <script src="time.js"></script>
     <title>Board</title>
 </head>
-<body>
+<body onload="startTime()">
 
 <div id="header" >
     <div id="dateTime" class="headerline" >
-        <span id="date" class="headerBox">&#128197 5 maart 2018</span>
-        <span id="time" class="headerBox">&#128336 12:05</span></div>
+        <span id="date" class="headerBox">&#128197 <?php echo $date; ?></span>
+        <span class="headerBox">&#128336</span>
+        <span id="clock" class="headerBox"></span></div>
     <div id="bordHeader" class="headerline">
         <span id="name"  class="headerBox"><strong>John Doe</strong></span>
         <span class="headerBox"><strong>|</strong></span>
