@@ -5,7 +5,7 @@
 */
 
 // array with current possible drink preferences
-$drinkPreferences = array ('coffee', 'tea', 'water');
+$drinkPreferences = ['coffee' => 'koffie', 'tea' => 'thee', 'water' => ' water'];
 
 // array with current possible workingdays
 $workingDays = ['Monday' => 'Maandag', 'Tuesday' => 'Dinsdag', 'Wednesday' => 'Woensdag', 'Thursday' => 'Donderdag', 'Friday' => 'Vrijdag'];
@@ -59,9 +59,9 @@ unset($_SESSION['addSuccess']);
 
                     <?php
                     // Iterating through the array that contains the drink preferences which are passed on by the handler
-                    foreach($drinkPreferences as $item){
+                    foreach($drinkPreferences as $item => $itemNL){
                     ?>
-                    <option value="<?php echo strtolower($item); ?>"><?php echo $item; ?></option>
+                    <option value="<?php echo strtolower($item); ?>"><?php echo $itemNL; ?></option>
                     <?php
                     }
                     ?>
