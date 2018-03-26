@@ -1,0 +1,22 @@
+#timeOff {
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+#timeOff-list {
+    background-color: #212C36;
+    color: #FFFFFF;
+    padding:20px;
+}
+
+.timeOff-box {
+    display: inline-block;
+}
+
+.timeOff-item {
+    margin-bottom: 5px;
+    padding: 8px;
+    color: #FFFFFF;
+    background-color: #45505A;
+    border-radius: 4px;
+}
