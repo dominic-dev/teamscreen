@@ -5,17 +5,46 @@
     background-color: #45505A;
     border-radius: 4px;
 }
+
 .drink-item img {
     vertical-align: middle;
 }
+
 .drink-item span {
     line-height: 24px;
     margin-left: 10px;
 }
+
 .drink-item .icon {
     float: right;
+    width: 80px;
+    text-align: left;
+    font-size: 0.75em;
+    vertical-align: middle;
+}
+
+.drink-item .icon img {
+    height: 25px;
+    margin-right: 8px;
 }
 
 #drink-items {
     list-style: none;
+    margin: 20px;
+    padding: 0;
+}
+
+#current-getter {
+    margin: 20px;
+    height: 60px;
+}
+
+#current-getter span.name {
+    font-weight: 700;
+}
+
+#current-getter img {
+    width: 60px;
+    float: left;
+    margin-right: 20px;
 }

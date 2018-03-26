@@ -49,6 +49,10 @@ html, body {
     margin:5px;
 }
 
+.fat {
+    font-weight: bold;
+}
+
 #boardSelector {
     background-color: #212C36;
     font-weight: lighter;
