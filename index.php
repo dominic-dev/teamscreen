@@ -48,8 +48,8 @@ session_start();
         <span class="headerBox">&#128336</span>
         <span id="clock" class="headerBox"></span></div>
     <div id="bordHeader" class="headerline">
-        <span id="name"  class="headerBox"><strong>John Doe</strong></span>
-        <span class="headerBox"><strong>|</strong></span>
+        <span id="name"  class="headerBox" "fat"><strong>John Doe</strong></span>
+        <span class="headerBox" "fat">|</span>
         <span class="headerBox">
              <select name="boardSelector" id="boardSelector">
                   <option value="">Kies een team</option>
