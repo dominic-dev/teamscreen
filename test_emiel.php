@@ -16,8 +16,6 @@ require_once('handlers/Database.php');
 require_once('handlers/MemberHandler.php');
 require_once('handlers/TeamHandler.php');
 
-define("SEPARATOR", ',');
-
 $team = new Team(1, 'testteam'); 
 $member = new Member(1, 'user01', 'klaas', $team); 
 
@@ -25,8 +23,6 @@ $member = new Member(1, 'user01', 'klaas', $team);
 // echo '<br/><br/>';
 // print_r($team);
 
-
-echo implode(SEPARATOR, array("Monday", "Tuesday", "Wednesday", "Thursday"));
 
 echo '<p/>';
 
@@ -48,18 +44,29 @@ foreach($array as $item) {
 $db = new Database();
 $conn = $db->getConnection();
 $memberHandler = new MemberHandler($conn);
-$teamHandler = new TeamHandler($conn);
-$teams = $teamHandler->getAll();
-if(empty($_GET['teamid'])){
-    echo '<div id="select-a-team"><h1>Kies een team:</h1>';
-    echo '<ul id="teams">';
-    foreach($teams as $team){
-        echo '<li><a href="?teamid=' . $team->getId() . '">'. $team->getLabel() . '</a></li>';
-    }
-    echo '</ul></div>';
-    die();
+$teamMembers = $memberHandler->getByTeam((int) 1);
+
+
+//var_dump($teamMembers[0]);
+
+$workingDays = $teamMembers[0]->getWorkingDays();
+
+//echo explode(",", $workingDays)[1];
+
+foreach(explode(",", $workingDays) as $item) {
+    //echo $item['filename'];
+    $day = date('l', time());
+    echo $item;
+    echo ' Today? ' . strcmp($item, strtolower($day)) ;
+    echo '<br/>';
 }
 
+echo '<p/>';
+$cars[0] = "Volvo";
+$cars[1] = "BMW";
+$cars[2] = "Toyota";
+
+echo $cars[2];
 
 ?>
 

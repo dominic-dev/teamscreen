@@ -3,13 +3,36 @@
 <div id="teamDrinks" class="widgetBoxSmall">
     <h2>Tijd voor koffie!</h2>
     <div id="current-getter">
-        <img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=petri"><span class="name">Agung</span>, het is jouw beurt om
+
+        <?php
+
+        $refresh=false;
+
+        if(isset($_SESSION['timeTeamDrinks'])){
+            $refresh = (time() - $_SESSION['timeTeamDrinks']) >= 3600;
+        }
+        else{
+            $_SESSION['timeTeamDrinks'] = time();
+            $refresh = true;
+        }
+
+        //$refresh = true; // TODO comment out when code complete
+
+        if($refresh){
+            $randomIndex = array_rand($teamMembers, 1);
+            $_SESSION['indexTeamMember'] = $randomIndex;
+            $_SESSION['timeTeamDrinks'] = time();
+        }
+        $waiter = ($teamMembers[$_SESSION['indexTeamMember']]);
+        ?>
+
+        <img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=<?= $waiter->getUsername(); ?>"><span class="name"><?= $waiter->getName(); ?></span>, het is jouw beurt om
         koffie te halen voor:
     </div>
 
     <div class="scrollable" id="drink-list">
         <ul id="drink-items">
-            <?php foreach ($allMembers as $member): ?>
+            <?php foreach ($teamMembers as $member): ?>
                 <li class='drink-item'>
                     <img class="userimg"
                          src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=small&ownerId=<?= $member->getUsername(); ?>"/>
