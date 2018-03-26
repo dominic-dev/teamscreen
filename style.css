@@ -16,6 +16,7 @@ html, body {
 #teams{
     list-style:none;
 }
+
 #teams a, #teams a:visited, #teams a:active{
     color:#fff;
     font-weight:bold;
@@ -47,7 +48,25 @@ html, body {
 .headerBox{
     margin:5px;
 }
-.widgetBoxSmall, .widgetBoxLarge, #header {
+
+#boardSelector {
+    background-color: #212C36;
+    font-weight: lighter;
+    font-size: 18px;
+    color:#fff;
+    overflow: hidden;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 2px;
+
+}
+
+#boardSelector:after {
+    content: "▼";
+    background: #212C36;
+}
+
+  .widgetBoxSmall, .widgetBoxLarge, #header {
     background-color: #212C36;
     box-shadow: 0 0 10px #000000;
 }
