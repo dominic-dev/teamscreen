@@ -45,10 +45,11 @@ elseif($_SERVER['REQUEST_METHOD'] === 'POST'){
     $timeOff->setStartTime($_POST['start']);
     $timeOff->setEndTime($_POST['end']);
     $timeOff->setMemberId($member->getId());
-    $timeOffHandler->add($timeOff);
+    if(!$timeOffHandler->add($timeOff)){
+        die("Fatal error");
+    }
 
+    session_start();
     $_SESSION['message'] = 'Verlof toegevoegd voor ' . $member->getName();
-    // TODO redirect
-    header('Location : ../member/list.php');
-    die();
+    header('Location: ../member/list.php');
 }
