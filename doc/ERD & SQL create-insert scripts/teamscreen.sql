@@ -55,7 +55,7 @@ CREATE TABLE `member` (
 INSERT INTO `member` (`id`, `name`, `username`, `destination`, `drink_preference`, `working_days`, `team_id`) VALUES
 (25, 'Petri', 'petri', 'Dam, 1012KB Amsterdam', 'tea', 'monday,tuesday,wednesday,thursday', 1),
 (26, 'Agung the Man', 'agung.udijana', 'Spijkweg 30, 8256 RJ Biddinghuizen', 'coffee', 'monday,tuesday,wednesday,thursday', 2),
-(27, 'Carina', 'Carina', 'Berlijnplein 100, 3541 CM Utrecht', 'coffee', 'monday,tuesday,wednesday,thursday', 1),
+(27, 'Carina', 'Carina', 'Grevelingenstraat 106, 7417 TD Deventer', 'coffee', 'monday,tuesday,wednesday,thursday', 1),
 (28, 'Emiel', 'emiel.nijhuis', 'Boulevard ZeeZijde 7, 2225 AB Katwijk aan Zee', 'coffee', 'monday,tuesday,wednesday,thursday', 2),
 (29, 'Paul', 'paul.sinterniklaas', 'Plein 2, 2511 CR Den Haag', 'coffee', 'monday,tuesday,wednesday,thursday', 1),
 (30, 'Dominic', 'dominic', 'Domplein 21, 3512 JC Utrecht', 'coffee', 'monday,tuesday,wednesday,thursday', 2),

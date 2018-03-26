@@ -2,7 +2,16 @@ console.log(2);
 console.log(teamMembers);
 TRAFFIC_MAX_OK_DELAY_MINS = 9;
 
+/**
+ * TRAFFIC WIDGET
+ *
+ * Author: Dominic
+ * Review: Carina
+ */
 class TrafficWidget{
+    /**
+     * Constructor
+     */
     constructor(){
         this.service = new google.maps.DistanceMatrixService();
         this.list = {};
@@ -11,6 +20,13 @@ class TrafficWidget{
         this.elements = {};
     }
 
+    /**
+     * Get traffic information
+     *
+     * @param item
+     * @param callback
+     * @param widget
+     */
     getTrafficInformation(item, callback, widget){
         var param = {
             origins: ['Hilversum'],
@@ -25,6 +41,9 @@ class TrafficWidget{
         });
     }
 
+    /**
+     * Update widget with traffic information and DOM information
+     */
     update(){
         var widget = this;
         this.elements = {};
@@ -35,6 +54,14 @@ class TrafficWidget{
         });
     }
 
+    /**
+     * Update the DOM:
+     * Calculate delays, statuses, adding a status-icon per user.
+     *
+     * @param item
+     * @param response
+     * @param widget
+     */
     updateDOM(item, response, widget){
         var result = response.rows[0].elements[0];
         var diff = result.duration_in_traffic.value - result.duration.value;
@@ -98,6 +125,9 @@ class TrafficWidget{
 
 var trafficWidget;
 
+/**
+ * Initiate a trafficWidget and update.
+ */
 function initTraffic() {
     trafficWidget = new TrafficWidget;
     trafficWidget.update();

@@ -1,0 +1,23 @@
+.drink-item {
+    margin-bottom: 5px;
+    padding: 8px;
+    color: #FFFFFF;
+    background-color: #45505A;
+    border-radius: 4px;
+}
+.drink-item img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+.drink-item span {
+    line-height: 24px;
+    margin-left: 10px;
+}
+.drink-item .icon {
+    float: right;
+}
+
+#drink-items {
+    list-style: none;
+}

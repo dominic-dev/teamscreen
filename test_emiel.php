@@ -12,6 +12,9 @@
 <?php
 require_once('models/Member.php');
 require_once('models/Team.php');
+require_once('handlers/Database.php');
+require_once('handlers/MemberHandler.php');
+require_once('handlers/TeamHandler.php');
 
 define("SEPARATOR", ',');
 
@@ -39,6 +42,22 @@ foreach($array as $item) {
     //echo $item['filename'];
     echo $item.'<br/>';
     echo $item['a'];
+}
+
+
+$db = new Database();
+$conn = $db->getConnection();
+$memberHandler = new MemberHandler($conn);
+$teamHandler = new TeamHandler($conn);
+$teams = $teamHandler->getAll();
+if(empty($_GET['teamid'])){
+    echo '<div id="select-a-team"><h1>Kies een team:</h1>';
+    echo '<ul id="teams">';
+    foreach($teams as $team){
+        echo '<li><a href="?teamid=' . $team->getId() . '">'. $team->getLabel() . '</a></li>';
+    }
+    echo '</ul></div>';
+    die();
 }
 
 
