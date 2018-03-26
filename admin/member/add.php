@@ -47,8 +47,9 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $member->setDestination($_POST['destination']);
     $member->setDrinkPreference($_POST['drinkPreference']);
     $member->setTeamId($_POST['team']);
+    $workingDays = $_POST['workingDays'];
     if(isset($workingDays)){
-        $member->setWorkingDays(implode(',',$_POST['workingDays']));
+        $member->setWorkingDays(implode(',',$workingDays));
     }
 
     if($memberHandler->add($member)){
