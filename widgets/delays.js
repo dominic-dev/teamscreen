@@ -107,11 +107,11 @@ class TrafficWidget{
             ++index;
         }
 
-        widget.elements[index] = listItem;
+        widget.elements[item.name] = listItem;
         widget.listCounter++;
         if (widget.listCounter === widget.list.length){
             var sorted= Object.keys(widget.elements)
-                    .sort(function (a, b){ return b-a })
+                    .sort()
                     .map(function(k) { return widget.elements[k] });
             console.log(sorted);
 
