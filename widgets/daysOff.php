@@ -2,24 +2,20 @@
 
 ?>
 
-<div id="daysOff" class="widgetBoxSmall">
-    <h2>
-        <span>Vrije dagen</span>
-        <div class="tab">
-            <button class="weekTab", onclick="<?php daysOff("current")?>">Huidige week</button>
-            <button class="weekTab", onclick="<?php daysOff("next")?>">Volgende week</button>
-        </div>
-
-
+    <div id="daysOff" class="widgetBoxSmall">
+    <h2><span>&#127958 Vrije dagen</span>
+        <span class="weekButton">Huidige Week</span>
+        <span class="weekButton">Volgende week</span>
     </h2>
-    <span>pictja</span>
-    <span>
-        <ul>
-            John Doe
-            &#128197 09-03-2018 &#128336
-        </ul></span>
-    </span>
+    <div id="timeOff-list">
+        <?php foreach ($allMembers as $member): ?>
+        <div>
+            <span><img src="https://jira.local.mybit.nl/secure/useravatar?size=small&ownerId=<?= $member->getUsername(); ?>"/></span>
+            <span><?= $member->getName(); ?></span>
+            <span>&#128197 05-03-2018 &#128336 vanaf 12:30</span>
+        </div>
+        <?php endforeach; ?>
 
-    test
+    </div>
 
 </div>
