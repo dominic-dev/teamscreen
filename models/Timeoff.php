@@ -1,12 +1,28 @@
 <?php
 
+/**
+ * Class TimeOff
+ *
+ * Author: Vincent Huijts
+ * Editor: Carina Boom
+ */
 class TimeOff{
 
+    /**
+     * Variables
+     */
     private $id;
     private $startTime;
     private $endTime;
     private $memberId;
 
+    /**
+     * TimeOff constructor.
+     * @param null $id
+     * @param null $startTime
+     * @param null $endTime
+     * @param null $memberId
+     */
     function __construct($id=null, $startTime=null, $endTime=null, $memberId=null)
     {
         $this->id = $id;
@@ -16,6 +32,7 @@ class TimeOff{
     }
 
     /**
+     * Getter for MemberId
      * @return null
      */
     public function getMemberId()
@@ -24,6 +41,7 @@ class TimeOff{
     }
 
     /**
+     * Setter for MemberId
      * @param null $memberId
      */
     public function setMemberId($memberId)
@@ -32,6 +50,7 @@ class TimeOff{
     }
 
     /**
+     * Getter for EndTime
      * @return mixed
      */
     public function getEndTime() {
@@ -39,6 +58,7 @@ class TimeOff{
     }
 
     /**
+     * Getter for Id
      * @return mixed
      */
     public function getId() {
@@ -46,6 +66,7 @@ class TimeOff{
     }
 
     /**
+     * Getter for StartTime
      * @return mixed
      */
     public function getStartTime() {
@@ -53,6 +74,7 @@ class TimeOff{
     }
 
     /**
+     * Setter for EndTime
      * @param mixed $endTime
      */
     public function setEndTime($endTime) {
@@ -60,6 +82,7 @@ class TimeOff{
     }
 
     /**
+     * Setter for StartTime
      * @param null $startTime
      */
     public function setStartTime($startTime) {
@@ -67,6 +90,7 @@ class TimeOff{
     }
 
     /**
+     * Setter for Id
      * @param null $id
      */
     public function setId($id) {

@@ -28,9 +28,9 @@ class TimeOffHandler extends Handler {
     public function add(TimeOff $timeOff): int {
         $query = "INSERT INTO time_off(start_time, end_time, member_id) VALUES (:start_time, :end_time, :member_id)";
         $statement = $this->dbh->prepare($query);
-        $statement->bindParam(':start_time', $timeOff->getStartTime(), PDO::PARAM_STR);
-        $statement->bindParam(':end_time', $timeOff->getEndTime(), PDO::PARAM_STR);
-        $statement->bindParam(':member_id', $timeOff->getMemberId(), PDO::PARAM_STR);
+        $statement->bindValue(':start_time', $timeOff->getStartTime(), PDO::PARAM_STR);
+        $statement->bindValue(':end_time', $timeOff->getEndTime(), PDO::PARAM_STR);
+        $statement->bindValue(':member_id', $timeOff->getMemberId(), PDO::PARAM_STR);
         $statement->execute();
         $id = $this->dbh->lastInsertId();
         $timeOff->setId($id);
@@ -45,10 +45,10 @@ class TimeOffHandler extends Handler {
     public function update(TimeOff $timeOff) {
         $query = "UPDATE time_off SET start_time=:start_time, end_time=:end_time, member_id=:member_id WHERE id= :id";
         $statement = $this->dbh->prepare($query);
-        $statement->bindParam(':id', $timeOff->getId(), PDO::PARAM_INT);
-        $statement->bindParam(':start_time', $timeOff->getStartTime(), PDO::PARAM_STR);
-        $statement->bindParam(':end_time', $timeOff->getEndTime(), PDO::PARAM_STR);
-        $statement->bindParam(':member_id', $timeOff->getMemberId(), PDO::PARAM_STR);
+        $statement->bindValue(':id', $timeOff->getId(), PDO::PARAM_INT);
+        $statement->bindValue(':start_time', $timeOff->getStartTime(), PDO::PARAM_STR);
+        $statement->bindValue(':end_time', $timeOff->getEndTime(), PDO::PARAM_STR);
+        $statement->bindValue(':member_id', $timeOff->getMemberId(), PDO::PARAM_STR);
         $statement->execute();
     }
 

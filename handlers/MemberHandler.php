@@ -101,6 +101,12 @@ class MemberHandler extends Handler {
         }
     }
 
+    /**
+     * Get member by Team-Id
+     *
+     * @param int $teamId
+     * @return array
+     */
     public function getByTeam(int $teamId){
         $query = "select * from member where team_id = :id";
         $sth = $this->dbh->prepare($query);

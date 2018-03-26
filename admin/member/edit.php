@@ -6,12 +6,15 @@ require_once('../../handlers/MemberHandler.php');
 require_once('../../handlers/TeamHandler.php');
 
 /**
+ * CONTROLLER: EDIT MEMBER
  *
  * Authors: Dominic Dingena & Agung Udijana
+ * Editor: Carina Boom
  */
 
-
-// GET 
+/**
+ * GET
+ */
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     if(!isset($_GET['id'])){
         die();
@@ -38,7 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     require_once('../../views/editmember.php');
 }
 
-// POST
+/**
+ * POST
+ */
 else{
     $id = $_POST['id'];
     $name = $_POST['name'];
