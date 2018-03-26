@@ -12,7 +12,7 @@ require_once('../../handlers/TimeOffHandler.php');
  */
 
 /**
- * Connect to the database
+ * Connect to the database and initialise handlers
  */
 $db = new Database();
 $conn = $db->getConnection();
@@ -31,7 +31,7 @@ function checkExists($member){
 }
 
 /**
- * GET-request
+ * Handle GET-request
  */
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     if(empty($_GET['id'])){
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 }
 
 /**
- * POST-request
+ * Handle POST-request
  */
 elseif($_SERVER['REQUEST_METHOD'] === 'POST'){
     $member = $memberHandler->get((int)$_POST['id']);
