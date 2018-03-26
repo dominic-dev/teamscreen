@@ -1,8 +1,11 @@
+<!--author: Paul Sinterniklaas-->
+
 <?php
 
-$refresh=false;
+$refresh = false;
 
 if(isset($_SESSION['timeCleanCoffeeMachine'])){
+    //24 hr refresh
     $refresh = (time() - $_SESSION['timeCleanCoffeeMachine']) >= 86400;
 }
 else{
@@ -11,13 +14,17 @@ else{
 }
 
 if($refresh){
-    echo 'refresh<br/>';
+    //picks a random index of  list
     $randomIndex = array_rand($allMembers,1);
     $_SESSION['indexMember'] = $randomIndex;
     $_SESSION['timeCleanCoffeeMachine'] = time();
 }
 
+//picks the cleaner-object that belongs to the random
 $cleaner = ($allMembers[$_SESSION['indexMember']]);
+
+//echo "current time: " . time() . "<br />";
+//echo "stored time: " . $_SESSION['timeCleanCoffeeMachine'];
 
 ?>
 <div id="cleanCoffeeMachine" class="widgetBoxSmall">
@@ -33,8 +40,6 @@ $cleaner = ($allMembers[$_SESSION['indexMember']]);
     <div id="txt">
 
         <span class="fat"><?=$cleaner->getName()?>,</span> jij gaat vandaag het koffieapparaat schoonmaken
-        //echo "current time: " . time() . "<br />";
-        //echo "stored time: " . $_SESSION['timeCleanCoffeeMachine'];
 
     </div>
 
