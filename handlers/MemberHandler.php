@@ -126,10 +126,32 @@ class MemberHandler extends Handler {
      * @return array
      */
     public function getAbsent(){
-        $query = 'select * from member m
-          inner join time_off t on m.id =  t.member_id
-          where NOW() between t.start_time and t.end_time';
+        $query = 'select m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
+            from member m
+            inner join time_off t on m.id =  t.member_id
+            where NOW() between t.start_time and t.end_time
+            or m.working_days NOT LIKE concat("%", lower(dayname(now())), "%")
+            group by m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id';
         $sth = $this->dbh->prepare($query);
+        $sth->execute();
+        $rows = $sth->fetchAll();
+        return $this->rowsToObjects($rows);
+    }
+
+    /**
+     * Get members that are not present NOW.
+     * @return array
+     */
+    public function getAbsentByTeam(int $id){
+        $query = 'select m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
+            from member m
+            inner join time_off t on m.id =  t.member_id
+            where NOW() between t.start_time and t.end_time
+            or m.working_days NOT LIKE concat("%", lower(dayname(now())), "%")
+            and team_id=:team_id
+            group by m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id';
+        $sth = $this->dbh->prepare($query);
+        $sth->bindParam('team_id', $id);
         $sth->execute();
         $rows = $sth->fetchAll();
         return $this->rowsToObjects($rows);
@@ -140,12 +162,35 @@ class MemberHandler extends Handler {
      * @return array
      */
     public function getPresent(){
-        $query = 'select * from member m
-          inner join time_off t on m.id =  t.member_id
-          where NOW() not between t.start_time and t.end_time;';
+        $query = 'select m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
+            from member m
+            inner join time_off t on m.id =  t.member_id
+            where NOW() not between t.start_time and t.end_time
+            and m.working_days LIKE concat("%", lower(dayname(now())), "%")
+            group by m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id';
         $sth = $this->dbh->prepare($query);
         $sth->execute();
         $rows = $sth->fetchAll();
         return $this->rowsToObjects($rows);
     }
+
+    /**
+     * Get members that are not present NOW.
+     * @return array
+     */
+    public function getPresentByTeam(int $id){
+        $query = 'select m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
+            from member m
+            inner join time_off t on m.id =  t.member_id
+            where NOW() not between t.start_time and t.end_time
+            and m.working_days LIKE concat("%", lower(dayname(now())), "%")
+            and team_id=:team_id
+            group by m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id';
+        $sth = $this->dbh->prepare($query);
+        $sth->bindParam('team_id', $id);
+        $sth->execute();
+        $rows = $sth->fetchAll();
+        return $this->rowsToObjects($rows);
+    }
+    
 }
