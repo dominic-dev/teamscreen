@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Team Screen Administration"
+AuthUserFile ../htdocs/teamscreen/admin/.htpasswd
+Require valid-user
