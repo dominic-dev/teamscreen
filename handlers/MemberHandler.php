@@ -192,5 +192,6 @@ class MemberHandler extends Handler {
         $rows = $sth->fetchAll();
         return $this->rowsToObjects($rows);
     }
-    
+
+
 }

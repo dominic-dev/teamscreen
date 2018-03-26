@@ -26,6 +26,6 @@
 
 <script>
     jQuery('.datetimepicker').datetimepicker({
-        format: 'Y-m-d h:m:s'
+        format: 'Y-m-d H:m:s'
     });
 </script>

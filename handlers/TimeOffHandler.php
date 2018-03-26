@@ -1,5 +1,6 @@
 <?php
 require_once('Handler.php');
+require_once('MemberHandler.php');
 require_once(dirname(__FILE__) . '/../models/TimeOff.php');
 
 
@@ -17,7 +18,14 @@ class TimeOffHandler extends Handler {
      * @return mixed
      */
     protected function factory(array $row) {
-        $timeOff = new TimeOff($row['id'], $row['starttime'], $row['endtime'], $row['memberId']);
+        $timeOff = new TimeOff();
+        $timeOff->setId($row['id']);
+        $timeOff->setStartTime($row['start_time']);
+        $timeOff->setEndTime($row['end_time']);
+        $memberHandler = new MemberHandler($this->dbh);
+        $member = $memberHandler->factory($row);
+        $member->setId($row['member_id']);
+        $timeOff->setMember($member);
         return $timeOff;
     }
 
@@ -53,4 +61,22 @@ class TimeOffHandler extends Handler {
         $statement->execute();
     }
 
+    public function getByTeamThisWeek(int $id){
+        $dt = new DateTime();
+        $dt->modify('next saturday');
+        $nextSaturday = $dt->format('Y-m-d h:m:s');
+
+        $query = 'select *
+            from member m
+            inner join time_off t on m.id =  t.member_id
+            where t.start_time between NOW() and :next_saturday 
+            and m.working_days LIKE concat("%", lower(dayname(now())), "%")
+            and team_id= :team_id';
+        $sth = $this->dbh->prepare($query);
+        $sth->bindValue('team_id', $id);
+        $sth->bindValue('next_saturday', $nextSaturday);
+        $sth->execute();
+        $rows = $sth->fetchAll();
+        return $this->rowsToObjects($rows);
+    }
 }
