@@ -11,7 +11,6 @@ else{
 }
 
 if($refresh){
-    echo 'refresh<br/>';
     $randomIndex = array_rand($allMembers,1);
     $_SESSION['indexMember'] = $randomIndex;
     $_SESSION['timeCleanCoffeeMachine'] = time();

@@ -6,8 +6,8 @@
     <h2>
         <span>Vrije dagen</span>
         <div class="tab">
-            <button class="weekTab", onclick="<?php daysOff("current")?>">Huidige week</button>
-            <button class="weekTab", onclick="<?php daysOff("next")?>">Volgende week</button>
+            <button class="weekTab", onclick="<?php //daysOff("current")?>">Huidige week</button>
+            <button class="weekTab", onclick="<?php //daysOff("next")?>">Volgende week</button>
         </div>
 
 
