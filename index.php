@@ -15,6 +15,8 @@ $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
 setlocale(LC_TIME, 'nld_nld' );
 $date = strftime('%e %B %Y', time());
 
+// 15 minutes refresh
+$refreshrate = 900;
 session_start();
 
 ?>
@@ -23,6 +25,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="<?php echo $refreshrate; ?>">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
