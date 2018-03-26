@@ -15,6 +15,8 @@ $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
 setlocale(LC_TIME, 'nld_nld' );
 $date = strftime('%e %B %Y', time());
 
+session_start();
+
 ?>
 
 <!doctype html>
