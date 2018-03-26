@@ -1,7 +1,28 @@
 <?php
 
-$randomNumber = array_rand($allMembers,1);
-$cleaner = ($allMembers[$randomNumber]);
+$refresh=false;
+$set = isset($_SESSION['timeCleanCoffeeMachine']);
+
+if($set){
+    $refresh = (time() - $_SESSION['timeCleanCoffeeMachine']) >= 10;
+}
+else{
+    $_SESSION['timeCleanCoffeeMachine'] = time();
+    $refresh = true;
+}
+
+if($refresh){
+    echo 'refresh<br/>';
+    $randomIndex = array_rand($allMembers,1);
+    $_SESSION['indexMember'] = $randomIndex;
+    $_SESSION['timeCleanCoffeeMachine'] = time();
+}
+
+$cleaner = ($allMembers[$_SESSION['indexMember']]);
+
+echo "current time: " . time() . "<br />";
+echo "stored time: " . $_SESSION['timeCleanCoffeeMachine'];
+
 
 ?>
 <div id="cleanCoffeeMachine" class="widgetBoxSmall">
