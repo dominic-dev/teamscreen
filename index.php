@@ -13,11 +13,6 @@ $teamId = (int) $_GET['teamid'];
 
 $allMembers = $memberHandler->getAll();
 $teamMembers = $memberHandler->getByTeam($teamId);
-$presentTeamMembers = $memberHandler->getPresentByTeam($teamId);
-$absentTeamMembers = $memberHandler->getAbsentByTeam($teamId);
-
-var_dump(count($presentTeamMembers));
-var_dump(count($absentTeamMembers));
 
 setlocale(LC_TIME, 'nld_nld' );
 $date = strftime('%e %B %Y', time());
