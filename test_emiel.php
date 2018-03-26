@@ -35,11 +35,10 @@ $array = json_decode( $json, true );
 var_dump($array);
 
 foreach($array as $item) {
-    //echo $item['filename'];
     echo $item.'<br/>';
-    echo $item['a'];
 }
 
+echo '<p/>';
 
 $db = new Database();
 $conn = $db->getConnection();
@@ -48,27 +47,38 @@ $teamMembers = $memberHandler->getByTeam((int) 1);
 
 
 //var_dump($teamMembers[0]);
+$presentTeamMember = null;
 
-$workingDays = $teamMembers[0]->getWorkingDays();
+for($i = 0; $i < sizeof($teamMembers); $i++){
 
-//echo explode(",", $workingDays)[1];
+//foreach($teamMembers as $teamMember) {
 
-foreach(explode(",", $workingDays) as $item) {
-    //echo $item['filename'];
-    $day = date('l', time());
-    echo $item;
-    echo ' Today? ' . strcmp($item, strtolower($day)) ;
-    echo '<br/>';
+    echo $teamMembers[$i]->getName().'<br/>';
+
+    $workingDays = $teamMembers[$i]->getWorkingDays();
+    //echo $workingDays .'<br/>';
+
+    foreach(explode(",", $workingDays) as $workingDay) {
+
+        $day = date('l', time());
+
+        if(strcmp($workingDay, strtolower($day)) == 0){
+            echo $teamMembers[$i]->getName().'<br/>';
+            $presentTeamMembers[$i] = $teamMembers[$i];
+            //array_push($presentTeamMember, $teamMembers[$i]);
+        }
+    }
 }
 
 echo '<p/>';
-$cars[0] = "Volvo";
-$cars[1] = "BMW";
-$cars[2] = "Toyota";
+if(isset($presentTeamMembers[0])) {
+    var_dump($presentTeamMember);
+    echo $presentTeamMembers[0]->getName();
+}
 
-echo $cars[2];
 
 ?>
 
 </body>
 </html>
+}
