@@ -14,19 +14,22 @@ else{
 }
 
 if($refresh){
-    //picks a random index of  list
+    //picks a random index of the allMembers list
     $randomIndex = array_rand($allMembers,1);
     $_SESSION['indexMember'] = $randomIndex;
     $_SESSION['timeCleanCoffeeMachine'] = time();
 }
 
-//picks the cleaner-object that belongs to the random
+//picks the Member-object that belongs to the random index
 $cleaner = ($allMembers[$_SESSION['indexMember']]);
 
 //echo "current time: " . time() . "<br />";
 //echo "stored time: " . $_SESSION['timeCleanCoffeeMachine'];
 
 ?>
+
+<link rel="stylesheet" href="widgets/cleanCoffeeMachine.css">
+
 <div id="cleanCoffeeMachine" class="widgetBoxSmall">
     <h2>Schoonmaken koffie</h2>
 
@@ -36,14 +39,10 @@ $cleaner = ($allMembers[$_SESSION['indexMember']]);
 
     </div>
 
+    <div id="cleanerTxt">
 
-    <div id="txt">
-
-        <span class="fat"><?=$cleaner->getName()?>,</span> jij gaat vandaag het koffieapparaat schoonmaken
+        <span class="fat"><?=$cleaner->getName()?>,</span> jij gaat vandaag het koffieapparaat schoonmaken!
 
     </div>
-
-
-
 </div>
 
