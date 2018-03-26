@@ -48,6 +48,7 @@ elseif($_SERVER['REQUEST_METHOD'] === 'POST'){
     $timeOffHandler->add($timeOff);
 
     $_SESSION['message'] = 'Verlof toegevoegd voor ' . $member->getName();
-    header('Location : add.php');
+    // TODO redirect
+    header('Location : ../member/list.php');
     die();
 }

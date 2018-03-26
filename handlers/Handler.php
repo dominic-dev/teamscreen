@@ -52,12 +52,7 @@ abstract class Handler {
         $sth = $this->dbh->prepare($query);
         $sth->execute();
         $rows = $sth->fetchAll();
-        $result = [];
-
-        foreach ($rows as $row){
-            array_push($result, $this->factory($row));
-        }
-        return $result;
+        return $this->rowsToObjects($rows);
     }
 
     /**
@@ -71,6 +66,18 @@ abstract class Handler {
         $sth = $this->dbh->prepare($sql);
         $sth->bindParam(':id', $id, PDO::PARAM_INT);
         return $sth->execute();
+    }
+
+    /**
+     * @param $rows
+     * @return array
+     */
+    public function rowsToObjects($rows){
+        $objects = [];
+        foreach($rows as $row){
+            array_push($objects, $this->factory($row));
+        }
+        return $objects;
     }
 
     /**

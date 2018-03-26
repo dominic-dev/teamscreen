@@ -120,4 +120,32 @@ class MemberHandler extends Handler {
         }
         return $result;
     }
+
+    /**
+     * Get members that are not present NOW.
+     * @return array
+     */
+    public function getAbsent(){
+        $query = 'select * from member m
+          inner join time_off t on m.id =  t.member_id
+          where NOW() between t.start_time and t.end_time';
+        $sth = $this->dbh->prepare($query);
+        $sth->execute();
+        $rows = $sth->fetchAll();
+        return $this->rowsToObjects($rows);
+    }
+
+    /**
+     * Get members that are present NOW.
+     * @return array
+     */
+    public function getPresent(){
+        $query = 'select * from member m
+          inner join time_off t on m.id =  t.member_id
+          where NOW() not between t.start_time and t.end_time;';
+        $sth = $this->dbh->prepare($query);
+        $sth->execute();
+        $rows = $sth->fetchAll();
+        return $this->rowsToObjects($rows);
+    }
 }
