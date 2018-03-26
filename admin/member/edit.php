@@ -6,25 +6,25 @@ require_once('../../handlers/MemberHandler.php');
 require_once('../../handlers/TeamHandler.php');
 
 /**
- * CONTROLLER: EDIT MEMBER
+ * CONTROLLER: EDIT A MEMBER
  *
  * Authors: Dominic Dingena & Agung Udijana
  * Editor: Carina Boom
  */
 
+$db = new Database();
+$conn = $db->getConnection();
+$memberHandler = new MemberHandler($conn);
+$teamHandler = new TeamHandler($conn);
+
 /**
- * GET
+ * GET-method
  */
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     if(!isset($_GET['id'])){
         die();
     }
     $id = (int) $_GET['id'];
-
-    $db = new Database();
-    $conn = $db->getConnection();
-    $memberHandler = new MemberHandler($conn);
-    $teamHandler = new TeamHandler($conn);
 
     $editSuccess ='';
 
@@ -42,31 +42,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 }
 
 /**
- * POST
+ * POST-method
  */
-else{
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $username = $_POST['username'];
-    $destination = $_POST['destination'];
-    $teamId = $_POST['team'];
-    $drinkPreference = $_POST['drinkPreference'];
-    $workingDays = $_POST['workingDays'];
-
+elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $member = new Member();
-    $member->setId($id);
-    $member->setUsername($username);
-    $member->setName($name);
-    $member->setDestination($destination);
-    $member->setDrinkPreference($drinkPreference);
-    $member->setTeamId($teamId);
+    $member->setId($_POST['id']);
+    $member->setUsername($_POST['username']);
+    $member->setName($_POST['name']);
+    $member->setDestination($_POST['destination']);
+    $member->setDrinkPreference($_POST['drinkPreference']);
+    $member->setTeamId($_POST['team']);
+    $workingDays = $_POST['workingDays'];
     if(isset($workingDays)){
         $member->setWorkingDays(implode(',',$workingDays));
     }
-
-    $db = new Database();
-    $dbh = $db->getConnection();
-    $memberHandler = new MemberHandler($dbh);
 
     $memberHandler->update($member);
 

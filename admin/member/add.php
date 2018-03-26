@@ -19,7 +19,7 @@ $memberHandler = new MemberHandler($dbh);
 $teamHandler = new TeamHandler($dbh);
 
 /**
- * GET
+ * GET-request
  */
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 }
 
 /**
- * POST
+ * POST-request
  */
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
@@ -56,8 +56,8 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
         session_start();
         $_SESSION['addSuccess'] = "Lid succesvol toegevoegd";
 
-        // TODO redirect
-        header('Location: '. 'add.php');
+        //Redirect to add.php
+        header('Location: add.php');
         die();
     }
 
