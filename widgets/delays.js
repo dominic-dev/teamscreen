@@ -1,8 +1,6 @@
 console.log(2);
 console.log(teamMembers);
 TRAFFIC_MAX_OK_DELAY_MINS = 9;
-// TRAFFIC_USERS_URL = 'http://tim.mybit.nl/users.php';
-// TRAFFIC_USERS_URL = 'api/members/get_all.php';
 
 class TrafficWidget{
     constructor(){
@@ -35,19 +33,6 @@ class TrafficWidget{
         widget.list.forEach(function(item) {
             widget.getTrafficInformation(item, widget.updateDOM, widget);
         });
-        /*
-        var xhr = new XMLHttpRequest();
-        xhr.open('get', TRAFFIC_USERS_URL);
-        xhr.addEventListener('load', function() {
-            this.elements = {};
-            widget.list = JSON.parse(this.responseText);
-            widget.listCounter = 0;
-            widget.list.forEach(function(item) {
-                widget.getTrafficInformation(item, widget.updateDOM, widget);
-            });
-        });
-        xhr.send();
-         */
     }
 
     updateDOM(item, response, widget){
