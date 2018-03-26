@@ -1,33 +1,23 @@
+<link rel="stylesheet" href="/teamscreen/widgets/teamDrinks.css">
+
 <div id="teamDrinks" class="widgetBoxSmall">
     <h2>Tijd voor koffie!</h2>
-
     <p/>
-    <table border="0" cellpadding="5" >
-
-        <tr>
-            <td colspan="1""><img height="60" src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?ownerId=agung.udijana" ></td>
-            <td colspan="2"><b>Agung</b>, het is jouw beurt om koffie te halen voor:</td>
-        </tr>
-
         <?php
-
-
-        foreach ($allMembers as $member) {
-
-            //var_dump($member);  break;
-            $username = $member->getUsername();
-
-            echo "<tr>";
-
-            echo "<td><img height=\"25\" src=\"http://tim.mybit.nl/jiraproxy.php/secure/useravatar?ownerId=$username\" ></td>";
-            echo "<td>" . $member->getName() . "</td>";
-            echo "<td>" . $member->getDrinkPreference(). "</td>";
-
-            echo "</tr>";
-
-        }
-
+        echo "<a><img src=http://tim.mybit.nl/jiraproxy.php/secure/useravatar?ownerId=agung.udijana>
+              <span> Agung, het is jouw beurt om koffie te halen voor:</span></a>";
         ?>
-    </table>
-
+    <ul id="drink-items">
+        <?php foreach ($allMembers as $member) { ?>
+         <li class='drink-item'>
+                    <img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?ownerId=<?= $member->getUsername() ?>" />
+                    <span><?= $member->getName() ?></span>
+                    <span class='icon'><img src=https://image.flaticon.com/icons/svg/273/273048.svg>
+                    <span><?= $member->getDrinkPreference() ?></span></span>
+         </li>
+        <?php } ?>
+    </ul>
 </div>
+
+
+
