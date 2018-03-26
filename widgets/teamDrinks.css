@@ -14,7 +14,9 @@
     line-height: 24px;
     margin-left: 10px;
 }
-
+.drink-item img.userimg {
+    border-radius: 50%;
+}
 .drink-item .icon {
     float: right;
     width: 80px;
@@ -45,6 +47,11 @@
 
 #current-getter img {
     width: 60px;
+    border-radius: 50%;
     float: left;
     margin-right: 20px;
+}
+#drink-list {
+    height: 260px;
+    overflow: hidden;
 }
