@@ -1,4 +1,14 @@
 <?php
+
+require_once('../../handlers/Database.php');
+require_once('../../handlers/MemberHandler.php');
+
+/**
+ * CONTROLLER: DELETE A MEMBER
+ *
+ * Authors: Dominic Dingena & Carina Boom
+ */
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
     // Only allow post requests.
     die();
@@ -6,9 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
 if(!isset($_POST['id'])){
     die();
 }
-
-require_once('../../handlers/Database.php');
-require_once('../../handlers/MemberHandler.php');
 
 $db = new Database();
 $conn = $db->getConnection();

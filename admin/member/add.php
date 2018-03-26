@@ -19,7 +19,7 @@ $memberHandler = new MemberHandler($dbh);
 $teamHandler = new TeamHandler($dbh);
 
 /**
- * GET
+ * GET-request
  */
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 }
 
 /**
- * POST
+ * POST-request
  */
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
@@ -47,16 +47,17 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $member->setDestination($_POST['destination']);
     $member->setDrinkPreference($_POST['drinkPreference']);
     $member->setTeamId($_POST['team']);
+    $workingDays = $_POST['workingDays'];
     if(isset($workingDays)){
-        $member->setWorkingDays(implode(',',$_POST['workingDays']));
+        $member->setWorkingDays(implode(',',$workingDays));
     }
 
     if($memberHandler->add($member)){
         session_start();
         $_SESSION['addSuccess'] = "Lid succesvol toegevoegd";
 
-        // TODO redirect
-        header('Location: '. 'add.php');
+        //Redirect to add.php
+        header('Location: add.php');
         die();
     }
 

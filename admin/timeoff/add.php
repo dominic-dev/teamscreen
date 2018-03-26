@@ -6,22 +6,33 @@ require_once('../../handlers/MemberHandler.php');
 require_once('../../handlers/TimeOffHandler.php');
 
 /**
+ * CONTROLLER: ADD TIME OFF TO A MEMBER
  *
  * Authors: Dominic Dingena & Carina Boom
  */
 
+/**
+ * Connect to the database
+ */
 $db = new Database();
 $conn = $db->getConnection();
 $memberHandler = new MemberHandler($conn);
 $timeOffHandler = new TimeOffHandler($conn);
 
+/**
+ * Check if a member exists
+ *
+ * @param $member
+ */
 function checkExists($member){
     if(empty($member)){
         die("Member not found");
     }
 }
 
-// Get
+/**
+ * GET-request
+ */
 if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     if(empty($_GET['id'])){
         die("No member id specified.");
@@ -35,8 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     die();
 }
 
-
-//POST
+/**
+ * POST-request
+ */
 elseif($_SERVER['REQUEST_METHOD'] === 'POST'){
     $member = $memberHandler->get((int)$_POST['id']);
     checkExists($member);
@@ -52,4 +64,6 @@ elseif($_SERVER['REQUEST_METHOD'] === 'POST'){
     session_start();
     $_SESSION['message'] = 'Verlof toegevoegd voor ' . $member->getName();
     header('Location: ../member/list.php');
+    //If ADD did not succeed:
+    die("fatal error");
 }
