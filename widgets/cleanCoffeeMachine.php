@@ -1,10 +1,9 @@
 <?php
 
 $refresh=false;
-$set = isset($_SESSION['timeCleanCoffeeMachine']);
 
-if($set){
-    $refresh = (time() - $_SESSION['timeCleanCoffeeMachine']) >= 10;
+if(isset($_SESSION['timeCleanCoffeeMachine'])){
+    $refresh = (time() - $_SESSION['timeCleanCoffeeMachine']) >= 86400;
 }
 else{
     $_SESSION['timeCleanCoffeeMachine'] = time();
@@ -20,23 +19,22 @@ if($refresh){
 
 $cleaner = ($allMembers[$_SESSION['indexMember']]);
 
-echo "current time: " . time() . "<br />";
-echo "stored time: " . $_SESSION['timeCleanCoffeeMachine'];
-
-
 ?>
 <div id="cleanCoffeeMachine" class="widgetBoxSmall">
     <h2>Schoonmaken koffie</h2>
 
     <div id="cleanerAvatar">
 
-        <?=$cleaner->getName()?>
+        <img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?ownerId=<?= $cleaner->getUsername() ?>" />
 
     </div>
 
 
     <div id="txt">
-        <strong><?=$cleaner->getName()?>,</strong> jij gaat vandaag het koffieapparaat schoonmaken
+
+        <span class="fat"><?=$cleaner->getName()?>,</span> jij gaat vandaag het koffieapparaat schoonmaken
+        //echo "current time: " . time() . "<br />";
+        //echo "stored time: " . $_SESSION['timeCleanCoffeeMachine'];
 
     </div>
 

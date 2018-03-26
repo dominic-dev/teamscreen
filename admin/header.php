@@ -15,3 +15,5 @@
               <li><a href="../member/list.php">Configureer een lid</a></li>
           </ul>
       </div>
+
+      <div class="message"><?= $_SESSION['message'] ?? '' ?></div>
