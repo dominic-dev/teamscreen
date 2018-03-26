@@ -6,7 +6,7 @@
             <tr>
                 <td><a href="edit.php?id=<?= $member->getId() ?>"><?= $member->getName() ?></a></td>
                 <td><a href="edit.php?id=<?= $member->getId() ?>">wijzig</a></td>
-                <td><a>verlof</a></td>
+                <td><a href="../timeoff/add.php?id=<?= $member->getId() ?>">vrij</a></td>
             </tr>
         <?php } ?>
     </table>

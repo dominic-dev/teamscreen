@@ -65,6 +65,8 @@ a, a:visited, a:active{
 #general label {
 	border-spacing 5px;
 	padding 10px;
+	display:inline-block;
+	width:200px;
 
 }
 #general{

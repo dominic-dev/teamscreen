@@ -8,4 +8,4 @@ $conn = $db->getConnection();
 $memberHandler = new MemberHandler($conn);
 $members = $memberHandler->getAll();
 
-include('../../views/listmember.php');
+include('../../views/member/list.php');
