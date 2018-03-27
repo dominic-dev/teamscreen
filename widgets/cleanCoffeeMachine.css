@@ -18,3 +18,7 @@
     text-align: center;
     margin: 60px;
 }
+
+#cleanerTxt span {
+    font-weight: 700;
+}

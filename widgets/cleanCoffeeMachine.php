@@ -23,15 +23,12 @@ if($refresh){
 //picks the Member-object that belongs to the random index
 $cleaner = ($allMembers[$_SESSION['indexMember']]);
 
-//echo "current time: " . time() . "<br />";
-//echo "stored time: " . $_SESSION['timeCleanCoffeeMachine'];
-
 ?>
 
 <link rel="stylesheet" href="widgets/cleanCoffeeMachine.css">
 
 <div id="cleanCoffeeMachine" class="widgetBoxSmall">
-    <h2>Schoonmaken koffie</h2>
+    <h2>Koffieapparaat schoonmaken</h2>
 
     <div id="cleanerAvatar">
 
@@ -41,7 +38,7 @@ $cleaner = ($allMembers[$_SESSION['indexMember']]);
 
     <div id="cleanerTxt">
 
-        <span class="fat"><?=$cleaner->getName()?>,</span> jij gaat vandaag het koffieapparaat schoonmaken!
+        <span class="fat"><?=$cleaner->getName()?></span>, jij gaat vandaag het koffieapparaat schoonmaken!
 
     </div>
 </div>
