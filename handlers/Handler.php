@@ -76,7 +76,8 @@ abstract class Handler {
     public function rowsToObjects($rows){
         $objects = [];
         foreach($rows as $row){
-            array_push($objects, $this->factory($row));
+
+            $objects[] = $this->factory($row);
         }
         return $objects;
     }

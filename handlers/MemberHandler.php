@@ -39,7 +39,6 @@ class MemberHandler extends Handler {
      * @param int the id of the member on succes, 0 on failure.
      */
     public function add(Member $member): int {
-        var_dump($member);
         $query = "INSERT INTO member(name, username, destination, drink_preference, working_days, team_id) 
               VALUES (:name, :username, :destination, :drink_preference, :working_days, :team_id)";
         $statement = $this->dbh->prepare($query);
@@ -197,6 +196,39 @@ class MemberHandler extends Handler {
         $rows = $sth->fetchAll();
         return $this->rowsToObjects($rows);
     }
+    /**
+     * Take a data row from the database, return it as object.
+     * Member's id as key.
+     *
+     * @param array $row
+     * @return mixed
+     */
+    public function rowsToObjects($rows)
+    {
+        $objects = [];
+        foreach($rows as $row){
+            $member = $this->factory($row);
+            $objects[$member->getId()] = $member;
+        }
+        return $objects;
+    }
 
+    /**
+     * Filter members by team.
+     *
+     * @param array $members
+     * @param int $id
+     * @return array
+     */
+    public function filterByTeam(array $members, int $id) : array {
+        $result = [];
+        foreach($members as $member){
+            if($member->getTeamId() === $id){
+                $result[] = $member;
+            }
+        }
+    }
+
+    
 
 }

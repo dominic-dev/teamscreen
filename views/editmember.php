@@ -11,7 +11,9 @@ $drinkPreferences = ['coffee' => 'koffie', 'tea' => 'thee', 'water' => ' water']
 // array with current possible workingdays
 $workingDays = ['Monday' => 'Maandag', 'Tuesday' => 'Dinsdag', 'Wednesday' => 'Woensdag', 'Thursday' => 'Donderdag', 'Friday' => 'Vrijdag'];
 
-session_start();
+/* AU. 27 March 2018. outcommented - because now there is already a session_start() call in the header.php that is included in this view,
+to prevent this notification : "Notice: session_start(): A session had already been started" */
+// session_start();
 $success = isset($_SESSION['editSuccess']) ? $_SESSION['editSuccess'] : '';
 unset($_SESSION['editSuccess']);
 ?>

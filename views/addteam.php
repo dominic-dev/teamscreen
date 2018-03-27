@@ -4,14 +4,11 @@
     /* authors : Agung & Dominic
     22 March 2018 */
 
-session_start();
-// TODO shorthand?
-if(isset($_SESSION['addSuccess'])) {
-    $success = $_SESSION['addSuccess'];
-}
-else {
-    $success ='';
-}
+/* AU. 27 March 2018. outcommented - because now there is already a session_start() call in the header.php that is included in this view,
+to prevent this notification : "Notice: session_start(): A session had already been started" */
+// session_start();
+
+$success = isset($_SESSION['addSuccess']) ? $_SESSION['addSuccess'] : '';
 unset($_SESSION['addSuccess']);
 
 
