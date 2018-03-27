@@ -12,6 +12,13 @@ $teams = $teamHandler->getAll();
 $allMembers = $memberHandler->getAll();
 $teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
 
+/**
+ *
+ *  LOCAL DEVIATIONB FOR TESTING PURPOSES
+ *
+ */
+$presentTeamMembers = $teamMembers;
+
 setlocale(LC_TIME, 'nld_nld' );
 $date = strftime('%e %B %Y', time());
 
