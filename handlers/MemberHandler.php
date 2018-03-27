@@ -27,8 +27,25 @@ class MemberHandler extends Handler {
         $member->setDrinkPreference($row['drink_preference']);
         $member->setWorkingDays($row['working_days']);
         $member->setTeamId($row['team_id']);
+        $member->setPresent((bool) $row['present']);
 
         return $member;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAll() : array {
+        $query = 'select m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id,
+            coalesce((NOW() not between t.start_time and t.end_time
+            and m.working_days LIKE concat("%", lower(dayname(now())), "%")),0) as \'present\'
+            from member m
+            left join time_off t on m.id =  t.member_id
+            group by m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id, present';
+        $sth = $this->dbh->prepare($query);
+        $sth->execute();
+        $rows = $sth->fetchAll();
+        return $this->rowsToObjects($rows);
     }
 
 
@@ -39,7 +56,6 @@ class MemberHandler extends Handler {
      * @param int the id of the member on succes, 0 on failure.
      */
     public function add(Member $member): int {
-        var_dump($member);
         $query = "INSERT INTO member(name, username, destination, drink_preference, working_days, team_id) 
               VALUES (:name, :username, :destination, :drink_preference, :working_days, :team_id)";
         $statement = $this->dbh->prepare($query);
@@ -196,24 +212,83 @@ class MemberHandler extends Handler {
         $rows = $sth->fetchAll();
         return $this->rowsToObjects($rows);
     }
+    /**
+     * Take a data row from the database, return it as object.
+     * Member's id as key.
+     *
+     * @param array $row
+     * @return mixed
+     */
+    public function rowsToObjects($rows)
+    {
+        $objects = [];
+        foreach($rows as $row){
+            $member = $this->factory($row);
+            $objects[$member->getId()] = $member;
+        }
+        return $objects;
+    }
 
     /**
-     * Get present members who use the coffee machine
+     * Filter members by team. Return an array of member id's.
+     *
+     * @param array $members
+     * @param int $id
      * @return array
      */
-    public function getPresentCoffeeMachineUsers() : array {
-        $query = 'select m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
-            from member m
-            inner join time_off t on m.id =  t.member_id
-            where NOW() not between t.start_time and t.end_time
-            and m.working_days LIKE concat("%", lower(dayname(now())), "%")
-            and m.drink_preference in (\'coffee\', \'tea\')
-            group by m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id';
-        $sth = $this->dbh->prepare($query);
-        $sth->execute();
-        $rows = $sth->fetchAll();
-        return $this->rowsToObjects($rows);
+    public function filterByTeam(array $members, int $id) : array {
+        $result = [];
+        foreach($members as $member){
+            if($member->getTeamId() === $id){
+                $result[] = $member->getId();
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * Filter members by present. Return an array of member id's.
+     *
+     * @param array $members
+     * @param bool $value
+     */
+    public function filterPresent(array $members, $value=false){
+        $result = [];
+        foreach($members as $member){
+            if ($member->getPresent() === $value){
+                $result[] = $member->getId();
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * Filter members by team. Return an array of member id's.
+     *
+     * @param array $members
+     * @param int $id
+     * @param $present
+     * @return array
+     */
+    public function filterByTeamAndPresent(array $members, int $id, $present=true) : array {
+        $result = [];
+        foreach($members as $member){
+            if($member->getTeamId() === $id && $member->getPresent() === $present){
+                $result[] = $member->getId();
+            }
+        }
+        return $result;
     }
 
 
+    public function filterUsesCoffeeMachineAndPresent(array $members){
+        $result = [];
+        foreach($members as $member) {
+            if (in_array($member->getDrinkPreference(), ['coffee', 'tea'])
+                && $member->getPresent()){
+                $result[] = $member->getId();
+            }
+        }
+        return $result;
+    }
 }

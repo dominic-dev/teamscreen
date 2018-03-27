@@ -13,8 +13,40 @@ class Member {
     // SET ('maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag') NULL,
     private $workingDays;
     private $teamId;
-
     private $timeOff;
+    private $present;
+
+    /**
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param string $avatar
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPresent() : bool
+    {
+        return $this->present;
+    }
+
+    /**
+     * @param mixed $present
+     */
+    public function setPresent(bool $present)
+    {
+        $this->present = $present;
+    }
 
     public function __construct($id=null, $username=null, $name=null, $destination=null,
                          $drinkPreference=null, $workingDays=null, $timeOff=null, $teamId=null){

@@ -17,4 +17,5 @@
           </ul>
       </div>
 
-      <div class="message"><?= $_SESSION['message'] ?? '' ?></div>
+      <h2><?= $_SESSION['message'] ?? '' ?></h2>
+      <?php unset ($_SESSION['message']); ?>
