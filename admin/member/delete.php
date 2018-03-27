@@ -22,8 +22,13 @@ $conn = $db->getConnection();
 
 $memberHandler = new MemberHandler($conn);
 $id = (int) $_POST['id'];
+$member = $memberHandler->get($id);
 
 if($memberHandler->delete($id)){
-    // forward success
+    session_start();
+    $_SESSION['message'] =  $member->getName() . ' succesvol verwijderd';
+    header('Location: ../member/list.php');
+    //If DELETE did not succeed:
+    die("fatal error");
 }
-// forward failure
+
