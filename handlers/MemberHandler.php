@@ -39,7 +39,6 @@ class MemberHandler extends Handler {
      * @param int the id of the member on succes, 0 on failure.
      */
     public function add(Member $member): int {
-        var_dump($member);
         $query = "INSERT INTO member(name, username, destination, drink_preference, working_days, team_id) 
               VALUES (:name, :username, :destination, :drink_preference, :working_days, :team_id)";
         $statement = $this->dbh->prepare($query);
