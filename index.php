@@ -21,6 +21,8 @@ if($teamId){
 
     $timeOffThisWeek = $timeOffHandler->getByTeamThisWeek($teamId);
     $timeOffNextWeek = $timeOffHandler->getByTeamNextWeek($teamId);
+
+    var_dump($allMembers);
 }
 
 setlocale(LC_TIME, 'nld_nld' );
