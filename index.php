@@ -10,8 +10,12 @@ $memberHandler = new MemberHandler($conn);
 $teamHandler = new TeamHandler($conn);
 $timeOffHandler = new TimeOffHandler($conn);
 $teams = $teamHandler->getAll();
-
 $teamId = (int) $_GET['teamid'];
+
+if(!isset($_SESSION['teams'])){
+    $_SESSION['teams'] = [];
+}
+
 if($teamId){
     $allMembers = $memberHandler->getAll();
     $teamMembers = $memberHandler->getByTeam($teamId);
@@ -21,6 +25,10 @@ if($teamId){
 
     $timeOffThisWeek = $timeOffHandler->getByTeamThisWeek($teamId);
     $timeOffNextWeek = $timeOffHandler->getByTeamNextWeek($teamId);
+
+    if(!isset($_SESSION['teams'][$teamId])){
+        $_SESSION['teams'][$teamId] = [];
+    };
 }
 
 setlocale(LC_TIME, 'nld_nld' );
@@ -29,7 +37,6 @@ $date = strftime('%e %B %Y', time());
 // 15 minutes refresh
 $refreshrate = 900;
 session_start();
-
 ?>
 
 <!doctype html>
