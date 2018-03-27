@@ -123,6 +123,7 @@ class MemberHandler extends Handler {
 
     /**
      * Get members that are not present NOW.
+     *
      * @return array
      */
     public function getAbsent(){
@@ -139,7 +140,8 @@ class MemberHandler extends Handler {
     }
 
     /**
-     * Get members that are not present NOW.
+     * Get teammembers that are not present NOW.
+     *
      * @return array
      */
     public function getAbsentByTeam(int $id){
@@ -159,15 +161,16 @@ class MemberHandler extends Handler {
 
     /**
      * Get members that are present NOW.
+     *
      * @return array
      */
     public function getPresent(){
-        $query = 'select m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
+        $query = 'select m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
             from member m
             inner join time_off t on m.id =  t.member_id
             where NOW() not between t.start_time and t.end_time
             and m.working_days LIKE concat("%", lower(dayname(now())), "%")
-            group by m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id';
+            group by m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id';
         $sth = $this->dbh->prepare($query);
         $sth->execute();
         $rows = $sth->fetchAll();
@@ -175,17 +178,18 @@ class MemberHandler extends Handler {
     }
 
     /**
-     * Get members that are not present NOW.
+     * Get teammembers that are not present NOW.
+     *
      * @return array
      */
     public function getPresentByTeam(int $id){
-        $query = 'select m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
+        $query = 'select m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
             from member m
             inner join time_off t on m.id =  t.member_id
             where NOW() not between t.start_time and t.end_time
             and m.working_days LIKE concat("%", lower(dayname(now())), "%")
             and team_id=:team_id
-            group by m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id';
+            group by m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id';
         $sth = $this->dbh->prepare($query);
         $sth->bindParam('team_id', $id);
         $sth->execute();
