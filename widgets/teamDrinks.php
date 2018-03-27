@@ -7,8 +7,9 @@
 <link rel="stylesheet" href="widgets/teamDrinks.css">
 
 <div id="teamDrinks" class="widgetBoxSmall">
-    <h2>Tijd voor koffie!</h2>
-    <div id="current-getter">
+    <h2><img src="widgets/coffee.png">
+        Tijd voor koffie!</h2>
+    <div id="current-waiter">
 
         <?php
         // Determine if a new 'waiter' needs to be appointed.
