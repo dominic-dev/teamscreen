@@ -1,4 +1,9 @@
-<!--author: Paul Sinterniklaas-->
+<!--
+    CLEAN COFFEE MACHINE WIDGET
+    This widget periodically appoints a present team member ('the cleaner')
+    to clean the coffee machine
+    @authors: Paul
+-->
 
 <?php
 
