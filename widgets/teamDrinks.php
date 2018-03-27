@@ -31,22 +31,33 @@
         if($refresh){
             foreach($teams as $team) {
                 $presTeamMembers = $memberHandler->getPresentByTeam($team->getId());
-                $randomPresentTeamMember = $presTeamMembers[array_rand($presTeamMembers, 1)];
-                $_SESSION['teams'][$team->getId()]['waiterId'] = $randomPresentTeamMember->getId();
+                if(empty($presTeamMembers)) {
+                    echo "No team members present...";
+                    $_SESSION['teams'][$team->getId()]['waiterId'] = -1;
+                }
+                else{
+                    $randomPresentTeamMember = $presTeamMembers[array_rand($presTeamMembers, 1)];
+                    $_SESSION['teams'][$team->getId()]['waiterId'] = $randomPresentTeamMember->getId();
+                }
             }
             $_SESSION['timeTeamDrinks'] = time();
         }
 
         $waiter = null;
-
-        foreach($presentTeamMembers as $presentTeamMember) {
-
-            if( $_SESSION['teams'][$teamId]['waiterId'] == $presentTeamMember->getId()){
-                //waiter will always be determined in this loop
-                $waiter = $presentTeamMember;
-                break;
-            }
+        if($_SESSION['teams'][$teamId]['waiterId'] == -1){
+            echo "No team members present...";
+            exit();
         }
+        else{
+            $waiter = $presentTeamMembers[$_SESSION['teams'][$teamId]['waiterId']];
+        }
+
+//        foreach($presentTeamMembers as $presentTeamMember) {
+//            if( $_SESSION['teams'][$teamId]['waiterId'] == $presentTeamMember->getId()){
+//                $waiter = $presentTeamMember;
+//                break;
+//            }
+//        }
 
         ?>
         <img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=<?= $waiter->getUsername(); ?>">
