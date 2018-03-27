@@ -1,12 +1,15 @@
 #timeOff {
     overflow: hidden;
-    overflow-y: scroll;
+
 }
 
 #timeOff-list {
     background-color: #212C36;
     color: #FFFFFF;
     padding:20px;
+    overflow: hidden;
+    overflow-y: scroll;
+    font-size: 15px;
 }
 
 .timeOff-box {
@@ -19,4 +22,31 @@
     color: #FFFFFF;
     background-color: #45505A;
     border-radius: 4px;
+    height: 40px;
+
 }
+
+.timeOff-item img {
+    vertical-align: middle;
+}
+
+.timeOff-item span {
+    line-height: 24px;
+    margin-left: 10px;
+}
+.timeOff-item img.userimg {
+    border-radius: 50%;
+}
+
+.tab {
+    float: right;
+}
+
+#timeOff-name {
+    float: top;
+}
+
+#timeOff-date {
+    float: bottom;
+}
+
