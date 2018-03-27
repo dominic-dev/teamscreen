@@ -13,10 +13,8 @@
 
         <?php
 
-
         // $_SESSION['teams'][$teamId]]['waiterId'] = ??? ;
 
-        var_dump($_SESSION['indexTeamMember']);
         // Determine if a new 'waiter' needs to be appointed.
         $refresh=false;
 
@@ -37,9 +35,11 @@
             $_SESSION['indexTeamMember'] = $randomIndex;
             $_SESSION['timeTeamDrinks'] = time();
         }
+
+        echo('present tm ');
         var_dump($presentTeamMembers);
+        var_dump($_SESSION['indexTeamMember']);
         $waiter = ($presentTeamMembers[$_SESSION['indexTeamMember']]);
-        var_dump($waiter);
         ?>
 
         <img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=<?= $waiter->getUsername(); ?>">

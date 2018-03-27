@@ -22,7 +22,8 @@ if($teamId){
 
     $presentAllMembers = $memberHandler->getPresent();
     $presentTeamMembers = $memberHandler->getPresentByTeam($teamId);
-
+    echo('1');
+    var_dump($presentTeamMembers);
     $timeOffThisWeek = $timeOffHandler->getByTeamThisWeek($teamId);
     $timeOffNextWeek = $timeOffHandler->getByTeamNextWeek($teamId);
 
