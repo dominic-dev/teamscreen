@@ -62,8 +62,8 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
     session_start();
     $_SESSION['editSuccess'] = "Lid succesvol gewijzigd";
 
-    //TO DO : redirect
-    header('Location: '. 'edit.php?id=' . $member->getId());
+    //Redirect to edit member by id
+    header('Location: edit.php?id=' . $member->getId());
 
     die();
 

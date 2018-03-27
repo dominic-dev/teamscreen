@@ -9,6 +9,16 @@ require_once('../../handlers/MemberHandler.php');
  * Authors: Dominic Dingena & Carina Boom
  */
 
+/**
+ * Connect to database
+ */
+$db = new Database();
+$conn = $db->getConnection();
+$memberHandler = new MemberHandler($conn);
+
+/**
+ * Handle the POST-request
+ */
 if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
     // Only allow post requests.
     die();
@@ -17,13 +27,15 @@ if(!isset($_POST['id'])){
     die();
 }
 
-$db = new Database();
-$conn = $db->getConnection();
-
-$memberHandler = new MemberHandler($conn);
 $id = (int) $_POST['id'];
+$member = $memberHandler->get($id);
 
+//Delete a member
 if($memberHandler->delete($id)){
-    // forward success
+    session_start();
+    $_SESSION['message'] =  $member->getName() . ' succesvol verwijderd';
+    header('Location: ../member/list.php');
+    //If DELETE did not succeed:
+    die("fatal error");
 }
-// forward failure
+
