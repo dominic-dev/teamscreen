@@ -13,8 +13,6 @@
 
         <?php
 
-        // $_SESSION['teams'][$teamId]]['waiterId'] = ??? ;
-
         // Determine if a new 'waiter' needs to be appointed.
         $refresh=false;
 
@@ -31,17 +29,26 @@
 
         //Randomly appoint the new waiter
         if($refresh){
-            $randomIndex = array_rand($presentTeamMembers, 1);
-            $_SESSION['indexTeamMember'] = $randomIndex;
+            foreach($teams as $team) {
+                $presTeamMembers = $memberHandler->getPresentByTeam($team->getId());
+                $randomPresentTeamMember = $presTeamMembers[array_rand($presTeamMembers, 1)];
+                $_SESSION['teams'][$team->getId()]['waiterId'] = $randomPresentTeamMember->getId();
+            }
             $_SESSION['timeTeamDrinks'] = time();
         }
 
-        echo('present tm ');
-        var_dump($presentTeamMembers);
-        var_dump($_SESSION['indexTeamMember']);
-        $waiter = ($presentTeamMembers[$_SESSION['indexTeamMember']]);
-        ?>
+        $waiter = null;
 
+        foreach($presentTeamMembers as $presentTeamMember) {
+
+            if( $_SESSION['teams'][$teamId]['waiterId'] == $presentTeamMember->getId()){
+                //waiter will always be determined in this loop
+                $waiter = $presentTeamMember;
+                break;
+            }
+        }
+
+        ?>
         <img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=<?= $waiter->getUsername(); ?>">
         <span class="name"><?= $waiter->getName(); ?></span>, het is jouw beurt om koffie te halen voor:
     </div>
