@@ -1,6 +1,5 @@
 #timeOff {
     overflow: hidden;
-
 }
 
 #timeOff-list {
@@ -8,12 +7,12 @@
     color: #FFFFFF;
     padding:20px;
     overflow: hidden;
-    overflow-y: scroll;
     font-size: 15px;
 }
 
 .timeOff-box {
     display: inline-block;
+    margin-top: -5px;
 }
 
 .timeOff-item {
@@ -23,10 +22,11 @@
     background-color: #45505A;
     border-radius: 4px;
     height: 40px;
-
 }
 
-.timeOff-item img {
+
+
+.timeOff-content {
     vertical-align: middle;
 }
 
@@ -36,17 +36,26 @@
 }
 .timeOff-item img.userimg {
     border-radius: 50%;
+    border: 2px solid;
+    margin-bottom: 10px;
 }
 
-.tab {
-    float: right;
+.timeOff-avatar {
+    float: left;
 }
 
-#timeOff-name {
-    float: top;
+.timeOff-name {
+    float:left;
+    clear:left;
 }
 
-#timeOff-date {
-    float: bottom;
+.timeOff-date {
+    float:left;
+    clear:left;
+}
+
+.memberInfo {
+
+
 }
 
