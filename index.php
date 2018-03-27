@@ -46,7 +46,7 @@ session_start();
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
-         var allMembers = JSON.parse('<?= json_encode($allMembers)?>');
+         var allMembers = JSON.parse('<?= json_encode($presentCoffeeMachineUsers)?>');
          var teamMembers = JSON.parse('<?= json_encode($teamMembers)?>');
        </script>
     <script src="main.js"></script>

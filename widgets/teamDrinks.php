@@ -2,7 +2,7 @@
 
 <div id="teamDrinks" class="widgetBoxSmall">
     <h2><img src="widgets/coffee.png">
-        ijd voor koffie!</h2>
+        Tijd voor koffie!</h2>
     <div id="current-getter">
         <img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=petri"><span class="name">Agung</span>, het is jouw beurt om
         koffie te halen voor:
@@ -10,7 +10,7 @@
 
     <div class="scrollable" id="drink-list">
         <ul id="drink-items">
-            <?php foreach ($allMembers as $member): ?>
+            <?php foreach ($presentCoffeeMachineUsers as $member): ?>
                 <li class='drink-item'>
                     <img class="userimg"
                          src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=small&ownerId=<?= $member->getUsername(); ?>"/>
