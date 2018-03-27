@@ -33,7 +33,7 @@ $cleaner = ($allMembers[$_SESSION['indexMember']]);
 <link rel="stylesheet" href="widgets/cleanCoffeeMachine.css">
 
 <div id="cleanCoffeeMachine" class="widgetBoxSmall">
-    <h2>Koffieapparaat schoonmaken</h2>
+    <h2><img="Koffieapparaat schoonmaken</h2>
 
     <div id="cleanerAvatar">
 
