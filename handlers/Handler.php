@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Handler
+ * Abstract Class Handler
  *
  * Authors: Dominic Dingena & Carina Boom
  */
@@ -10,6 +10,7 @@ abstract class Handler {
 
     /**
      * Handler constructor.
+     *
      * @param PDO $dbh
      * @param string|null $table_name
      */
