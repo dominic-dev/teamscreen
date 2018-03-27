@@ -11,12 +11,7 @@ $tabMembers = $teamMembers;
 ?>
 
 <div id="timeOff" class="widgetBoxSmall">
-    <h2><span class="timeOff-box" id="title">&#127958 Vrije dagen</span>
-        <span class="tab" "timeOff-box">
-            <button class="tablinks" onclick="">Huidige week</button>
-            <button class="tablinks" onclick="">Volgende week</button>
-        </span>
-    </h2>
+    <h2>&#127958 Vrije dagen</h2>
 
     <div id="timeOff-list">
         <?php foreach ($tabMembers as $member): ?>
