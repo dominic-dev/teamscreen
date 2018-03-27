@@ -15,6 +15,23 @@ class TimeOff{
     private $startTime;
     private $endTime;
     private $memberId;
+    private $member;
+
+    /**
+     * @return mixed
+     */
+    public function getMember()
+    {
+        return $this->member;
+    }
+
+    /**
+     * @param mixed $member
+     */
+    public function setMember($member)
+    {
+        $this->member = $member;
+    }
 
     /**
      * TimeOff constructor.

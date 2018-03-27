@@ -2,15 +2,26 @@
 require_once('handlers/Database.php');
 require_once('handlers/MemberHandler.php');
 require_once('handlers/TeamHandler.php');
+require_once('handlers/TimeOffHandler.php');
 
 $db = new Database();
 $conn = $db->getConnection();
 $memberHandler = new MemberHandler($conn);
 $teamHandler = new TeamHandler($conn);
+$timeOffHandler = new TimeOffHandler($conn);
 $teams = $teamHandler->getAll();
 
-$allMembers = $memberHandler->getAll();
-$teamMembers = $memberHandler->getByTeam((int) $_GET['teamid']);
+$teamId = (int) $_GET['teamid'];
+if($teamId){
+    $allMembers = $memberHandler->getAll();
+    $teamMembers = $memberHandler->getByTeam($teamId);
+
+    $presentAllMembers = $memberHandler->getPresent();
+    $presentTeamMembers = $memberHandler->getPresentByTeam($teamId);
+
+    $timeOffThisWeek = $timeOffHandler->getByTeamThisWeek($teamId);
+    $timeOffNextWeek = $timeOffHandler->getByTeamNextWeek($teamId);
+}
 
 setlocale(LC_TIME, 'nld_nld' );
 $date = strftime('%e %B %Y', time());

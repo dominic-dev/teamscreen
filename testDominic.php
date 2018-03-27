@@ -11,14 +11,11 @@ require_once('models/Member.php');
 require_once('handlers/Database.php');
 require_once('handlers/TeamHandler.php');
 require_once('handlers/MemberHandler.php');
+require_once('handlers/TimeOffHandler.php');
 
 $db = new Database();
 $dbh = $db->getConnection();
 
-$th = new TeamHandler($dbh);
-
-
-$team = new Team();
-$team->setLabel("Pwap");
-$result = $th->add($team);
-var_dump($result);
+$th = new TimeOffHandler($dbh);
+$onLeave = $th->getByTeamThisWeek(1);
+print_r($onLeave);
