@@ -18,4 +18,4 @@ $dbh = $db->getConnection();
 
 $th = new TimeOffHandler($dbh);
 $onLeave = $th->getByTeamThisWeek(1);
-var_dump($onLeave);
+print_r($onLeave);

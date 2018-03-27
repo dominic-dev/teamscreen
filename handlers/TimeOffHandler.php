@@ -63,15 +63,18 @@ class TimeOffHandler extends Handler {
 
     public function getByTeamThisWeek(int $id){
         $dt = new DateTime();
+        // end of this week
         $dt->modify('next saturday');
         $nextSaturday = $dt->format('Y-m-d h:m:s');
 
         $query = 'select *
             from member m
-            inner join time_off t on m.id =  t.member_id
-            where t.start_time between NOW() and :next_saturday 
+            inner join time_off t on m.id = t.member_id
+            where (t.start_time between NOW() and :next_saturday)
+            or (t.end_time between NOW() and :next_saturday)
+            or (NOW() between t.start_time and t.end_time)
             and m.working_days LIKE concat("%", lower(dayname(now())), "%")
-            and team_id= :team_id';
+            and team_id = :team_id';
         $sth = $this->dbh->prepare($query);
         $sth->bindValue('team_id', $id);
         $sth->bindValue('next_saturday', $nextSaturday);
@@ -79,4 +82,36 @@ class TimeOffHandler extends Handler {
         $rows = $sth->fetchAll();
         return $this->rowsToObjects($rows);
     }
+
+    public function getByTeamNextWeek(int $id){
+        $dt = new DateTime();
+        // beginning of the next week
+        $dt->modify('next sunday');
+        $nextSunday = $dt->format('Y-m-d h:m:s');
+        // arbitrary day within the next week
+        $dt->modify('next wednesday');
+        $nextWednesday = $dt->format('Y-m-d h:m:s');
+        // end of the next week
+        $dt->modify('next saturday');
+        $nextSaturday = $dt->format('Y-m-d h:m:s');
+
+        $query = 'select *
+            from member m
+            inner join time_off t on m.id = t.member_id
+            where (t.start_time between :next_sunday and :next_saturday)
+            or (t.end_time between :next_sunday and :next_saturday)
+            or (:next_wednesday between t.start_time and t.end_time)
+            and m.working_days LIKE concat("%", lower(dayname(now())), "%")
+            and team_id = :team_id';
+        $sth = $this->dbh->prepare($query);
+        $sth->bindValue('team_id', $id);
+        $sth->bindValue('next_sunday', $nextSunday);
+        $sth->bindValue('next_wednesday', $nextWednesday);
+        $sth->bindValue('next_saturday', $nextSaturday);
+        $sth->execute();
+        $rows = $sth->fetchAll();
+        return $this->rowsToObjects($rows);
+    }
+
+
 }
