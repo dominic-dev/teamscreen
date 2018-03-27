@@ -62,7 +62,7 @@ class TimeOffHandler extends Handler {
     }
 
     /**
-     * Retrieve a team present this week from the database
+     * Retrieve a team's time off this week from the database
      *
      * @param int $id
      * @return array
@@ -90,7 +90,7 @@ class TimeOffHandler extends Handler {
     }
 
     /**
-     * Retrieve a team present next week from the database
+     * Retrieve a team's time off next week from the database
      *
      * @param int $id
      * @return array
