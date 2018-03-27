@@ -19,6 +19,8 @@ if($teamId){
     $presentAllMembers = $memberHandler->getPresent();
     $presentTeamMembers = $memberHandler->getPresentByTeam($teamId);
 
+    $presentCoffeeMachineUsers = $memberHandler->getPresentCoffeeMachineUsers();
+
     $timeOffThisWeek = $timeOffHandler->getByTeamThisWeek($teamId);
     $timeOffNextWeek = $timeOffHandler->getByTeamNextWeek($teamId);
 }

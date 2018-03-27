@@ -107,7 +107,7 @@ class MemberHandler extends Handler {
      * @param int $teamId
      * @return array
      */
-    public function getByTeam(int $teamId){
+    public function getByTeam(int $teamId) : array {
         $query = "select * from member where team_id = :id";
         $sth = $this->dbh->prepare($query);
         $sth->bindParam(':id', $teamId, PDO::PARAM_INT);
@@ -126,7 +126,7 @@ class MemberHandler extends Handler {
      *
      * @return array
      */
-    public function getAbsent(){
+    public function getAbsent() : array {
         $query = 'select m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
             from member m
             inner join time_off t on m.id =  t.member_id
@@ -144,7 +144,7 @@ class MemberHandler extends Handler {
      *
      * @return array
      */
-    public function getAbsentByTeam(int $id){
+    public function getAbsentByTeam(int $id) : array {
         $query = 'select m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
             from member m
             inner join time_off t on m.id =  t.member_id
@@ -164,7 +164,7 @@ class MemberHandler extends Handler {
      *
      * @return array
      */
-    public function getPresent(){
+    public function getPresent() : array {
         $query = 'select m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
             from member m
             inner join time_off t on m.id =  t.member_id
@@ -182,7 +182,7 @@ class MemberHandler extends Handler {
      *
      * @return array
      */
-    public function getPresentByTeam(int $id){
+    public function getPresentByTeam(int $id) : array {
         $query = 'select m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
             from member m
             inner join time_off t on m.id =  t.member_id
@@ -192,6 +192,24 @@ class MemberHandler extends Handler {
             group by m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id';
         $sth = $this->dbh->prepare($query);
         $sth->bindParam('team_id', $id);
+        $sth->execute();
+        $rows = $sth->fetchAll();
+        return $this->rowsToObjects($rows);
+    }
+
+    /**
+     * Get present members who use the coffee machine
+     * @return array
+     */
+    public function getPresentCoffeeMachineUsers() : array {
+        $query = 'select m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
+            from member m
+            inner join time_off t on m.id =  t.member_id
+            where NOW() not between t.start_time and t.end_time
+            and m.working_days LIKE concat("%", lower(dayname(now())), "%")
+            and m.drink_preference in ('coffee', 'tea')
+            group by m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id';
+        $sth = $this->dbh->prepare($query);
         $sth->execute();
         $rows = $sth->fetchAll();
         return $this->rowsToObjects($rows);
