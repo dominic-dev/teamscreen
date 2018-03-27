@@ -9,12 +9,7 @@ $tabMembers = $allMembers;
 ?>
 
 <div id="daysOff" class="widgetBoxSmall">
-    <h2><span>&#127958 Vrije dagen</span>
-        <div class="tab">
-            <button class="tablinks" onclick="<?php //currentWeekMembers()  ?>; <script> window.location.reload(); </script>">Huidige week</button>
-            <button class="tablinks" onclick="<?php //nextWeekMembers()  ?>; ">Volgende week</button>
-        </div>
-    </h2>
+    <h2>&#127958 Vrije dagen</h2>
 
     <div id="timeOff-list">
         <?php foreach ($tabMembers as $member): ?>
