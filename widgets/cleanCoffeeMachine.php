@@ -15,7 +15,7 @@
     <?php
     const CLEAN_COFFEE_REFRESH = 60 * 60 * 24;
 
-    if (empty($presentCoffeeMachineUsers)) {
+    if (empty($presentCoffeeMachineUserIds)) {
         echo '<div id="cleanerTxt">Er is op dit moment niemand beschikbaar.</div>';
     } else {
         $refresh = true;
@@ -27,13 +27,11 @@
         if ($refresh) {
             //picks a random member of the presentCoffeeMachineUsers list
             $randomIndex = array_rand($presentCoffeeMachineUsers, 1);
-            $randomMember = $presentCoffeeMachineUsers[$randomIndex];
-            $randomMemberId = $randomMember->getId;
-            // TODO use member id
+            $randomMemberId = $presentCoffeeMachineUserIds[$randomIndex];
             $_SESSION['coffeeCleanerId'] = $randomMemberId;
             $_SESSION['timeCleanCoffeeMachine'] = time();
         }
-        $cleaner = ($presentCoffeeMachineUsers[$_SESSION['coffeeCleanerId']]);
+        $cleaner = $allMembers[($presentCoffeeMachineUserIds[$_SESSION['coffeeCleanerId']])];
         ?>
         <div id="cleanerAvatar">
             <img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?ownerId=<?= $cleaner->getUsername() ?>"/>
