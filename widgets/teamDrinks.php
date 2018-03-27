@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="widgets/teamDrinks.css">
 
 <div id="teamDrinks" class="widgetBoxSmall">
-    <h2>Tijd voor koffie!</h2>
+    <h2><img src="widgets/coffee.png">
+        ijd voor koffie!</h2>
     <div id="current-getter">
         <img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=petri"><span class="name">Agung</span>, het is jouw beurt om
         koffie te halen voor:
