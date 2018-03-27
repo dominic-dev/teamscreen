@@ -70,20 +70,20 @@ class TimeOffHandler extends Handler {
     public function getByTeamThisWeek(int $id){
         $dt = new DateTime();
         // end of this week
-        $dt->modify('next saturday');
-        $nextSaturday = $dt->format('Y-m-d h:m:s');
+        $dt->modify('this saturday');
+        $thisSaturday = $dt->format('Y-m-d h:m:s');
 
         $query = 'select *
             from member m
             inner join time_off t on m.id = t.member_id
-            where (t.start_time between NOW() and :next_saturday)
-            or (t.end_time between NOW() and :next_saturday)
+            where (t.start_time between NOW() and :this_saturday)
+            or (t.end_time between NOW() and :this_saturday)
             or (NOW() between t.start_time and t.end_time)
             and m.working_days LIKE concat("%", lower(dayname(now())), "%")
             and team_id = :team_id';
         $sth = $this->dbh->prepare($query);
         $sth->bindValue('team_id', $id);
-        $sth->bindValue('next_saturday', $nextSaturday);
+        $sth->bindValue('this_saturday', $thisSaturday);
         $sth->execute();
         $rows = $sth->fetchAll();
         return $this->rowsToObjects($rows);
