@@ -46,7 +46,6 @@
         $waiter = null;
         if($_SESSION['teams'][$teamId]['waiterId'] == -1){
             echo "No team members present...";
-            exit();
         }
         else{
             $waiter = $presentTeamMembers[$_SESSION['teams'][$teamId]['waiterId']];
