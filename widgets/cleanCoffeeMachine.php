@@ -1,6 +1,6 @@
 <!--
     CLEAN COFFEE MACHINE WIDGET
-    This widget periodically appoints a present team member ('the cleaner')
+    This widget periodically appoints a present Coffee Machine User ('cleaner')
     to clean the coffee machine
     @authors: Paul
 -->
@@ -20,13 +20,13 @@ else{
 
 if($refresh){
     //picks a random index of the allMembers list
-    $randomIndex = array_rand($allMembers,1);
+    $randomIndex = array_rand($presentCoffeeMachineUsers,1);
     $_SESSION['indexMember'] = $randomIndex;
     $_SESSION['timeCleanCoffeeMachine'] = time();
 }
 
 //picks the Member-object that belongs to the random index
-$cleaner = ($allMembers[$_SESSION['indexMember']]);
+$cleaner = ($presentCoffeeMachineUsers[$_SESSION['indexMember']]);
 
 ?>
 
