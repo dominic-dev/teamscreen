@@ -17,7 +17,7 @@
         $refresh=false;
 
         if(isset($_SESSION['timeTeamDrinks'])){
-            $refresh = (time() - $_SESSION['timeTeamDrinks']) >= 9; // 3600;
+            $refresh = (time() - $_SESSION['timeTeamDrinks']) >= 3600;
         }
         // Session variable is not set.
         else{
