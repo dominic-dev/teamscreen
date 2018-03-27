@@ -230,7 +230,7 @@ class MemberHandler extends Handler {
     }
 
     /**
-     * Filter members by team.
+     * Filter members by team. Return an array of member id's.
      *
      * @param array $members
      * @param int $id
@@ -240,13 +240,14 @@ class MemberHandler extends Handler {
         $result = [];
         foreach($members as $member){
             if($member->getTeamId() === $id){
-                $result[] = $member;
+                $result[] = $member->getId();
             }
         }
+        return $result;
     }
 
     /**
-     * Filter members by present.
+     * Filter members by present. Return an array of member id's.
      *
      * @param array $members
      * @param bool $value
@@ -255,12 +256,39 @@ class MemberHandler extends Handler {
         $result = [];
         foreach($members as $member){
             if ($member->getPresent() === $value){
-                $result[] = $member;
+                $result[] = $member->getId();
             }
         }
+        return $result;
+    }
+
+    /**
+     * Filter members by team. Return an array of member id's.
+     *
+     * @param array $members
+     * @param int $id
+     * @param $present
+     * @return array
+     */
+    public function filterByTeamAndPresent(array $members, int $id, $present=true) : array {
+        $result = [];
+        foreach($members as $member){
+            if($member->getTeamId() === $id && $member->getPresent() === $present){
+                $result[] = $member->getId();
+            }
+        }
+        return $result;
     }
 
 
-    
-
+    public function filterUsesCoffeeMachineAndPresent(array $members){
+        $result = [];
+        foreach($members as $member) {
+            if (in_array($member->getDrinkPreference(), ['coffee', 'tea'])
+                && $member->getPresent()){
+                $result[] = $member->getId();
+            }
+        }
+        return $result;
+    }
 }
