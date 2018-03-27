@@ -1,8 +1,6 @@
 <?php
 
-/**
- * Constant variables
- */
+/** Constant variables */
 define("USERNAME", 'teamscreen');
 define("PASSWORD", 'tsadmin');
 
@@ -12,10 +10,11 @@ define("PASSWORD", 'tsadmin');
  * Authors: Dominic Dingena & Carina Boom
  */
 class Database{
+    /** @var */
     private $dbh;
 
     /**
-     * Database constructor.
+     * Database constructor
      */
     public function __construct(){
         $this->connect();
@@ -29,6 +28,11 @@ class Database{
         $this->dbh = new PDO($dsn, USERNAME, PASSWORD);
     }
 
+    /**
+     * Return current connection
+     *
+     * @return PDO
+     */
     public function getConnection() : PDO {
         return $this->dbh;
     }

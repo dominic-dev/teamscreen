@@ -123,6 +123,7 @@ class MemberHandler extends Handler {
 
     /**
      * Get members that are not present NOW.
+     *
      * @return array
      */
     public function getAbsent(){
@@ -139,7 +140,8 @@ class MemberHandler extends Handler {
     }
 
     /**
-     * Get members that are not present NOW.
+     * Get teammembers that are not present NOW.
+     *
      * @return array
      */
     public function getAbsentByTeam(int $id){
@@ -159,6 +161,7 @@ class MemberHandler extends Handler {
 
     /**
      * Get members that are present NOW.
+     *
      * @return array
      */
     public function getPresent(){
@@ -175,7 +178,8 @@ class MemberHandler extends Handler {
     }
 
     /**
-     * Get members that are not present NOW.
+     * Get teammembers that are not present NOW.
+     *
      * @return array
      */
     public function getPresentByTeam(int $id){

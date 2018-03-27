@@ -47,7 +47,7 @@ class TimeOffHandler extends Handler {
     }
 
     /**
-     * Update a member in the database
+     * Update a time-off object in the database
      *
      * @param Member $member
      */
@@ -61,6 +61,12 @@ class TimeOffHandler extends Handler {
         $statement->execute();
     }
 
+    /**
+     * Retrieve a team present this week from the database
+     *
+     * @param int $id
+     * @return array
+     */
     public function getByTeamThisWeek(int $id){
         $dt = new DateTime();
         // end of this week
@@ -83,6 +89,12 @@ class TimeOffHandler extends Handler {
         return $this->rowsToObjects($rows);
     }
 
+    /**
+     * Retrieve a team present next week from the database
+     *
+     * @param int $id
+     * @return array
+     */
     public function getByTeamNextWeek(int $id){
         $dt = new DateTime();
         // beginning of the next week
