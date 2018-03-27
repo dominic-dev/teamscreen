@@ -22,8 +22,8 @@ if($teamId){
 
     $presentAllMembers = $memberHandler->getPresent();
     $presentTeamMembers = $memberHandler->getPresentByTeam($teamId);
-    echo('1');
-    var_dump($presentTeamMembers);
+//    echo('1');
+//    var_dump($presentTeamMembers);
     $timeOffThisWeek = $timeOffHandler->getByTeamThisWeek($teamId);
     $timeOffNextWeek = $timeOffHandler->getByTeamNextWeek($teamId);
 
@@ -36,7 +36,7 @@ setlocale(LC_TIME, 'nld_nld' );
 $date = strftime('%e %B %Y', time());
 
 // 15 minutes refresh
-$refreshrate = 900;
+$refreshrate = 5 ;  //900;
 session_start();
 ?>
 

@@ -17,7 +17,7 @@
         $refresh=false;
 
         if(isset($_SESSION['timeTeamDrinks'])){
-            $refresh = (time() - $_SESSION['timeTeamDrinks']) >= 3600;
+            $refresh = (time() - $_SESSION['timeTeamDrinks']) >= 9; // 3600;
         }
         // Session variable is not set.
         else{
@@ -32,7 +32,6 @@
             foreach($teams as $team) {
                 $presTeamMembers = $memberHandler->getPresentByTeam($team->getId());
                 if(empty($presTeamMembers)) {
-                    echo "No team members present...";
                     $_SESSION['teams'][$team->getId()]['waiterId'] = -1;
                 }
                 else{
@@ -50,13 +49,6 @@
         else{
             $waiter = $presentTeamMembers[$_SESSION['teams'][$teamId]['waiterId']];
         }
-
-//        foreach($presentTeamMembers as $presentTeamMember) {
-//            if( $_SESSION['teams'][$teamId]['waiterId'] == $presentTeamMember->getId()){
-//                $waiter = $presentTeamMember;
-//                break;
-//            }
-//        }
 
         ?>
         <img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=<?= $waiter->getUsername(); ?>">
