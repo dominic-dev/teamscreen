@@ -23,6 +23,13 @@ if($teamId){
     $timeOffNextWeek = $timeOffHandler->getByTeamNextWeek($teamId);
 }
 
+/**
+ *
+ *  LOCAL DEVIATIONB FOR TESTING PURPOSES
+ *
+ */
+$presentTeamMembers = $teamMembers;
+
 setlocale(LC_TIME, 'nld_nld' );
 $date = strftime('%e %B %Y', time());
 
