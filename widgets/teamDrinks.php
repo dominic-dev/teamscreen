@@ -1,7 +1,7 @@
 <!--
     TEAM DRINKS WIDGET
     This widget periodically appoints a present team member ('the waiter')
-    to fetch the drinks for his/her team.
+    to fetch the drinks for his/her team during office hours.
 
     @authors: Emiel and Petri
     @review: Carina
@@ -15,19 +15,30 @@
     <div id="current-waiter">
 
         <?php
+        // array with current possible drink preferences
+        $drinkPreferences = ['coffee' => 'koffie', 'tea' => 'thee', 'water' => ' water'];
         /**
          * Determine if a new 'waiter' needs to be appointed.
          * Default refresh rate 3600 = 1 hour.
          */
-        $refresh=false;
-        if(isset($_SESSION['timeTeamDrinks'])){
-            $refresh = (time() - $_SESSION['timeTeamDrinks']) >= 3600;
-        }
+        $datetime = new DateTime();
+        // Test different datetimes
+        //$datetime=date_create("2018-03-28 16:59:00");
+        //$date = $datetime->format('d/m/Y');
+        $time = $datetime->format('H:i:s');
 
-        /** Session variable is not set. */
-        else{
-            $_SESSION['timeTeamDrinks'] = time();
-            $refresh = true;
+        /** Only refresh during office hours (between 09:00 and 17:00)  */
+        $officeHours = (int) $time >= 9 && (int) $time < 17;
+
+        $refresh = false;
+        if ($officeHours == 1) {
+            if (isset($_SESSION['timeTeamDrinks'])) {
+                $refresh = (time() - $_SESSION['timeTeamDrinks']) >= 3600;
+            } /** Session variable is not set. */
+            else {
+                $_SESSION['timeTeamDrinks'] = time();
+                $refresh = true;
+            }
         }
 
         /** Randomly appoint the new waiter */
@@ -56,17 +67,19 @@
 
     <div class="scrollable" id="drink-list">
         <ul id="drink-items">
-            <!-- List the team members that are present today -->
-            <?php foreach ($presentTeamMembers as $member): ?>
+            <!-- List the team member that are present today-->
+            <?php foreach ($presentTeamMembers as $member) { ?>
                 <li class='drink-item'>
                     <img class="userimg"
                          src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=small&ownerId=<?= $member->getUsername(); ?>"/>
                     <span><?= $member->getName(); ?></span>
-                    <span class='icon'><img
-                                src="widgets/<?= $member->getDrinkPreference(); ?>.png"/>(<?= $member->getDrinkPreference(); ?>
-                        )</span>
+                    <?php foreach ($drinkPreferences as $item => $itemNL) {
+                        if (($member->getDrinkPreference()) == $item) {?>
+                            <span class='icon'><img src="widgets/<?= $item ?>.png"/>(<?= $itemNL ?>)</span>
+                        <?php } ?>
+                    <?php } ?>
                 </li>
-            <?php endforeach; ?>
+            <?php } ?>
         </ul>
     </div>
 </div>
