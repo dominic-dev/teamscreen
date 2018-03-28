@@ -9,6 +9,7 @@ $calendarIcon = '&#128197';
 $clockIcon = '&#128336';
 $workDayEnd = 17;
 $workDayStart = 9;
+$fullWorkDay = 8;
 
 /**
  * returns different formatted strings based on start and enddate of leave
@@ -23,13 +24,14 @@ $workDayStart = 9;
 function dateString($startDate, $endDate) : string
 {
 
-    global $workDayEnd, $workDayStart, $clockIcon;
+    global $fullWorkDay, $clockIcon;
 
     $sameDay = date_format($startDate, 'd-m') === date_format($endDate, 'd-m');
-    $goneBeforeEnd = ((int)date_format($startDate, 'H')) > $workDayStart && ((int)date_format($endDate, 'H')) > $workDayEnd;
+    $partDay = ((int)date_format($endDate, 'H')) - ((int)date_format($startDate, 'H')) < $fullWorkDay;
 
-    if ($sameDay && $goneBeforeEnd) {
-        $result = date_format($startDate, 'd-m') . ' ' . $clockIcon . ' vanaf ' . date_format($startDate, 'H:i');
+    if ($sameDay && $partDay) {
+        $result = date_format($startDate, 'd-m') . ' ' . $clockIcon . ' ' . date_format($startDate, 'H:i')
+            . ' t/m ' . date_format($endDate, 'H:i');
     } elseif ($sameDay) {
         $result = date_format($endDate, 'd-m');
     } else {
