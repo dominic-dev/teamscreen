@@ -15,19 +15,22 @@
     <div id="current-waiter">
 
         <?php
-        // Determine if a new 'waiter' needs to be appointed.
+        /**
+         * Determine if a new 'waiter' needs to be appointed.
+         * Default refresh rate 3600 = 1 hour.
+         */
         $refresh=false;
         if(isset($_SESSION['timeTeamDrinks'])){
             $refresh = (time() - $_SESSION['timeTeamDrinks']) >= 3600;
         }
 
-        // Session variable is not set.
+        /** Session variable is not set. */
         else{
             $_SESSION['timeTeamDrinks'] = time();
             $refresh = true;
         }
 
-        //Randomly appoint the new waiter
+        /** Randomly appoint the new waiter */
         if($refresh){
             foreach($teams as $team) {
                 $presTeamMembers = $memberHandler->getPresentByTeam($team->getId());
@@ -39,14 +42,16 @@
             $_SESSION['timeTeamDrinks'] = time();
         }
 
-        // Are team members present?
+        /** Are team members present? */
         if(empty($presentTeamMembers)) {
             echo '<img src="widgets/void.jpg">Er is niemand aanwezig om koffie te halen...';
         }
         else{
             $waiter = $presentTeamMembers[$_SESSION['teams'][$teamId]['waiterId']];
-            echo '<img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=' . $waiter->getUsername() . '">';
-            echo '<span class="name">' . $waiter->getName() . '</span>, het is jouw beurt om koffie te halen voor:';
+            echo '<img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=' .
+                $waiter->getUsername() . '">';
+            echo '<span class="name">' . $waiter->getName() . '</span>
+                , het is jouw beurt om koffie te halen voor:';
         }
         ?>
     </div>
@@ -57,10 +62,12 @@
             <?php foreach ($presentTeamMembers as $member): ?>
                 <li class='drink-item'>
                     <img class="userimg"
-                         src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=small&ownerId=<?= $member->getUsername(); ?>"/>
+                         src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=small&ownerId=
+                            <?= $member->getUsername(); ?>"/>
                     <span><?= $member->getName(); ?></span>
                     <span class='icon'><img
-                                src="widgets/<?= $member->getDrinkPreference(); ?>.png"/>(<?= $member->getDrinkPreference(); ?>
+                                src="widgets/<?= $member->getDrinkPreference(); ?>.png"/>(
+                                    <?= $member->getDrinkPreference(); ?>
                         )</span>
                 </li>
             <?php endforeach; ?>
