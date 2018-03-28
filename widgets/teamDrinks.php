@@ -61,22 +61,4 @@
         </ul>
     </div>
 </div>
-<script>
-    /**
-     * Animate the list if the list is longer than the defined widget height.
-     * @type {HTMLElement | null}
-     */
-    var drinklist = document.getElementById('drink-list');
-    function step() {
-        console.log(drinklist.scrollTop+2);
-        console.log((drinklist.scrollHeight - drinklist.offsetHeight ));
-        if (drinklist.scrollTop<=0) {
-            direction = 1;
-        } else if (drinklist.scrollTop+2 > ((drinklist.scrollHeight - drinklist.offsetHeight ))) {
-            direction = -1;
-        }
-        drinklist.scrollTop += direction;
-        window.requestAnimationFrame(step);
-    }
-    window.requestAnimationFrame(step);
-</script>
+<script src="widgets/WidgetFrameControl.js" type="text/javascript"></script>
