@@ -27,8 +27,25 @@ class MemberHandler extends Handler {
         $member->setDrinkPreference($row['drink_preference']);
         $member->setWorkingDays($row['working_days']);
         $member->setTeamId($row['team_id']);
+        $member->setPresent((bool) $row['present']);
 
         return $member;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAll() : array {
+        $query = 'select m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id,
+           coalesce(NOW() not between t.start_time and t.end_time, 1)
+           and m.working_days LIKE concat("%", lower(dayname(now())), "%") as \'present\'
+           from member m
+           left join time_off t on m.id =  t.member_id
+           group by m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id, present';
+        $sth = $this->dbh->prepare($query);
+        $sth->execute();
+        $rows = $sth->fetchAll();
+        return $this->rowsToObjects($rows);
     }
 
 
@@ -106,7 +123,7 @@ class MemberHandler extends Handler {
      * @param int $teamId
      * @return array
      */
-    public function getByTeam(int $teamId){
+    public function getByTeam(int $teamId) : array {
         $query = "select * from member where team_id = :id";
         $sth = $this->dbh->prepare($query);
         $sth->bindParam(':id', $teamId, PDO::PARAM_INT);
@@ -125,7 +142,7 @@ class MemberHandler extends Handler {
      *
      * @return array
      */
-    public function getAbsent(){
+    public function getAbsent() : array {
         $query = 'select m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
             from member m
             inner join time_off t on m.id =  t.member_id
@@ -143,7 +160,7 @@ class MemberHandler extends Handler {
      *
      * @return array
      */
-    public function getAbsentByTeam(int $id){
+    public function getAbsentByTeam(int $id) : array {
         $query = 'select m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
             from member m
             inner join time_off t on m.id =  t.member_id
@@ -163,7 +180,7 @@ class MemberHandler extends Handler {
      *
      * @return array
      */
-    public function getPresent(){
+    public function getPresent() : array {
         $query = 'select m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
             from member m
             inner join time_off t on m.id =  t.member_id
@@ -181,7 +198,7 @@ class MemberHandler extends Handler {
      *
      * @return array
      */
-    public function getPresentByTeam(int $id){
+    public function getPresentByTeam(int $id) : array {
         $query = 'select m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id
             from member m
             left join time_off t on m.id =  t.member_id
@@ -214,21 +231,54 @@ class MemberHandler extends Handler {
     }
 
     /**
-     * Filter members by team.
+     * Filter members by team. Return an array of member references.
      *
      * @param array $members
      * @param int $id
-     * @return array
+     * @return array or member references.
      */
-    public function filterByTeam(array $members, int $id) : array {
+    public function filterByTeam(array &$members, int $id) : array {
         $result = [];
-        foreach($members as $member){
-            if($member->getTeamId() === $id){
-                $result[] = $member;
+        foreach($members as &$member){
+//            var_dump($member);
+            if($member->getTeamId() == $id){
+                $result[$member->getId()] = &$member;
             }
         }
+        return $result;
     }
 
-    
+    /**
+     * Filter members by present. Return an array of member references.
+     *
+     * @param array $members
+     * @param bool $value true for present false for absent
+     * @return array of member references.
+     */
+    public function filterPresent(array &$members, bool $value=true){
+        $result = [];
+        foreach($members as &$member){
+            if ($member->getPresent() === $value){
+                $result[$member->getId()] = &$member;
+            }
+        }
+        return $result;
+    }
 
+    /**
+     * Filter members keeping those who use the coffee machine.
+     * Return an array of member references.
+     * @param array $members
+     * @return array of member references.
+     */
+    public function filterUsesCoffeeMachine(array &$members){
+        $result = [];
+        foreach($members as &$member) {
+            if (in_array($member->getDrinkPreference(), ['coffee', 'tea'])
+                && $member->getPresent()){
+                $result[$member->getId()] = &$member;
+            }
+        }
+        return $result;
+    }
 }

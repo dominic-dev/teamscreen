@@ -13,8 +13,40 @@ class Member {
     // SET ('maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag') NULL,
     private $workingDays;
     private $teamId;
-
     private $timeOff;
+    private $present;
+
+    /**
+     * @return string
+     */
+    public function getAvatar() : string
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param string $avatar
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPresent() : bool
+    {
+        return $this->present;
+    }
+
+    /**
+     * @param mixed $present
+     */
+    public function setPresent(bool $present)
+    {
+        $this->present = $present;
+    }
 
     public function __construct($id=null, $username=null, $name=null, $destination=null,
                          $drinkPreference=null, $workingDays=null, $timeOff=null, $teamId=null){
@@ -33,15 +65,15 @@ class Member {
     /**
      * @return null
      */
-    public function getTeamId()
+    public function getTeamId() : int
     {
-        return $this->teamId;
+        return (int) $this->teamId;
     }
 
     /**
      * @param null $teamId
      */
-    public function setTeamId($teamId)
+    public function setTeamId(int $teamId)
     {
         $this->teamId = $teamId;
     }
@@ -49,7 +81,7 @@ class Member {
     /**
      * @return null
      */
-    public function getDestination()
+    public function getDestination() : string
     {
         return $this->destination;
     }
