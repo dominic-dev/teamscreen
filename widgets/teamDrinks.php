@@ -48,10 +48,8 @@
         }
         else{
             $waiter = $presentTeamMembers[$_SESSION['teams'][$teamId]['waiterId']];
-            echo '<img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=' .
-                $waiter->getUsername() . '">';
-            echo '<span class="name">' . $waiter->getName() . '</span>
-                , het is jouw beurt om koffie te halen voor:';
+            echo '<img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=' . $waiter->getUsername() . '">';
+            echo '<span class="name">' . $waiter->getName() . '</span>, het is jouw beurt om koffie te halen voor:';
         }
         ?>
     </div>
@@ -62,12 +60,10 @@
             <?php foreach ($presentTeamMembers as $member): ?>
                 <li class='drink-item'>
                     <img class="userimg"
-                         src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=small&ownerId=
-                            <?= $member->getUsername(); ?>"/>
+                         src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=small&ownerId=<?= $member->getUsername(); ?>"/>
                     <span><?= $member->getName(); ?></span>
                     <span class='icon'><img
-                                src="widgets/<?= $member->getDrinkPreference(); ?>.png"/>(
-                                    <?= $member->getDrinkPreference(); ?>
+                                src="widgets/<?= $member->getDrinkPreference(); ?>.png"/>(<?= $member->getDrinkPreference(); ?>
                         )</span>
                 </li>
             <?php endforeach; ?>
