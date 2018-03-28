@@ -14,16 +14,18 @@ $teams = $teamHandler->getAll();
 $teamId = (int) $_GET['teamid'];
 if($teamId){
     $allMembers = $memberHandler->getAll();
-    $teamMemberIds = $memberHandler->filterByTeam($allMembers, $teamId);
-    $presentAllMemberIds = $memberHandler->filterPresent($allMembers);
-    $presentTeamMemberIds = $memberHandler->filterByTeamAndPresent($allMembers, $teamId);
-    $presentCoffeeMachineUserIds = $memberHandler->filterUsesCoffeeMachineAndPresent($allMembers);
 
 
     // Deprecated
-    $teamMembers = $memberHandler->getByTeam($teamId);
-    $presentAllMembers = $memberHandler->getPresent();
-    $presentTeamMembers = $memberHandler->getPresentByTeam($teamId);
+//    $teamMembers = $memberHandler->getByTeam($teamId);
+//    $presentAllMembers = $memberHandler->getPresent();
+//    $presentTeamMembers = $memberHandler->getPresentByTeam($teamId);
+
+    $teamMembers = $memberHandler->filterByTeam($allMembers, $teamId);
+    $presentAllMembers = $memberHandler->filterPresent($allMembers, $teamId);
+    $presentTeamMembers = $memberHandler->filterPresent($teamMembers);
+    $presentCoffeeMachineUsers = $memberHandler->filterUsesCoffeeMachine($presentAllMembers);
+    $presentCoffeeMachineUsers[26]->setName("Agung the King");
 
     $timeOffThisWeek = $timeOffHandler->getByTeamThisWeek($teamId);
     $timeOffNextWeek = $timeOffHandler->getByTeamNextWeek($teamId);

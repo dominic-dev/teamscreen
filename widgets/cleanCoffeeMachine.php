@@ -15,7 +15,7 @@
     <?php
     const CLEAN_COFFEE_REFRESH = 1; //60 * 60 * 24;
 
-    if (empty($presentCoffeeMachineUserIds)) {
+    if (empty($presentCoffeeMachineUsers)) {
         echo '<div id="cleanerTxt">Er is op dit moment niemand beschikbaar.</div>';
     } else {
         $refresh = true;
@@ -29,8 +29,8 @@
 
         if ($refresh) {
             //picks a random member of the presentCoffeeMachineUsers list
-            $randomIndex = array_rand($presentCoffeeMachineUserIds, 1);
-            $randomMemberId = $presentCoffeeMachineUserIds[$randomIndex];
+            $randomIndex = array_rand($presentCoffeeMachineUsers, 1);
+            $randomMemberId = $presentCoffeeMachineUsers[$randomIndex]->getId();
             $_SESSION['coffeeCleanerId'] = $randomMemberId;
             $_SESSION['timeCleanCoffeeMachine'] = time();
         }

@@ -16,6 +16,19 @@ require_once('handlers/TimeOffHandler.php');
 $db = new Database();
 $dbh = $db->getConnection();
 
-$th = new TimeOffHandler($dbh);
-$onLeave = $th->getByTeamThisWeek(1);
-print_r($onLeave);
+$arr = ['a', 'b', 'c'];
+
+$arr2 = [];
+foreach($arr as &$value){
+    $arr2[] = &$value;
+}
+unset($value);
+
+var_dump($arr);
+
+foreach($arr2 as &$v){
+    $v = $v . $v;
+}
+unset($v);
+
+var_dump($arr);

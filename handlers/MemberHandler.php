@@ -230,63 +230,51 @@ class MemberHandler extends Handler {
     }
 
     /**
-     * Filter members by team. Return an array of member id's.
+     * Filter members by team. Return an array of member references.
      *
      * @param array $members
      * @param int $id
-     * @return array
+     * @return array or member references.
      */
-    public function filterByTeam(array $members, int $id) : array {
+    public function filterByTeam(array &$members, int $id) : array {
         $result = [];
-        foreach($members as $member){
+        foreach($members as &$member){
             if($member->getTeamId() === $id){
-                $result[] = $member->getId();
+                $result[$member->getId()] = &$member;
             }
         }
         return $result;
     }
 
     /**
-     * Filter members by present. Return an array of member id's.
+     * Filter members by present. Return an array of member references.
      *
      * @param array $members
-     * @param bool $value
+     * @param bool $value true for present false for absent
+     * @return array of member references.
      */
-    public function filterPresent(array $members, $value=false){
+    public function filterPresent(array &$members, bool $value=true){
         $result = [];
-        foreach($members as $member){
+        foreach($members as &$member){
             if ($member->getPresent() === $value){
-                $result[] = $member->getId();
+                $result[$member->getId()] = &$member;
             }
         }
         return $result;
     }
 
     /**
-     * Filter members by team. Return an array of member id's.
-     *
+     * Filter members keeping those who use the coffee machine.
+     * Return an array of member references.
      * @param array $members
-     * @param int $id
-     * @param $present
-     * @return array
+     * @return array of member references.
      */
-    public function filterByTeamAndPresent(array $members, int $id, $present=true) : array {
+    public function filterUsesCoffeeMachine(array &$members){
         $result = [];
-        foreach($members as $member){
-            if($member->getTeamId() === $id && $member->getPresent() === $present){
-                $result[] = $member->getId();
-            }
-        }
-        return $result;
-    }
-
-
-    public function filterUsesCoffeeMachineAndPresent(array $members){
-        $result = [];
-        foreach($members as $member) {
+        foreach($members as &$member) {
             if (in_array($member->getDrinkPreference(), ['coffee', 'tea'])
                 && $member->getPresent()){
-                $result[] = $member->getId();
+                $result[$member->getId()] = &$member;
             }
         }
         return $result;
