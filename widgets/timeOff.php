@@ -39,10 +39,6 @@ function dateString($startDate, $endDate) {
 }
 ?>
 
-<<<<<<< development:widgets/daysOff.php
-<div id="daysOff" class="widgetBoxSmall">
-    <h2>&#127958 Vrije dagen</h2>
-=======
 <div id="timeOff" class="widgetBoxSmall">
     <h2><?= $islandIcon; ?> Vrije dagen</h2>
 
