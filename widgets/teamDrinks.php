@@ -2,27 +2,31 @@
     TEAM DRINKS WIDGET
     This widget periodically appoints a present team member ('the waiter')
     to fetch the drinks for his/her team.
+
     @authors: Emiel and Petri
+    @review: Carina
 -->
 <link rel="stylesheet" href="widgets/teamDrinks.css">
 
 <div id="teamDrinks" class="widgetBoxSmall">
     <h2><img src="widgets/coffee.png">
         Tijd voor koffie!</h2>
+
     <div id="current-waiter">
 
         <?php
         // Determine if a new 'waiter' needs to be appointed.
         $refresh=false;
-
         if(isset($_SESSION['timeTeamDrinks'])){
             $refresh = (time() - $_SESSION['timeTeamDrinks']) >= 3600;
         }
+
         // Session variable is not set.
         else{
             $_SESSION['timeTeamDrinks'] = time();
             $refresh = true;
         }
+
         //Randomly appoint the new waiter
         if($refresh){
             foreach($teams as $team) {
@@ -34,6 +38,7 @@
             }
             $_SESSION['timeTeamDrinks'] = time();
         }
+
         // Are team members present?
         if(empty($presentTeamMembers)) {
             echo '<img src="widgets/void.jpg">Er is niemand aanwezig om koffie te halen...';
@@ -45,9 +50,10 @@
         }
         ?>
     </div>
+
     <div class="scrollable" id="drink-list">
         <ul id="drink-items">
-            <!-- List the team member that are present today-->
+            <!-- List the team members that are present today -->
             <?php foreach ($presentTeamMembers as $member): ?>
                 <li class='drink-item'>
                     <img class="userimg"
@@ -61,4 +67,6 @@
         </ul>
     </div>
 </div>
+
+<!-- Insert WidgetFrameControl.js to animate at frame overflow -->
 <script src="widgets/WidgetFrameControl.js" type="text/javascript"></script>
