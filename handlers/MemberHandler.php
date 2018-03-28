@@ -37,11 +37,11 @@ class MemberHandler extends Handler {
      */
     public function getAll() : array {
         $query = 'select m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id,
-            coalesce((NOW() not between t.start_time and t.end_time
-            and m.working_days LIKE concat("%", lower(dayname(now())), "%")),0) as \'present\'
-            from member m
-            left join time_off t on m.id =  t.member_id
-            group by m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id, present';
+           coalesce(NOW() not between t.start_time and t.end_time, 1)
+           and m.working_days LIKE concat("%", lower(dayname(now())), "%") as \'present\'
+           from member m
+           left join time_off t on m.id =  t.member_id
+           group by m.id, m.name, m.username, m.destination, m.drink_preference, m.working_days, m.team_id, present';
         $sth = $this->dbh->prepare($query);
         $sth->execute();
         $rows = $sth->fetchAll();
