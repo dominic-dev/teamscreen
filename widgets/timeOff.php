@@ -2,7 +2,6 @@
 
 <?php
 
-var_dump($timeOffNextTwoWeeks);
 $timeOffItems = &$timeOffNextTwoWeeks;
 
 $islandIcon = '&#127958';
