@@ -26,8 +26,9 @@ if($teamId){
     $presentTeamMembers = $memberHandler->filterPresent($teamMembers);
     $presentCoffeeMachineUsers = $memberHandler->filterUsesCoffeeMachine($presentAllMembers);
 
-    $timeOffThisWeek = $timeOffHandler->getByTeamThisWeek($teamId);
-    $timeOffNextWeek = $timeOffHandler->getByTeamNextWeek($teamId);
+//    $timeOffThisWeek = $timeOffHandler->getByTeamThisWeek($teamId);
+//    $timeOffNextWeek = $timeOffHandler->getByTeamNextWeek($teamId);
+    $timeOffNextTwoWeeks = $timeOffHandler->getByTeamNextTwoWeeks($teamId);
 
     $javascriptTeamMembers = [];
     foreach ($teamMembers as $teamMember){

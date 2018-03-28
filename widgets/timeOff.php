@@ -2,7 +2,8 @@
 
 <?php
 
-$timeOffItems = array_merge($timeOffThisWeek, $timeOffNextWeek);
+var_dump($timeOffNextTwoWeeks);
+$timeOffItems = &$timeOffNextTwoWeeks;
 
 $islandIcon = '&#127958';
 $calendarIcon = '&#128197';
