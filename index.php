@@ -25,7 +25,6 @@ if($teamId){
     $presentAllMembers = $memberHandler->filterPresent($allMembers, $teamId);
     $presentTeamMembers = $memberHandler->filterPresent($teamMembers);
     $presentCoffeeMachineUsers = $memberHandler->filterUsesCoffeeMachine($presentAllMembers);
-    $presentCoffeeMachineUsers[26]->setName("Agung the King");
 
     $timeOffThisWeek = $timeOffHandler->getByTeamThisWeek($teamId);
     $timeOffNextWeek = $timeOffHandler->getByTeamNextWeek($teamId);
