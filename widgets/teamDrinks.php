@@ -12,7 +12,6 @@
     <div id="current-waiter">
 
         <?php
-
         // Determine if a new 'waiter' needs to be appointed.
         $refresh=false;
 
@@ -24,37 +23,28 @@
             $_SESSION['timeTeamDrinks'] = time();
             $refresh = true;
         }
-
-        //$refresh = true; // For testing/demo purposes only; comment out when code complete
-
         //Randomly appoint the new waiter
         if($refresh){
             foreach($teams as $team) {
                 $presTeamMembers = $memberHandler->getPresentByTeam($team->getId());
-                if(empty($presTeamMembers)) {
-                    $_SESSION['teams'][$team->getId()]['waiterId'] = -1;
-                }
-                else{
+                if(!empty($presTeamMembers)) {
                     $randomPresentTeamMember = $presTeamMembers[array_rand($presTeamMembers, 1)];
                     $_SESSION['teams'][$team->getId()]['waiterId'] = $randomPresentTeamMember->getId();
                 }
             }
             $_SESSION['timeTeamDrinks'] = time();
         }
-
-        $waiter = null;
-        if($_SESSION['teams'][$teamId]['waiterId'] == -1){
-            echo "No team members present...";
+        // Are team members present?
+        if(empty($presentTeamMembers)) {
+            echo '<img src="widgets/void.jpg">Er is niemand aanwezig om koffie te halen...';
         }
         else{
             $waiter = $presentTeamMembers[$_SESSION['teams'][$teamId]['waiterId']];
+            echo '<img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=' . $waiter->getUsername() . '">';
+            echo '<span class="name">' . $waiter->getName() . '</span>, het is jouw beurt om koffie te halen voor:';
         }
-
         ?>
-        <img src="http://tim.mybit.nl/jiraproxy.php/secure/useravatar?size=large&ownerId=<?= $waiter->getUsername(); ?>">
-        <span class="name"><?= $waiter->getName(); ?></span>, het is jouw beurt om koffie te halen voor:
     </div>
-
     <div class="scrollable" id="drink-list">
         <ul id="drink-items">
             <!-- List the team member that are present today-->
