@@ -5,6 +5,32 @@
     @authors: Paul
 -->
 
+<?php
+
+
+function isRefreshNeeded() : bool{
+    $refresh = true;
+    if (isset($_SESSION['timeCleanCoffeeMachine'])) {
+        // TODO check time frame
+
+        //24 hr refresh
+        $refresh = (time() - $_SESSION['timeCleanCoffeeMachine']) >= CLEAN_COFFEE_REFRESH;
+    }
+    if(!isset($_SESSION['coffeeCleanerId'])){
+        $refresh = true;
+    }
+    return $refresh;
+}
+function setRandomCleaner($presentCoffeeMachineUsers){
+    $randomIndex = array_rand($presentCoffeeMachineUsers, 1);
+    $randomMemberId = $presentCoffeeMachineUsers[$randomIndex]->getId();
+    $_SESSION['coffeeCleanerId'] = $randomMemberId;
+    $_SESSION['timeCleanCoffeeMachine'] = time();
+}
+
+
+?>
+
 <link rel="stylesheet" href="widgets/cleanCoffeeMachine.css">
 
 <div id="cleanCoffeeMachine" class="widgetBoxSmall">
@@ -15,24 +41,14 @@
     <?php
     const CLEAN_COFFEE_REFRESH = 1; //60 * 60 * 24;
 
+    // No users available
     if (empty($presentCoffeeMachineUsers)) {
         echo '<div id="cleanerTxt">Er is op dit moment niemand beschikbaar.</div>';
+    // Users available
     } else {
-        $refresh = true;
-        if (isset($_SESSION['timeCleanCoffeeMachine'])) {
-            //24 hr refresh
-            $refresh = (time() - $_SESSION['timeCleanCoffeeMachine']) >= CLEAN_COFFEE_REFRESH;
-        }
-        if(!isset($_SESSION['coffeeCleanerId'])){
-            $refresh = true;
-        }
-
+        $refresh = isRefreshNeeded();
         if ($refresh) {
-            //picks a random member of the presentCoffeeMachineUsers list
-            $randomIndex = array_rand($presentCoffeeMachineUsers, 1);
-            $randomMemberId = $presentCoffeeMachineUsers[$randomIndex]->getId();
-            $_SESSION['coffeeCleanerId'] = $randomMemberId;
-            $_SESSION['timeCleanCoffeeMachine'] = time();
+            setRandomCleaner($presentCoffeeMachineUsers);
         }
         $cleaner = $allMembers[$_SESSION['coffeeCleanerId']];
         ?>
