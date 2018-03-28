@@ -19,7 +19,7 @@ class Member {
     /**
      * @return string
      */
-    public function getAvatar()
+    public function getAvatar() : string
     {
         return $this->avatar;
     }
@@ -65,15 +65,15 @@ class Member {
     /**
      * @return null
      */
-    public function getTeamId()
+    public function getTeamId() : int
     {
-        return $this->teamId;
+        return (int) $this->teamId;
     }
 
     /**
      * @param null $teamId
      */
-    public function setTeamId($teamId)
+    public function setTeamId(int $teamId)
     {
         $this->teamId = $teamId;
     }
@@ -81,7 +81,7 @@ class Member {
     /**
      * @return null
      */
-    public function getDestination()
+    public function getDestination() : string
     {
         return $this->destination;
     }

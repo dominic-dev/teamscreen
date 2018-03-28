@@ -27,8 +27,6 @@
 
     var drinklist = document.getElementById('drink-list');
     function step() {
-        console.log(drinklist.scrollTop+2);
-        console.log((drinklist.scrollHeight - drinklist.offsetHeight ));
         if (drinklist.scrollTop<=0) {
             direction = 1;
         } else if (drinklist.scrollTop+2 > ((drinklist.scrollHeight - drinklist.offsetHeight ))) {

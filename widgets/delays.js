@@ -1,4 +1,3 @@
-console.log(2);
 console.log(teamMembers);
 TRAFFIC_MAX_OK_DELAY_MINS = 9;
 

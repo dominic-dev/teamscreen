@@ -239,7 +239,8 @@ class MemberHandler extends Handler {
     public function filterByTeam(array &$members, int $id) : array {
         $result = [];
         foreach($members as &$member){
-            if($member->getTeamId() === $id){
+//            var_dump($member);
+            if($member->getTeamId() == $id){
                 $result[$member->getId()] = &$member;
             }
         }

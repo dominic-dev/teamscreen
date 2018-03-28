@@ -28,6 +28,11 @@ if($teamId){
 
     $timeOffThisWeek = $timeOffHandler->getByTeamThisWeek($teamId);
     $timeOffNextWeek = $timeOffHandler->getByTeamNextWeek($teamId);
+
+    $javascriptTeamMembers = [];
+    foreach ($teamMembers as $teamMember){
+        $javascriptTeamMembers[] = $teamMember;
+    }
 }
 
 setlocale(LC_TIME, 'nld_nld' );
@@ -51,8 +56,8 @@ session_start();
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
-         var allMembers = JSON.parse('<?= json_encode($presentCoffeeMachineUsers)?>');
-         var teamMembers = JSON.parse('<?= json_encode($teamMembers)?>');
+         var allMembers = JSON.parse('<?= json_encode($allMembers)?>');
+         var teamMembers = JSON.parse('<?= json_encode($javascriptTeamMembers) ?>');
        </script>
     <script src="main.js"></script>
     <script src="time.js"></script>
