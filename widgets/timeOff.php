@@ -1,6 +1,12 @@
 <link rel="stylesheet" href="widgets/timeOff.css">
 
 <?php
+/**
+ * TIME OFF WIDGET
+ *
+ * @author Vincent Huijts
+ * @review Carina Boom
+ */
 
 $timeOffItems = &$timeOffNextTwoWeeks;
 
